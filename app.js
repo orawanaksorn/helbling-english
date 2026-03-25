@@ -1,7 +1,6 @@
 /**
  * Helbling Options — offline exercise viewer.
- * Serve repo root:  npx --yes serve d:\work\user-task\english\helbling
- * Open: http://localhost:3000/viewer/
+ * Deploy on Cloudflare Pages: serve at site root (/)
  */
 
 const CONTENT_XML_RELATIVE_PATH =
@@ -9,8 +8,8 @@ const CONTENT_XML_RELATIVE_PATH =
 
 function getCandidateContentXmlPaths() {
   // Support both hosting layouts:
-  // - Served at repo root:    /options/.../content.xml
-  // - Viewer served in /viewer: /viewer/ + ../options/.../content.xml
+  // - Served at repo root: /options/.../content.xml
+  // - If this app is moved under a subfolder, ../options... still works.
   return [
     CONTENT_XML_RELATIVE_PATH,
     `../${CONTENT_XML_RELATIVE_PATH}`,
@@ -30,11 +29,10 @@ const btnClose = document.getElementById("btn-close");
 /** @type {{ courseBase: string, fetchPrefix?: string, units: { id: string, exercises: { id: string, maxPoints: string }[] }[] } | null} */
 let courseIndex = null;
 
-/** @type {{ exerciseDir: string, data: object } | null} */
+/** @type {{ exerciseDir: string, data: object, unitId: string, exerciseId: string } | null} */
 let currentSession = null;
 
 function courseBaseFromContentPath() {
-  // Use the canonical relative path for computing base, independent of how it was fetched.
   const i = CONTENT_XML_RELATIVE_PATH.lastIndexOf("/");
   return i >= 0 ? CONTENT_XML_RELATIVE_PATH.slice(0, i) : "";
 }
@@ -55,6 +53,12 @@ function pickInstruction(obj) {
   return "";
 }
 
+function stripHtml(s) {
+  const d = document.createElement("div");
+  d.innerHTML = s;
+  return d.textContent || d.innerText || "";
+}
+
 function normInstructionHtml(html) {
   return stripHtml(String(html || ""))
     .replace(/\s+/g, " ")
@@ -64,12 +68,6 @@ function normInstructionHtml(html) {
 
 function formatExerciseTitle(folderName) {
   return folderName.replaceAll("_", " ");
-}
-
-function stripHtml(s) {
-  const d = document.createElement("div");
-  d.innerHTML = s;
-  return d.textContent || d.innerText || "";
 }
 
 function normGap(s, ignoreCase) {
@@ -146,7 +144,6 @@ async function loadCourseIndex() {
   }
   const text = await res.text();
   courseIndex = parseContentXml(text);
-  // Keep canonical courseBase and remember the relative prefix that worked.
   courseIndex.courseBase = courseBaseFromContentPath();
   courseIndex.fetchPrefix = computeFetchPrefix(usedPath);
 }
@@ -228,7 +225,10 @@ function gapWidthPx(cfg, globalWidthMode, allGapCfgs) {
   if (globalWidthMode === "asLongestWord" && allGapCfgs && allGapCfgs.length) {
     let maxLen = 0;
     for (const g of allGapCfgs) {
-      const pieces = [g.correctAnswer, ...(g.additionalAnswers || []).map((a) => (typeof a === "string" ? a : a.answer))];
+      const pieces = [
+        g.correctAnswer,
+        ...(g.additionalAnswers || []).map((a) => (typeof a === "string" ? a : a.answer)),
+      ];
       for (const p of pieces) {
         const L = stripHtml(String(p || "")).length;
         if (L > maxLen) maxLen = L;
@@ -246,7 +246,7 @@ function renderGapInput(cfg, globalGap, allGapsInScope) {
   return `<input type="text" class="gap-input" data-kind="gap" data-id="${cfg.id}" style="width:${w};max-width:100%" size="${Math.min(size + 2, 40)}" autocomplete="off" spellcheck="false" />`;
 }
 
-function renderDropdown(cfg, shuffle, exerciseDir) {
+function renderDropdown(cfg, shuffle) {
   const opts = [];
   const correct = cfg.additionalAnswers.find((a) => a.correct);
   const wrong = cfg.additionalAnswers.filter((a) => !a.correct);
@@ -273,8 +273,6 @@ function renderQuizOrChoice(cfg, kind) {
   const qid = cfg.id;
   const opts = [];
   const answers = cfg.additionalAnswers || [];
-  // Many Helbling items (eg. TRUE/FALSE) look best as a single-row radio group,
-  // even if the item config has orientation=vertical.
   const effectiveOrientation =
     cfg.orientation === "horizontal" || answers.length <= 3 ? "row" : "column";
   for (let i = 0; i < answers.length; i++) {
@@ -294,7 +292,10 @@ function renderFreewrite(cfg) {
 
 function renderCustomImage(cfg, exerciseDir) {
   const src = cfg.url && cfg.url.trim() ? cfg.url : assetUrl(exerciseDir, cfg.name);
-  const w = cfg.width && cfg.width > 0 ? ` style="max-width:${cfg.width}px;width:100%;height:auto"` : ' style="max-width:100%;height:auto"';
+  const w =
+    cfg.width && cfg.width > 0
+      ? ` style="max-width:${cfg.width}px;width:100%;height:auto"`
+      : ' style="max-width:100%;height:auto"';
   return `<img class="hl-custom-image" src="${escapeAttr(src)}" alt=""${w} loading="lazy" />`;
 }
 
@@ -316,25 +317,26 @@ function escapeAttr(s) {
 }
 
 function replaceDropdownEmbeds(html, renderFn) {
-  return html.replace(/<span class="dropdown-embed"><dropdown id="([^"]+)"><\/dropdown><\/span>/gi, (_, id) => {
-    const cfg = renderFn(id);
-    return cfg || `<span class="missing-widget">[dropdown ${escapeHtml(id)}]</span>`;
-  });
+  return html.replace(
+    /<span class="dropdown-embed"><dropdown id="([^"]+)"><\/dropdown><\/span>/gi,
+    (_, id) => renderFn(id) || `<span class="missing-widget">[dropdown ${escapeHtml(id)}]</span>`
+  );
 }
 
 function replaceGapEmbeds(html, renderFn) {
-  return html.replace(/<span class="gap-embed"><gap id="([^"]+)"><\/gap><\/span>/gi, (_, id) => {
-    const cfg = renderFn(id);
-    return cfg || `<span class="missing-widget">[gap ${escapeHtml(id)}]</span>`;
-  });
+  return html.replace(
+    /<span class="gap-embed"><gap id="([^"]+)"><\/gap><\/span>/gi,
+    (_, id) => renderFn(id) || `<span class="missing-widget">[gap ${escapeHtml(id)}]</span>`
+  );
 }
 
 function replaceStandaloneTags(html, tagName, renderFn) {
+  // Match HTML like: <gap id="gap_0"></gap>
   const re = new RegExp(`<${tagName} id="([^"]+)"><\\/${tagName}>`, "gi");
-  return html.replace(re, (_, id) => {
-    const cfg = renderFn(id);
-    return cfg || `<span class="missing-widget">[${tagName} ${escapeHtml(id)}]</span>`;
-  });
+  return html.replace(
+    re,
+    (_, id) => renderFn(id) || `<span class="missing-widget">[${tagName} ${escapeHtml(id)}]</span>`
+  );
 }
 
 function renderCustomGroupItem(item, exerciseDir, seq) {
@@ -349,7 +351,7 @@ function renderCustomGroupItem(item, exerciseDir, seq) {
   const dropRender = (id) => {
     const cfg = byId.get(id);
     if (!cfg || cfg.type !== "dropdown") return "";
-    return renderDropdown(cfg, shuffle, exerciseDir);
+    return renderDropdown(cfg, shuffle);
   };
   const gapRender = (id) => {
     const cfg = byId.get(id);
@@ -388,7 +390,7 @@ function expandPartsHtml(partsHtml, exerciseDir, seq, readingCfgMap) {
     if (!c) return "";
     switch (c.type) {
       case "dropdown":
-        return renderDropdown(c, shuffle, exerciseDir);
+        return renderDropdown(c, shuffle);
       case "gap":
         return renderGapInput(c, gGap, allGapsSeq);
       case "single-letter":
@@ -419,6 +421,8 @@ function expandPartsHtml(partsHtml, exerciseDir, seq, readingCfgMap) {
   html = replaceStandaloneTags(html, "single-letter", (id) => renderById(id));
   html = replaceStandaloneTags(html, "freewrite", (id) => renderById(id));
   html = replaceStandaloneTags(html, "quiz", (id) => renderById(id));
+  // Helbling sometimes uses <multiple-choice> tag for single-choice items.
+  html = replaceStandaloneTags(html, "multiple-choice", (id) => renderById(id));
   html = replaceStandaloneTags(html, "single-choice", (id) => renderById(id));
   return html;
 }
@@ -448,7 +452,11 @@ function renderExercise(data, exerciseDir, title) {
     }
     return "";
   })();
-  const showTopInstr = !!(topInstr && normInstructionHtml(topInstr) && normInstructionHtml(topInstr) !== normInstructionHtml(firstSeqInstr));
+  const showTopInstr = !!(
+    topInstr &&
+    normInstructionHtml(topInstr) &&
+    normInstructionHtml(topInstr) !== normInstructionHtml(firstSeqInstr)
+  );
 
   const reading = expandReadingHtml(data, exerciseDir);
   const seqBlocks = (data.sequences || []).map((seq, idx) => {
@@ -526,12 +534,9 @@ function evaluateExercise(data) {
   let correct = 0;
 
   const idToCfg = new Map();
-
   const register = (arr) => {
     if (!Array.isArray(arr)) return;
-    for (const c of arr) {
-      if (c && c.id) idToCfg.set(c.id, c);
-    }
+    for (const c of arr) if (c && c.id) idToCfg.set(c.id, c);
   };
 
   register(data.readingText?.configs);
@@ -583,6 +588,7 @@ function evaluateExercise(data) {
     total++;
     if (ok) correct++;
   }
+
   setScoreText(correct, total);
 }
 
@@ -592,10 +598,9 @@ function showAllAnswers(data) {
   const idToCfg = new Map();
   const register = (arr) => {
     if (!Array.isArray(arr)) return;
-    for (const c of arr) {
-      if (c && c.id) idToCfg.set(c.id, c);
-    }
+    for (const c of arr) if (c && c.id) idToCfg.set(c.id, c);
   };
+
   register(data.readingText?.configs);
   for (const seq of data.sequences || []) {
     register(seq.configs);
@@ -643,6 +648,7 @@ function showAllAnswers(data) {
     }
     setRowState(row, true);
   }
+
   const total = countScorableItems();
   setScoreText(total, total);
 }
@@ -680,15 +686,9 @@ async function openExercise(unitId, exerciseId) {
 }
 
 function wireFooter() {
-  btnAnswer.onclick = () => {
-    if (currentSession) evaluateExercise(currentSession.data);
-  };
-  btnShowAll.onclick = () => {
-    if (currentSession) showAllAnswers(currentSession.data);
-  };
-  btnReset.onclick = () => {
-    if (currentSession) resetExercise();
-  };
+  btnAnswer.onclick = () => currentSession && evaluateExercise(currentSession.data);
+  btnShowAll.onclick = () => currentSession && showAllAnswers(currentSession.data);
+  btnReset.onclick = () => currentSession && resetExercise();
   btnClose.onclick = () => {
     location.hash = "#/";
   };
@@ -709,9 +709,10 @@ function init() {
   wireFooter();
   window.addEventListener("hashchange", () => route());
   route().catch((e) => {
-    mainEl.innerHTML = `<p class="empty-toc">Failed to load: ${escapeHtml(e.message)}</p><p>Open this site via a local web server from the <strong>helbling</strong> project folder (not file://). Example: <code>npx serve .</code> then open <code>/viewer/</code>.</p>`;
+    mainEl.innerHTML = `<p class="empty-toc">Failed to load: ${escapeHtml(e.message)}</p>`;
     footerEl.hidden = true;
   });
 }
 
 init();
+

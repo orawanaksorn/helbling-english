@@ -93,7 +93,6 @@ body {
     justify-content: flex-start;
   }
 
-  /* Row 1: score full width */
   .footer-score {
     order: 0;
     flex: 1 0 100%;
@@ -101,7 +100,6 @@ body {
     margin: 0;
   }
 
-  /* Row 2: 2 buttons per row */
   #btn-answer {
     order: 1;
   }
@@ -121,6 +119,7 @@ body {
     font-size: 0.95rem;
   }
 }
+
 .btn {
   font-family: inherit;
   font-size: 0.95rem;
@@ -403,3 +402,4 @@ select.hl-dropdown.gap-ok {
 .empty-toc {
   color: #666;
 }
+
