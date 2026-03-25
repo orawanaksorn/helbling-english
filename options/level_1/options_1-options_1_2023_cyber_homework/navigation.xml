@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+  <exercise_default>
+    <subject>English</subject>
+    <language>en</language>
+    <evaluation>client</evaluation>
+    <result>rslt</result>
+    <backPageTarget>_self</backPageTarget>
+  </exercise_default>
+
+  <sequence noContentXML="true" hasExerciseXML="false" titlesFromExerciseXMLs="true" contentSrc="content.xml">
+    <course>
+      <choice id="package" title="options_1-options_1_2023_cyber_homework" viewer="responsive-v3">
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_welcome_CH_01</id>
+              <title>Welcome Unit - Cyber Homework 1</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_welcome_CH_01.unit_welcome_vocabulary_01_ch_01.unit_welcome_vocabulary_01_ch_01" id="unit_welcome_CH_01.unit_welcome_vocabulary_01_ch_01" title="Activity 1 Vocabulary: Numbers" maxPoints="15" category="Vocabulary" bookpage="" mode="test"/>
+            <exercise content="unit_welcome_CH_01.unit_welcome_vocabulary_02_ch_01.unit_welcome_vocabulary_02_ch_01" id="unit_welcome_CH_01.unit_welcome_vocabulary_02_ch_01" title="Activity 2 Vocabulary: Colours" maxPoints="11" category="Vocabulary" bookpage="" mode="test"/>
+            <exercise content="unit_welcome_CH_01.unit_welcome_03_ch_01.unit_welcome_03_ch_01" id="unit_welcome_CH_01.unit_welcome_03_ch_01" title="Activity 3: Meeting and greeting" maxPoints="8" category="" bookpage="" mode="test"/>
+            <exercise content="unit_welcome_CH_01.unit_welcome_04_reading_ch_01.unit_welcome_04_reading_ch_01" id="unit_welcome_CH_01.unit_welcome_04_reading_ch_01" title="Activity 4: Reading" maxPoints="5" category="Reading" bookpage="" mode="test"/>
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_welcome_CH_02</id>
+              <title>Welcome Unit - Cyber Homework 2</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_welcome_CH_02.unit_welcome_vocabulary_01_ch_02.unit_welcome_vocabulary_01_ch_02" id="unit_welcome_CH_02.unit_welcome_vocabulary_01_ch_02" title="Activity 1 Vocabulary: At school" maxPoints="10" category="Vocabulary" bookpage="" mode="test"/>
+            <exercise content="unit_welcome_CH_02.unit_welcome_grammar_02_ch_02.unit_welcome_grammar_02_ch_02" id="unit_welcome_CH_02.unit_welcome_grammar_02_ch_02" title="Activity 2 Grammar: &lt;i&gt;there is/there are;&lt;/i&gt; Possessive &lt;i&gt;’s&lt;/i&gt;" maxPoints="12" category="Grammar" bookpage="" mode="test"/>
+            <exercise content="unit_welcome_CH_02.unit_welcome_listening_03_ch_02.unit_welcome_listening_03_ch_02" id="unit_welcome_CH_02.unit_welcome_listening_03_ch_02" title="Activity 3: Listening" maxPoints="6" category="Listening" bookpage="" mode="test"/>
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_01_CH_03</id>
+              <title>Unit 1 - Cyber Homework 3</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_01_CH_03.unit_01_vocabulary_01_ch_03.unit_01_vocabulary_01_ch_03" id="unit_01_CH_03.unit_01_vocabulary_01_ch_03" title="Activity 1 Vocabulary: Feelings" maxPoints="8" category="Vocabulary" bookpage="" mode="test"/>
+            <exercise content="unit_01_CH_03.unit_01_vocabulary_02_ch_03.unit_01_vocabulary_02_ch_03" id="unit_01_CH_03.unit_01_vocabulary_02_ch_03" title="Activity 2 Vocabulary: Feelings" maxPoints="9" category="Vocabulary" bookpage="" mode="test"/>
+            <exercise content="unit_01_CH_03.unit_01_grammar_03_ch_03.unit_01_grammar_03_ch_03" id="unit_01_CH_03.unit_01_grammar_03_ch_03" title="Activity 3 Grammar: &lt;i&gt;be&lt;/i&gt; (negative)" maxPoints="6" category="Grammar" bookpage="" mode="test"/>
+            <exercise content="unit_01_CH_03.unit_01_grammar_04_ch_03.unit_01_grammar_04_ch_03" id="unit_01_CH_03.unit_01_grammar_04_ch_03" title="Activity 4 Grammar: &lt;i&gt;be&lt;/i&gt; (negative)" maxPoints="6" category="Grammar" bookpage="" mode="test"/>
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_01_CH_04</id>
+              <title>Unit 1 - Cyber Homework 4</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_01_CH_04.unit_01_vocabulary_01_ch_04.unit_01_vocabulary_01_ch_04" id="unit_01_CH_04.unit_01_vocabulary_01_ch_04" title="Activity 1 Vocabulary: Rooms" maxPoints="15" category="Vocabulary" bookpage="" mode="test"/>
+            <exercise content="unit_01_CH_04.unit_01_grammar_02_ch_04.unit_01_grammar_02_ch_04" id="unit_01_CH_04.unit_01_grammar_02_ch_04" title="Activity 2 Grammar: &lt;i&gt;be&lt;/i&gt; (questions and short answers)" maxPoints="12" category="Grammar" bookpage="" mode="test"/>
+            <exercise content="unit_01_CH_04.unit_01_listening_03_ch_04.unit_01_listening_03_ch_04" id="unit_01_CH_04.unit_01_listening_03_ch_04" title="Activity 3: Listening" maxPoints="6" category="Listening" bookpage="" mode="test"/>
+            <exercise content="unit_01_CH_04.unit_01_dialogue_04_ch_04.unit_01_dialogue_04_ch_04" id="unit_01_CH_04.unit_01_dialogue_04_ch_04" title="Activity 4 Dialogue work: Expressing and responding to feelings" maxPoints="17" category="Dialogue work" bookpage="" mode="test"/>
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_01_CH_05</id>
+              <title>Unit 1 - Cyber Homework 5</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_01_CH_05.unit_01_reading_01_ch_05.unit_01_reading_01_ch_05" id="unit_01_CH_05.unit_01_reading_01_ch_05" title="Activity 1: Reading" maxPoints="6" category="Reading" bookpage="" mode="test"/>
+            <exercise content="unit_01_CH_05.unit_01_writing_02_ch_05.unit_01_writing_02_ch_05" id="unit_01_CH_05.unit_01_writing_02_ch_05" title="Activity 2: Writing" maxPoints="1" category="Writing" bookpage="" mode="test"/>
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_02_CH_06</id>
+              <title>Unit 2 - Cyber Homework 6</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_02_CH_06.unit_02_vocabulary_01_ch_06.unit_02_vocabulary_01_ch_06" id="unit_02_CH_06.unit_02_vocabulary_01_ch_06" title="Activity 1 Vocabulary: Pets" maxPoints="8" category="Vocabulary" bookpage="" mode="test"/>
+            <exercise content="unit_02_CH_06.unit_02_vocabulary_02_ch_06.unit_02_vocabulary_02_ch_06" id="unit_02_CH_06.unit_02_vocabulary_02_ch_06" title="Activity 2 Vocabulary: Pets" maxPoints="8" category="Vocabulary" bookpage="" mode="test"/>
+            <exercise content="unit_02_CH_06.unit_02_grammar_03_ch_06.unit_02_grammar_03_ch_06" id="unit_02_CH_06.unit_02_grammar_03_ch_06" title="Activity 3 Grammar: &lt;i&gt;have/has got&lt;/i&gt;" maxPoints="6" category="Grammar" bookpage="" mode="test"/>
+            <exercise content="unit_02_CH_06.unit_02_grammar_04_ch_06.unit_02_grammar_04_ch_06" id="unit_02_CH_06.unit_02_grammar_04_ch_06" title="Activity 4 Grammar: &lt;i&gt;have/has got&lt;/i&gt;" maxPoints="6" category="Grammar" bookpage="" mode="test"/>
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_02_CH_07</id>
+              <title>Unit 2 - Cyber Homework 7</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_02_CH_07.unit_02_vocabulary_01_ch_07.unit_02_vocabulary_01_ch_07" id="unit_02_CH_07.unit_02_vocabulary_01_ch_07" title="Activity 1 Vocabulary: Prepositions of place" maxPoints="6" category="Vocabulary" bookpage="" mode="test"/>
+            <exercise content="unit_02_CH_07.unit_02_grammar_02_ch_07.unit_02_grammar_02_ch_07" id="unit_02_CH_07.unit_02_grammar_02_ch_07" title="Activity 2 Grammar: &lt;i&gt;have/has got&lt;/i&gt; (negative and questions)" maxPoints="21" category="Grammar" bookpage="" mode="test"/>
+            <exercise content="unit_02_CH_07.unit_02_listening_03_ch_07.unit_02_listening_03_ch_07" id="unit_02_CH_07.unit_02_listening_03_ch_07" title="Activity 3: Listening" maxPoints="7" category="Listening" bookpage="" mode="test"/>
+            <exercise content="unit_02_CH_07.unit_02_dialogue_04_ch_07.unit_02_dialogue_04_ch_07" id="unit_02_CH_07.unit_02_dialogue_04_ch_07" title="Activity 4 Dialogue work: Expressing disbelief" maxPoints="5" category="Dialogue work" bookpage="" mode="test"/>
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_02_CH_08</id>
+              <title>Unit 2 - Cyber Homework 8</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_02_CH_08.unit_02_reading_01_ch_08.unit_02_reading_01_ch_08" id="unit_02_CH_08.unit_02_reading_01_ch_08" title="Activity 1: Reading" maxPoints="6" category="Reading" bookpage="" mode="test"/>
+            <exercise content="unit_02_CH_08.unit_02_writing_02_ch_08.unit_02_writing_02_ch_08" id="unit_02_CH_08.unit_02_writing_02_ch_08" title="Activity 2: Writing" maxPoints="1" category="Writing" bookpage="" mode="test"/>
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_03_CH_09</id>
+              <title>Unit 3 - Cyber Homework 9</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_03_CH_09.unit_03_vocabulary_01_ch_09.unit_03_vocabulary_01_ch_09" id="unit_03_CH_09.unit_03_vocabulary_01_ch_09" title="Activity 1 Vocabulary: Daily routines" maxPoints="8" category="Vocabulary" bookpage="" mode="test"/>
+            <exercise content="unit_03_CH_09.unit_03_vocabulary_02_ch_09.unit_03_vocabulary_02_ch_09" id="unit_03_CH_09.unit_03_vocabulary_02_ch_09" title="Activity 2 Vocabulary: Daily routines" maxPoints="54" category="Vocabulary" bookpage="" mode="test"/>
+            <exercise content="unit_03_CH_09.unit_03_grammar_03_ch_09.unit_03_grammar_03_ch_09" id="unit_03_CH_09.unit_03_grammar_03_ch_09" title="Activity 3 Grammar: Present simple affirmative" maxPoints="6" category="Grammar" bookpage="" mode="test"/>
+            <exercise content="unit_03_CH_09.unit_03_grammar_04_ch_09.unit_03_grammar_04_ch_09" id="unit_03_CH_09.unit_03_grammar_04_ch_09" title="Activity 4 Grammar: Present simple negative" maxPoints="6" category="Grammar" bookpage="" mode="test"/>
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_03_CH_10</id>
+              <title>Unit 3 - Cyber Homework 10</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_03_CH_10.unit_03_vocabulary_01_ch_10.unit_03_vocabulary_01_ch_10" id="unit_03_CH_10.unit_03_vocabulary_01_ch_10" title="Activity 1 Vocabulary: Food and days of the week" maxPoints="89" category="Vocabulary" bookpage="" mode="test"/>
+            <exercise content="unit_03_CH_10.unit_03_grammar_02_ch_10.unit_03_grammar_02_ch_10" id="unit_03_CH_10.unit_03_grammar_02_ch_10" title="Activity 2 Grammar: Adverbs of frequency" maxPoints="5" category="Grammar" bookpage="" mode="test"/>
+            <exercise content="unit_03_CH_10.unit_03_listening_03_ch_10.unit_03_listening_03_ch_10" id="unit_03_CH_10.unit_03_listening_03_ch_10" title="Activity 3: Listening" maxPoints="6" category="Listening" bookpage="" mode="test"/>
+            <exercise content="unit_03_CH_10.unit_03_dialogue_04_ch_10.unit_03_dialogue_04_ch_10" id="unit_03_CH_10.unit_03_dialogue_04_ch_10" title="Activity 4 Dialogue work: Weekday routine" maxPoints="5" category="Dialogue work" bookpage="" mode="test"/>
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_03_CH_11</id>
+              <title>Unit 3 - Cyber Homework 11</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_03_CH_11.unit_03_reading_01_ch_11.unit_03_reading_01_ch_11" id="unit_03_CH_11.unit_03_reading_01_ch_11" title="Activity 1: Reading" maxPoints="7" category="Reading" bookpage="" mode="test"/>
+            <exercise content="unit_03_CH_11.unit_03_writing_02_ch_11.unit_03_writing_02_ch_11" id="unit_03_CH_11.unit_03_writing_02_ch_11" title="Activity 2: Writing" maxPoints="1" category="Writing" bookpage="" mode="test"/>
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_04_CH_12</id>
+              <title>Unit 4 - Cyber Homework 12</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_04_CH_12.unit_04_vocabulary_01_ch_12.unit_04_vocabulary_01_ch_12" id="unit_04_CH_12.unit_04_vocabulary_01_ch_12" title="Activity 1 Vocabulary: Family and friends" maxPoints="9" category="Vocabulary" bookpage="" mode="test"/>
+            <exercise content="unit_04_CH_12.unit_04_vocabulary_02_ch_12.unit_04_vocabulary_02_ch_12" id="unit_04_CH_12.unit_04_vocabulary_02_ch_12" title="Activity 2 Vocabulary: Family and friends" maxPoints="44" category="Vocabulary" bookpage="" mode="test"/>
+            <exercise content="unit_04_CH_12.unit_04_grammar_03_ch_12.unit_04_grammar_03_ch_12" id="unit_04_CH_12.unit_04_grammar_03_ch_12" title="Activity 3 Grammar: Present simple questions" maxPoints="12" category="Grammar" bookpage="" mode="test"/>
+            <exercise content="unit_04_CH_12.unit_04_grammar_04_ch_12.unit_04_grammar_04_ch_12" id="unit_04_CH_12.unit_04_grammar_04_ch_12" title="Activity 4 Grammar: Present simple questions" maxPoints="6" category="Grammar" bookpage="" mode="test"/>
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_04_CH_13</id>
+              <title>Unit 4 - Cyber Homework 13</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_04_CH_13.unit_04_vocabulary_01_ch_13.unit_04_vocabulary_01_ch_13" id="unit_04_CH_13.unit_04_vocabulary_01_ch_13" title="Activity 1 Vocabulary: Adjectives to describe people" maxPoints="14" category="Vocabulary" bookpage="" mode="test"/>
+            <exercise content="unit_04_CH_13.unit_04_grammar_02_ch_13.unit_04_grammar_02_ch_13" id="unit_04_CH_13.unit_04_grammar_02_ch_13" title="Activity 2 Grammar: Possessive adjectives" maxPoints="7" category="Grammar" bookpage="" mode="test"/>
+            <exercise content="unit_04_CH_13.unit_04_listening_03_ch_13.unit_04_listening_03_ch_13" id="unit_04_CH_13.unit_04_listening_03_ch_13" title="Activity 3: Listening" maxPoints="7" category="Listening" bookpage="" mode="test"/>
+            <exercise content="unit_04_CH_13.unit_04_dialogue_04_ch_13.unit_04_dialogue_04_ch_13" id="unit_04_CH_13.unit_04_dialogue_04_ch_13" title="Activity 4 Dialogue work: Guessing" maxPoints="7" category="Dialogue work" bookpage="" mode="test"/>
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_04_CH_14</id>
+              <title>Unit 4 - Cyber Homework 14</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_04_CH_14.unit_04_vocabulary_01_ch_14.unit_04_vocabulary_01_ch_14" id="unit_04_CH_14.unit_04_vocabulary_01_ch_14" title="Activity 1: Reading" maxPoints="7" category="Reading" bookpage="" mode="test"/>
+            <exercise content="unit_04_CH_14.unit_04_writing_02_ch_14.unit_04_writing_02_ch_14" id="unit_04_CH_14.unit_04_writing_02_ch_14" title="Activity 2: Writing" maxPoints="1" category="Writing" bookpage="" mode="test"/>
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_05_CH_15</id>
+              <title>Unit 5 - Cyber Homework 15</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_05_CH_15.unit_05_vocabulary_01_ch_15.unit_05_vocabulary_01_ch_15" id="unit_05_CH_15.unit_05_vocabulary_01_ch_15" title="Activity 1 Vocabulary: Parts of the body" maxPoints="25" category="Vocabulary" bookpage="" mode="test"/>
+            <exercise content="unit_05_CH_15.unit_05_vocabulary_02_ch_15.unit_05_vocabulary_02_ch_15" id="unit_05_CH_15.unit_05_vocabulary_02_ch_15" title="Activity 2 Vocabulary: Parts of the body" maxPoints="8" category="Vocabulary" bookpage="" mode="test"/>
+            <exercise content="unit_05_CH_15.unit_05_grammar_03_ch_15.unit_05_grammar_03_ch_15" id="unit_05_CH_15.unit_05_grammar_03_ch_15" title="Activity 3 Grammar: &lt;i&gt;can/can’t&lt;/i&gt;" maxPoints="6" category="Grammar" bookpage="" mode="test"/>
+            <exercise content="unit_05_CH_15.unit_05_grammar_04_ch_15.unit_05_grammar_04_ch_15" id="unit_05_CH_15.unit_05_grammar_04_ch_15" title="Activity 4 Grammar: &lt;i&gt;can/can’t&lt;/i&gt;" maxPoints="10" category="Grammar" bookpage="" mode="test"/>
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_05_CH_16</id>
+              <title>Unit 5 - Cyber Homework 16</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_05_CH_16.unit_05_vocabulary_01_ch_16.unit_05_vocabulary_01_ch_16" id="unit_05_CH_16.unit_05_vocabulary_01_ch_16" title="Activity 1 Vocabulary: Body movements" maxPoints="8" category="Vocabulary" bookpage="" mode="test"/>
+            <exercise content="unit_05_CH_16.unit_05_grammar_01_ch_16.unit_05_grammar_01_ch_16" id="unit_05_CH_16.unit_05_grammar_01_ch_16" title="Activity 2 Grammar: Imperatives" maxPoints="6" category="Grammar" bookpage="" mode="test"/>
+            <exercise content="unit_05_CH_16.unit_05_grammar_02_ch_16.unit_05_grammar_02_ch_16" id="unit_05_CH_16.unit_05_grammar_02_ch_16" title="Activity 3 Grammar: Object pronouns" maxPoints="6" category="Grammar" bookpage="" mode="test"/>
+            <exercise content="unit_05_CH_16.unit_05_listening_03_ch_16.unit_05_listening_03_ch_16" id="unit_05_CH_16.unit_05_listening_03_ch_16" title="Activity 4: Listening" maxPoints="6" category="Listening" bookpage="" mode="test"/>
+            <exercise content="unit_05_CH_16.unit_05_dialogue_04_ch_16.unit_05_dialogue_04_ch_16" id="unit_05_CH_16.unit_05_dialogue_04_ch_16" title="Activity 5 Dialogue work: Talking about ability" maxPoints="8" category="Dialogue work" bookpage="" mode="test"/>
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_05_CH_17</id>
+              <title>Unit 5 - Cyber Homework 17</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_05_CH_17.unit_05_reading_01_ch_17.unit_05_reading_01_ch_17" id="unit_05_CH_17.unit_05_reading_01_ch_17" title="Activity 1: Reading" maxPoints="6" category="Reading" bookpage="" mode="test"/>
+            <exercise content="unit_05_CH_17.unit_05_writing_02_ch_17.unit_05_writing_02_ch_17" id="unit_05_CH_17.unit_05_writing_02_ch_17" title="Activity 2: Writing" maxPoints="1" category="Writing" bookpage="" mode="test"/>
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_06_CH_18</id>
+              <title>Unit 6 - Cyber Homework 18</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_06_CH_18.unit_06_vocabulary_01_ch_18.unit_06_vocabulary_01_ch_18" id="unit_06_CH_18.unit_06_vocabulary_01_ch_18" title="Activity 1 Vocabulary: Clothes" maxPoints="12" category="Vocabulary" bookpage="" mode="test"/>
+            <exercise content="unit_06_CH_18.unit_06_vocabulary_02_ch_18.unit_06_vocabulary_02_ch_18" id="unit_06_CH_18.unit_06_vocabulary_02_ch_18" title="Activity 2 Vocabulary: Clothes" maxPoints="45" category="Vocabulary" bookpage="" mode="test"/>
+            <exercise content="unit_06_CH_18.unit_06_grammar_03_ch_18.unit_06_grammar_03_ch_18" id="unit_06_CH_18.unit_06_grammar_03_ch_18" title="Activity 3 Grammar: Present continuous" maxPoints="12" category="Grammar" bookpage="" mode="test"/>
+            <exercise content="unit_06_CH_18.unit_06_grammar_04_ch_18.unit_06_grammar_04_ch_18" id="unit_06_CH_18.unit_06_grammar_04_ch_18" title="Activity 4 Grammar: Present continuous" maxPoints="6" category="Grammar" bookpage="" mode="test"/>
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_06_CH_19</id>
+              <title>Unit 6 - Cyber Homework 19</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_06_CH_19.unit_06_vocabulary_01_ch_19.unit_06_vocabulary_01_ch_19" id="unit_06_CH_19.unit_06_vocabulary_01_ch_19" title="Activity 1 Vocabulary: Sport clothes" maxPoints="5" category="Vocabulary" bookpage="" mode="test"/>
+            <exercise content="unit_06_CH_19.unit_06_grammar_02_ch_19.unit_06_grammar_02_ch_19" id="unit_06_CH_19.unit_06_grammar_02_ch_19" title="Activity 2 Grammar:&lt;i&gt; this/that/these/those&lt;/i&gt;" maxPoints="4" category="Grammar" bookpage="" mode="test"/>
+            <exercise content="unit_06_CH_19.unit_06_grammar_03_ch_19.unit_06_grammar_03_ch_19" id="unit_06_CH_19.unit_06_grammar_03_ch_19" title="Activity 3 Grammar: &lt;i&gt;Whose ...?&lt;/i&gt; and possessive pronouns" maxPoints="18" category="Grammar" bookpage="" mode="test"/>
+            <exercise content="unit_06_CH_19.unit_06_listening_04_ch_19.unit_06_listening_04_ch_19" id="unit_06_CH_19.unit_06_listening_04_ch_19" title="Activity 4: Listening" maxPoints="6" category="Listening" bookpage="" mode="test"/>
+            <exercise content="unit_06_CH_19.unit_06_dialogue_05_ch_19.unit_06_dialogue_05_ch_19" id="unit_06_CH_19.unit_06_dialogue_05_ch_19" title="Activity 5 Dialogue work: Complimenting someone" maxPoints="5" category="Dialogue work" bookpage="" mode="test"/>
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_06_CH_20</id>
+              <title>Unit 6 - Cyber Homework 20</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_06_CH_20.unit_06_reading_01_ch_20.unit_06_reading_01_ch_20" id="unit_06_CH_20.unit_06_reading_01_ch_20" title="Activity 1: Reading" maxPoints="7" category="Reading" bookpage="" mode="test"/>
+            <exercise content="unit_06_CH_20.unit_06_writing_02_ch_20.unit_06_writing_02_ch_20" id="unit_06_CH_20.unit_06_writing_02_ch_20" title="Activity 2: Writing" maxPoints="1" category="Writing" bookpage="" mode="test"/>
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_07_CH_21</id>
+              <title>Unit 7 - Cyber Homework 21</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_07_CH_21.unit_07_vocabulary_01_ch_21.unit_07_vocabulary_01_ch_21" id="unit_07_CH_21.unit_07_vocabulary_01_ch_21" title="Activity 1 Vocabulary: Countries" maxPoints="12" category="Vocabulary" bookpage="" mode="test"/>
+            <exercise content="unit_07_CH_21.unit_07_vocabulary_02_ch_21.unit_07_vocabulary_02_ch_21" id="unit_07_CH_21.unit_07_vocabulary_02_ch_21" title="Activity 2 Vocabulary: Countries" maxPoints="76" category="Vocabulary" bookpage="" mode="test"/>
+            <exercise content="unit_07_CH_21.unit_07_grammar_03_ch_21.unit_07_grammar_03_ch_21" id="unit_07_CH_21.unit_07_grammar_03_ch_21" title="Activity 3 Grammar: &lt;i&gt;was/were&lt;/i&gt;" maxPoints="7" category="Grammar" bookpage="" mode="test"/>
+            <exercise content="unit_07_CH_21.unit_07_grammar_04_ch_21.unit_07_grammar_04_ch_21" id="unit_07_CH_21.unit_07_grammar_04_ch_21" title="Activity 4 Grammar: &lt;i&gt;was/were&lt;/i&gt;" maxPoints="6" category="Grammar" bookpage="" mode="test"/>
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_07_CH_22</id>
+              <title>Unit 7 - Cyber Homework 22</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_07_CH_22.unit_07_vocabulary_01_ch_22.unit_07_vocabulary_01_ch_22" id="unit_07_CH_22.unit_07_vocabulary_01_ch_22" title="Activity 1 Vocabulary: Sports" maxPoints="8" category="Vocabulary" bookpage="" mode="test"/>
+            <exercise content="unit_07_CH_22.unit_07_grammar_02_ch_22.unit_07_grammar_02_ch_22" id="unit_07_CH_22.unit_07_grammar_02_ch_22" title="Activity 2 Grammar: &lt;i&gt;was/were&lt;/i&gt; (negative and questions)" maxPoints="13" category="Grammar" bookpage="" mode="test"/>
+            <exercise content="unit_07_CH_22.unit_07_listening_03_ch_22.unit_07_listening_03_ch_22" id="unit_07_CH_22.unit_07_listening_03_ch_22" title="Activity 3: Listening" maxPoints="7" category="Listening" bookpage="" mode="test"/>
+            <exercise content="unit_07_CH_22.unit_07_dialogue_04_ch_22.unit_07_dialogue_04_ch_22" id="unit_07_CH_22.unit_07_dialogue_04_ch_22" title="Activity 4 Dialogue work: Saying where you’re from" maxPoints="6" category="Dialogue work" bookpage="" mode="test"/>
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_07_CH_23</id>
+              <title>Unit 7 - Cyber Homework 23</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_07_CH_23.unit_07_reading_01_ch_23.unit_07_reading_01_ch_23" id="unit_07_CH_23.unit_07_reading_01_ch_23" title="Activity 1: Reading" maxPoints="6" category="Reading" bookpage="" mode="test"/>
+            <exercise content="unit_07_CH_23.unit_07_writing_02_ch_23.unit_07_writing_02_ch_23" id="unit_07_CH_23.unit_07_writing_02_ch_23" title="Activity 2: Writing" maxPoints="1" category="Writing" bookpage="" mode="test"/>
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_08_CH_24</id>
+              <title>Unit 8 - Cyber Homework 24</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_08_CH_24.unit_08_vocabulary_01_ch_24.unit_08_vocabulary_01_ch_24" id="unit_08_CH_24.unit_08_vocabulary_01_ch_24" title="Activity 1 Vocabulary: Entertainment" maxPoints="9" category="Vocabulary" bookpage="" mode="test"/>
+            <exercise content="unit_08_CH_24.unit_08_vocabulary_02_ch_24.unit_08_vocabulary_02_ch_24" id="unit_08_CH_24.unit_08_vocabulary_02_ch_24" title="Activity 2 Vocabulary: Entertainment" maxPoints="57" category="Vocabulary" bookpage="" mode="test"/>
+            <exercise content="unit_08_CH_24.unit_08_grammar_03_ch_24.unit_08_grammar_03_ch_24" id="unit_08_CH_24.unit_08_grammar_03_ch_24" title="Activity 3 Grammar: Past simple affirmative (regular verbs)" maxPoints="6" category="Grammar" bookpage="" mode="test"/>
+            <exercise content="unit_08_CH_24.unit_08_grammar_04_ch_24.unit_08_grammar_04_ch_24" id="unit_08_CH_24.unit_08_grammar_04_ch_24" title="Activity 4 Grammar: Past simple affirmative (irregular verbs)" maxPoints="8" category="Grammar" bookpage="" mode="test"/>
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_08_CH_25</id>
+              <title>Unit 8 - Cyber Homework 25</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_08_CH_25.unit_08_vocabulary_01_ch_25.unit_08_vocabulary_01_ch_25" id="unit_08_CH_25.unit_08_vocabulary_01_ch_25" title="Activity 1 Vocabulary: Months and ordinal numbers" maxPoints="7" category="Vocabulary" bookpage="" mode="test"/>
+            <exercise content="unit_08_CH_25.unit_08_grammar_02_ch_25.unit_08_grammar_02_ch_25" id="unit_08_CH_25.unit_08_grammar_02_ch_25" title="Activity 2 Grammar: Prepositions of time" maxPoints="6" category="Grammar" bookpage="" mode="test"/>
+            <exercise content="unit_08_CH_25.unit_08_grammar_03_ch_25.unit_08_grammar_03_ch_25" id="unit_08_CH_25.unit_08_grammar_03_ch_25" title="Activity 3 Grammar: Telling the time" maxPoints="6" category="Grammar" bookpage="" mode="test"/>
+            <exercise content="unit_08_CH_25.unit_08_listening_04_ch_25.unit_08_listening_04_ch_25" id="unit_08_CH_25.unit_08_listening_04_ch_25" title="Activity 4: Listening" maxPoints="6" category="Listening" bookpage="" mode="test"/>
+            <exercise content="unit_08_CH_25.unit_08_dialogue_05_ch_25.unit_08_dialogue_05_ch_25" id="unit_08_CH_25.unit_08_dialogue_05_ch_25" title="Activity 5 Dialogue work: Making suggestions" maxPoints="21" category="Dialogue work" bookpage="" mode="test"/>
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_08_CH_26</id>
+              <title>Unit 8 - Cyber Homework 26</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_08_CH_26.unit_08_reading_01_ch_26.unit_08_reading_01_ch_26" id="unit_08_CH_26.unit_08_reading_01_ch_26" title="Activity 1: Reading" maxPoints="6" category="Reading" bookpage="" mode="test"/>
+            <exercise content="unit_08_CH_26.unit_08_writing_02_ch_26.unit_08_writing_02_ch_26" id="unit_08_CH_26.unit_08_writing_02_ch_26" title="Activity 2: Writing" maxPoints="1" category="Writing" bookpage="" mode="test"/>
+          </choice>
+        </unit>
+      </choice>
+    </course>
+  </sequence>
+</application>

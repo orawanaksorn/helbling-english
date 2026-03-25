@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CourseContent>
+	<exercise_default>
+		<subject>English</subject>
+		<language>en</language>
+		<evaluation>client</evaluation>
+		<result>rslt</result>
+		<backPageTarget>_self</backPageTarget>
+	</exercise_default>
+	
+	<exerciseBasePath>/inetpub/ezone/platform/exercises/options/level_1/options_1-options_1_2023_cyber_homework</exerciseBasePath> 
+	
+	<collection name="unit_welcome_CH_01">
+		<collection name="unit_welcome_vocabulary_01_ch_01">
+			<exercise name="unit_welcome_vocabulary_01_ch_01" config="exercise.json" maxPoints="15"/>
+		</collection>
+		<collection name="unit_welcome_vocabulary_02_ch_01">
+			<exercise name="unit_welcome_vocabulary_02_ch_01" config="exercise.json" maxPoints="11"/>
+		</collection>
+		<collection name="unit_welcome_03_ch_01">
+			<exercise name="unit_welcome_03_ch_01" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="unit_welcome_04_reading_ch_01">
+			<exercise name="unit_welcome_04_reading_ch_01" config="exercise.json" maxPoints="5"/>
+		</collection>
+  </collection>
+	<collection name="unit_welcome_CH_02">
+		<collection name="unit_welcome_vocabulary_01_ch_02">
+			<exercise name="unit_welcome_vocabulary_01_ch_02" config="exercise.json" maxPoints="10"/>
+		</collection>
+		<collection name="unit_welcome_grammar_02_ch_02">
+			<exercise name="unit_welcome_grammar_02_ch_02" config="exercise.json" maxPoints="12"/>
+		</collection>
+		<collection name="unit_welcome_listening_03_ch_02">
+			<exercise name="unit_welcome_listening_03_ch_02" config="exercise.json" maxPoints="6"/>
+		</collection>
+  </collection>
+	<collection name="unit_01_CH_03">
+		<collection name="unit_01_vocabulary_01_ch_03">
+			<exercise name="unit_01_vocabulary_01_ch_03" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="unit_01_vocabulary_02_ch_03">
+			<exercise name="unit_01_vocabulary_02_ch_03" config="exercise.json" maxPoints="9"/>
+		</collection>
+		<collection name="unit_01_grammar_03_ch_03">
+			<exercise name="unit_01_grammar_03_ch_03" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="unit_01_grammar_04_ch_03">
+			<exercise name="unit_01_grammar_04_ch_03" config="exercise.json" maxPoints="6"/>
+		</collection>
+  </collection>
+	<collection name="unit_01_CH_04">
+		<collection name="unit_01_vocabulary_01_ch_04">
+			<exercise name="unit_01_vocabulary_01_ch_04" config="exercise.json" maxPoints="15"/>
+		</collection>
+		<collection name="unit_01_grammar_02_ch_04">
+			<exercise name="unit_01_grammar_02_ch_04" config="exercise.json" maxPoints="12"/>
+		</collection>
+		<collection name="unit_01_listening_03_ch_04">
+			<exercise name="unit_01_listening_03_ch_04" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="unit_01_dialogue_04_ch_04">
+			<exercise name="unit_01_dialogue_04_ch_04" config="exercise.json" maxPoints="17"/>
+		</collection>
+  </collection>
+	<collection name="unit_01_CH_05">
+		<collection name="unit_01_reading_01_ch_05">
+			<exercise name="unit_01_reading_01_ch_05" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="unit_01_writing_02_ch_05">
+			<exercise name="unit_01_writing_02_ch_05" config="exercise.json" maxPoints="1"/>
+		</collection>
+  </collection>
+	<collection name="unit_02_CH_06">
+		<collection name="unit_02_vocabulary_01_ch_06">
+			<exercise name="unit_02_vocabulary_01_ch_06" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="unit_02_vocabulary_02_ch_06">
+			<exercise name="unit_02_vocabulary_02_ch_06" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="unit_02_grammar_03_ch_06">
+			<exercise name="unit_02_grammar_03_ch_06" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="unit_02_grammar_04_ch_06">
+			<exercise name="unit_02_grammar_04_ch_06" config="exercise.json" maxPoints="6"/>
+		</collection>
+  </collection>
+	<collection name="unit_02_CH_07">
+		<collection name="unit_02_vocabulary_01_ch_07">
+			<exercise name="unit_02_vocabulary_01_ch_07" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="unit_02_grammar_02_ch_07">
+			<exercise name="unit_02_grammar_02_ch_07" config="exercise.json" maxPoints="21"/>
+		</collection>
+		<collection name="unit_02_listening_03_ch_07">
+			<exercise name="unit_02_listening_03_ch_07" config="exercise.json" maxPoints="7"/>
+		</collection>
+		<collection name="unit_02_dialogue_04_ch_07">
+			<exercise name="unit_02_dialogue_04_ch_07" config="exercise.json" maxPoints="5"/>
+		</collection>
+  </collection>
+	<collection name="unit_02_CH_08">
+		<collection name="unit_02_reading_01_ch_08">
+			<exercise name="unit_02_reading_01_ch_08" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="unit_02_writing_02_ch_08">
+			<exercise name="unit_02_writing_02_ch_08" config="exercise.json" maxPoints="1"/>
+		</collection>
+  </collection>
+	<collection name="unit_03_CH_09">
+		<collection name="unit_03_vocabulary_01_ch_09">
+			<exercise name="unit_03_vocabulary_01_ch_09" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="unit_03_vocabulary_02_ch_09">
+			<exercise name="unit_03_vocabulary_02_ch_09" config="exercise.json" maxPoints="54"/>
+		</collection>
+		<collection name="unit_03_grammar_03_ch_09">
+			<exercise name="unit_03_grammar_03_ch_09" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="unit_03_grammar_04_ch_09">
+			<exercise name="unit_03_grammar_04_ch_09" config="exercise.json" maxPoints="6"/>
+		</collection>
+  </collection>
+	<collection name="unit_03_CH_10">
+		<collection name="unit_03_vocabulary_01_ch_10">
+			<exercise name="unit_03_vocabulary_01_ch_10" config="exercise.json" maxPoints="89"/>
+		</collection>
+		<collection name="unit_03_grammar_02_ch_10">
+			<exercise name="unit_03_grammar_02_ch_10" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="unit_03_listening_03_ch_10">
+			<exercise name="unit_03_listening_03_ch_10" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="unit_03_dialogue_04_ch_10">
+			<exercise name="unit_03_dialogue_04_ch_10" config="exercise.json" maxPoints="5"/>
+		</collection>
+  </collection>
+	<collection name="unit_03_CH_11">
+		<collection name="unit_03_reading_01_ch_11">
+			<exercise name="unit_03_reading_01_ch_11" config="exercise.json" maxPoints="7"/>
+		</collection>
+		<collection name="unit_03_writing_02_ch_11">
+			<exercise name="unit_03_writing_02_ch_11" config="exercise.json" maxPoints="1"/>
+		</collection>
+  </collection>
+	<collection name="unit_04_CH_12">
+		<collection name="unit_04_vocabulary_01_ch_12">
+			<exercise name="unit_04_vocabulary_01_ch_12" config="exercise.json" maxPoints="9"/>
+		</collection>
+		<collection name="unit_04_vocabulary_02_ch_12">
+			<exercise name="unit_04_vocabulary_02_ch_12" config="exercise.json" maxPoints="44"/>
+		</collection>
+		<collection name="unit_04_grammar_03_ch_12">
+			<exercise name="unit_04_grammar_03_ch_12" config="exercise.json" maxPoints="12"/>
+		</collection>
+		<collection name="unit_04_grammar_04_ch_12">
+			<exercise name="unit_04_grammar_04_ch_12" config="exercise.json" maxPoints="6"/>
+		</collection>
+  </collection>
+	<collection name="unit_04_CH_13">
+		<collection name="unit_04_vocabulary_01_ch_13">
+			<exercise name="unit_04_vocabulary_01_ch_13" config="exercise.json" maxPoints="14"/>
+		</collection>
+		<collection name="unit_04_grammar_02_ch_13">
+			<exercise name="unit_04_grammar_02_ch_13" config="exercise.json" maxPoints="7"/>
+		</collection>
+		<collection name="unit_04_listening_03_ch_13">
+			<exercise name="unit_04_listening_03_ch_13" config="exercise.json" maxPoints="7"/>
+		</collection>
+		<collection name="unit_04_dialogue_04_ch_13">
+			<exercise name="unit_04_dialogue_04_ch_13" config="exercise.json" maxPoints="7"/>
+		</collection>
+  </collection>
+	<collection name="unit_04_CH_14">
+		<collection name="unit_04_vocabulary_01_ch_14">
+			<exercise name="unit_04_vocabulary_01_ch_14" config="exercise.json" maxPoints="7"/>
+		</collection>
+		<collection name="unit_04_writing_02_ch_14">
+			<exercise name="unit_04_writing_02_ch_14" config="exercise.json" maxPoints="1"/>
+		</collection>
+  </collection>
+	<collection name="unit_05_CH_15">
+		<collection name="unit_05_vocabulary_01_ch_15">
+			<exercise name="unit_05_vocabulary_01_ch_15" config="exercise.json" maxPoints="25"/>
+		</collection>
+		<collection name="unit_05_vocabulary_02_ch_15">
+			<exercise name="unit_05_vocabulary_02_ch_15" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="unit_05_grammar_03_ch_15">
+			<exercise name="unit_05_grammar_03_ch_15" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="unit_05_grammar_04_ch_15">
+			<exercise name="unit_05_grammar_04_ch_15" config="exercise.json" maxPoints="10"/>
+		</collection>
+  </collection>
+	<collection name="unit_05_CH_16">
+		<collection name="unit_05_vocabulary_01_ch_16">
+			<exercise name="unit_05_vocabulary_01_ch_16" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="unit_05_grammar_01_ch_16">
+			<exercise name="unit_05_grammar_01_ch_16" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="unit_05_grammar_02_ch_16">
+			<exercise name="unit_05_grammar_02_ch_16" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="unit_05_listening_03_ch_16">
+			<exercise name="unit_05_listening_03_ch_16" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="unit_05_dialogue_04_ch_16">
+			<exercise name="unit_05_dialogue_04_ch_16" config="exercise.json" maxPoints="8"/>
+		</collection>
+  </collection>
+	<collection name="unit_05_CH_17">
+		<collection name="unit_05_reading_01_ch_17">
+			<exercise name="unit_05_reading_01_ch_17" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="unit_05_writing_02_ch_17">
+			<exercise name="unit_05_writing_02_ch_17" config="exercise.json" maxPoints="1"/>
+		</collection>
+  </collection>
+	<collection name="unit_06_CH_18">
+		<collection name="unit_06_vocabulary_01_ch_18">
+			<exercise name="unit_06_vocabulary_01_ch_18" config="exercise.json" maxPoints="12"/>
+		</collection>
+		<collection name="unit_06_vocabulary_02_ch_18">
+			<exercise name="unit_06_vocabulary_02_ch_18" config="exercise.json" maxPoints="45"/>
+		</collection>
+		<collection name="unit_06_grammar_03_ch_18">
+			<exercise name="unit_06_grammar_03_ch_18" config="exercise.json" maxPoints="12"/>
+		</collection>
+		<collection name="unit_06_grammar_04_ch_18">
+			<exercise name="unit_06_grammar_04_ch_18" config="exercise.json" maxPoints="6"/>
+		</collection>
+  </collection>
+	<collection name="unit_06_CH_19">
+		<collection name="unit_06_vocabulary_01_ch_19">
+			<exercise name="unit_06_vocabulary_01_ch_19" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="unit_06_grammar_02_ch_19">
+			<exercise name="unit_06_grammar_02_ch_19" config="exercise.json" maxPoints="4"/>
+		</collection>
+		<collection name="unit_06_grammar_03_ch_19">
+			<exercise name="unit_06_grammar_03_ch_19" config="exercise.json" maxPoints="18"/>
+		</collection>
+		<collection name="unit_06_listening_04_ch_19">
+			<exercise name="unit_06_listening_04_ch_19" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="unit_06_dialogue_05_ch_19">
+			<exercise name="unit_06_dialogue_05_ch_19" config="exercise.json" maxPoints="5"/>
+		</collection>
+  </collection>
+	<collection name="unit_06_CH_20">
+		<collection name="unit_06_reading_01_ch_20">
+			<exercise name="unit_06_reading_01_ch_20" config="exercise.json" maxPoints="7"/>
+		</collection>
+		<collection name="unit_06_writing_02_ch_20">
+			<exercise name="unit_06_writing_02_ch_20" config="exercise.json" maxPoints="1"/>
+		</collection>
+  </collection>
+	<collection name="unit_07_CH_21">
+		<collection name="unit_07_vocabulary_01_ch_21">
+			<exercise name="unit_07_vocabulary_01_ch_21" config="exercise.json" maxPoints="12"/>
+		</collection>
+		<collection name="unit_07_vocabulary_02_ch_21">
+			<exercise name="unit_07_vocabulary_02_ch_21" config="exercise.json" maxPoints="76"/>
+		</collection>
+		<collection name="unit_07_grammar_03_ch_21">
+			<exercise name="unit_07_grammar_03_ch_21" config="exercise.json" maxPoints="7"/>
+		</collection>
+		<collection name="unit_07_grammar_04_ch_21">
+			<exercise name="unit_07_grammar_04_ch_21" config="exercise.json" maxPoints="6"/>
+		</collection>
+  </collection>
+	<collection name="unit_07_CH_22">
+		<collection name="unit_07_vocabulary_01_ch_22">
+			<exercise name="unit_07_vocabulary_01_ch_22" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="unit_07_grammar_02_ch_22">
+			<exercise name="unit_07_grammar_02_ch_22" config="exercise.json" maxPoints="13"/>
+		</collection>
+		<collection name="unit_07_listening_03_ch_22">
+			<exercise name="unit_07_listening_03_ch_22" config="exercise.json" maxPoints="7"/>
+		</collection>
+		<collection name="unit_07_dialogue_04_ch_22">
+			<exercise name="unit_07_dialogue_04_ch_22" config="exercise.json" maxPoints="6"/>
+		</collection>
+  </collection>
+	<collection name="unit_07_CH_23">
+		<collection name="unit_07_reading_01_ch_23">
+			<exercise name="unit_07_reading_01_ch_23" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="unit_07_writing_02_ch_23">
+			<exercise name="unit_07_writing_02_ch_23" config="exercise.json" maxPoints="1"/>
+		</collection>
+  </collection>
+	<collection name="unit_08_CH_24">
+		<collection name="unit_08_vocabulary_01_ch_24">
+			<exercise name="unit_08_vocabulary_01_ch_24" config="exercise.json" maxPoints="9"/>
+		</collection>
+		<collection name="unit_08_vocabulary_02_ch_24">
+			<exercise name="unit_08_vocabulary_02_ch_24" config="exercise.json" maxPoints="57"/>
+		</collection>
+		<collection name="unit_08_grammar_03_ch_24">
+			<exercise name="unit_08_grammar_03_ch_24" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="unit_08_grammar_04_ch_24">
+			<exercise name="unit_08_grammar_04_ch_24" config="exercise.json" maxPoints="8"/>
+		</collection>
+  </collection>
+	<collection name="unit_08_CH_25">
+		<collection name="unit_08_vocabulary_01_ch_25">
+			<exercise name="unit_08_vocabulary_01_ch_25" config="exercise.json" maxPoints="7"/>
+		</collection>
+		<collection name="unit_08_grammar_02_ch_25">
+			<exercise name="unit_08_grammar_02_ch_25" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="unit_08_grammar_03_ch_25">
+			<exercise name="unit_08_grammar_03_ch_25" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="unit_08_listening_04_ch_25">
+			<exercise name="unit_08_listening_04_ch_25" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="unit_08_dialogue_05_ch_25">
+			<exercise name="unit_08_dialogue_05_ch_25" config="exercise.json" maxPoints="21"/>
+		</collection>
+  </collection>
+	<collection name="unit_08_CH_26">
+		<collection name="unit_08_reading_01_ch_26">
+			<exercise name="unit_08_reading_01_ch_26" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="unit_08_writing_02_ch_26">
+			<exercise name="unit_08_writing_02_ch_26" config="exercise.json" maxPoints="1"/>
+		</collection>
+  </collection>
+</CourseContent>
