@@ -378,15 +378,20 @@ body {
   vertical-align: middle;
 }
 
-/* Custom audio player (Helbling-style) */
+/* Custom audio player (pill bar, reference-like) */
 .hl-audio-player {
   width: 100%;
-  max-width: 32rem;
+  max-width: 36rem;
   margin: 0.75rem 0;
   position: relative;
-  --ap-blue: #2563eb;
+  --ap-blue: #1565c0;
   --ap-bar-bg: #fff;
-  --ap-track: #d1d5db;
+  --ap-track: #e4e7eb;
+  --ap-text: #1a1a1a;
+  /* Play/Speed: กล่องสี่เหลี่ยม + SVG | ข้าม: วงกลม (ดูใหญ่ได้เพราะมีขอบ 2px + เลข 5) */
+  --hl-ap-icon: 38px; /* ขนาด SVG play / speed */
+  --hl-ap-control: 2.75rem; /* กล่องคลิก play + speed ให้รองรับไอคอน 38px โดยไม่ชิดขอบ (~44px ที่ root 16px) */
+  --hl-ap-skip-diameter: 34px; /* วงกลมข้าม ±5 */
 }
 
 .hl-audio-player .hl-audio-el {
@@ -396,13 +401,37 @@ body {
 .hl-audio-main-bar {
   display: flex;
   align-items: center;
-  gap: 0.35rem;
-  flex-wrap: wrap;
-  padding: 0.5rem 0.65rem;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
   background: var(--ap-bar-bg);
-  border-radius: 999px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e5e7eb;
+  /* โค้งนิดตามต้นฉบับ ไม่เป็น pill เต็ม */
+  border-radius: 10px;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.04);
+  border: none;
+  min-height: 3rem;
+}
+
+.hl-ap-cluster {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.hl-ap-cluster-left {
+  gap: 0.5rem;
+}
+
+.hl-ap-cluster-center {
+  flex: 1 1 auto;
+  min-width: 0;
+  gap: 0.55rem;
+  justify-content: center;
+}
+
+.hl-ap-cluster-right {
+  gap: 0.15rem;
 }
 
 .hl-ap-btn {
@@ -411,69 +440,146 @@ body {
   background: transparent;
   color: var(--ap-blue);
   cursor: pointer;
-  padding: 0.2rem 0.35rem;
-  line-height: 1;
-  border-radius: 8px;
-  font-size: 1rem;
+  padding: 0.25rem;
+  line-height: 0;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hl-ap-btn:hover {
-  background: rgba(37, 99, 235, 0.08);
+  background: rgba(21, 101, 192, 0.08);
 }
 
-.hl-ap-play {
-  font-size: 1.05rem;
-  min-width: 2rem;
+.hl-ap-play,
+.hl-ap-speed-btn {
+  width: var(--hl-ap-control);
+  height: var(--hl-ap-control);
+  min-width: var(--hl-ap-control);
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.hl-ap-speed-btn {
+  /* จัดออปติคอลเล็กน้อยไปทางขวา ตามต้นฉบับ */
+  margin-left: 0.125rem;
 }
 
 .hl-ap-play-icon {
-  display: inline-block;
-  min-width: 1.25rem;
-  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hl-ap-play-svg {
+  display: block;
+  color: var(--ap-blue);
+  width: var(--hl-ap-icon);
+  height: var(--hl-ap-icon);
+  flex-shrink: 0;
 }
 
 .hl-ap-speed-icon {
   display: block;
   color: var(--ap-blue);
+  width: var(--hl-ap-icon);
+  height: var(--hl-ap-icon);
+  flex-shrink: 0;
 }
 
 .hl-ap-time {
   flex: 0 0 auto;
   font-variant-numeric: tabular-nums;
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: var(--ap-blue);
-  min-width: 2.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ap-text);
+  min-width: 2.75rem;
+  text-align: center;
+  font-feature-settings: "tnum" 1;
 }
 
+/* Range: thin grey track, blue circular thumb */
 .hl-ap-seek {
-  flex: 1 1 6rem;
-  min-width: 4rem;
-  height: 6px;
-  accent-color: var(--ap-blue);
+  flex: 1 1 4rem;
+  min-width: 3rem;
+  height: 1.25rem;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
   cursor: pointer;
+}
+
+.hl-ap-seek:focus {
+  outline: none;
+}
+
+.hl-ap-seek:focus-visible {
+  outline: 2px solid rgba(21, 101, 192, 0.35);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.hl-ap-seek::-webkit-slider-runnable-track {
+  height: 3px;
+  background: var(--ap-track);
+  border-radius: 2px;
+}
+
+.hl-ap-seek::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  margin-top: -5.5px;
+  border-radius: 50%;
+  background: var(--ap-blue);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+  border: none;
+}
+
+.hl-ap-seek::-moz-range-track {
+  height: 3px;
+  background: var(--ap-track);
+  border-radius: 2px;
+  border: none;
+}
+
+.hl-ap-seek::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--ap-blue);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+  border: none;
 }
 
 .hl-ap-skip {
   position: relative;
-  width: 2.35rem;
-  height: 2.35rem;
+  box-sizing: border-box;
+  width: var(--hl-ap-skip-diameter);
+  height: var(--hl-ap-skip-diameter);
+  min-width: var(--hl-ap-skip-diameter);
   padding: 0;
   border-radius: 50%;
-  font-size: 0.65rem;
+  font-size: 0.64rem;
   font-weight: 800;
   color: var(--ap-blue);
   border: 2px solid var(--ap-blue);
   background: #fff;
+  flex-shrink: 0;
 }
 
 .hl-ap-skip::before {
   content: "";
   position: absolute;
-  inset: 1px;
+  inset: 2px;
   border: 2px solid transparent;
   border-top-color: var(--ap-blue);
   border-radius: 50%;
+  box-sizing: border-box;
 }
 
 .hl-ap-skip-back::before {
@@ -495,12 +601,12 @@ body {
   justify-content: space-between;
   gap: 0.35rem;
   margin-top: 0.5rem;
-  padding: 0.45rem 0.6rem;
+  padding: 0.45rem 0.65rem;
   background: var(--ap-bar-bg);
-  border-radius: 999px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e5e7eb;
-  max-width: 32rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.04);
+  border: none;
+  max-width: 36rem;
 }
 
 .hl-audio-speed-panel[hidden] {
@@ -568,11 +674,58 @@ body {
   line-height: 1;
 }
 
+/* Audio: บนมือถือ / จอแคบ — seek เต็มแถวบน แล้วปุ่ม play/speed/skip เรียงแถวล่างกลางจอ */
+@media (max-width: 640px) {
+  .hl-audio-main-bar {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    row-gap: 0.5rem;
+    column-gap: 0.35rem;
+    padding: 0.55rem 0.65rem;
+  }
+
+  .hl-ap-cluster-center {
+    order: -1;
+    flex: 1 1 100%;
+    width: 100%;
+    min-width: 0;
+    gap: 0.4rem;
+  }
+
+  .hl-ap-cluster-left,
+  .hl-ap-cluster-right {
+    flex: 0 0 auto;
+  }
+
+  .hl-ap-time {
+    min-width: 2.5rem;
+    font-size: 0.8rem;
+  }
+
+  .hl-audio-speed-panel {
+    max-width: 100%;
+    margin-top: 0.4rem;
+    padding: 0.4rem 0.5rem;
+    gap: 0.25rem;
+  }
+
+  .hl-ap-speed-presets {
+    gap: 0.08rem;
+    padding: 0 0.15rem;
+  }
+
+  .hl-ap-rate-label {
+    font-size: 0.65rem;
+  }
+}
+
 .gap-input,
 .single-letter-input {
   font: inherit;
   border: 1px solid #94b8b2;
-  border-radius: 3px;
+  border-radius: 4px;
   padding: 0.15rem 0.35rem;
   margin: 0;
   vertical-align: baseline;
@@ -598,7 +751,7 @@ body {
 select.hl-dropdown {
   font: inherit;
   border: 1px solid #94b8b2;
-  border-radius: 3px;
+  border-radius: 4px;
   padding: 0.2rem 0.5rem;
   margin: 0;
   min-width: 6rem;
@@ -683,13 +836,13 @@ select.hl-dropdown.gap-ok,
 
 .hl-key-facade-row {
   display: inline-flex;
-  align-items: center;
+  align-items: stretch;
   gap: 0.28rem;
   box-sizing: border-box;
   min-height: 1.6rem; /* match typical input height */
   border: 1px solid #1a6fb9;
-  border-right: none;
-  border-radius: 4px 0 0 4px;
+  border-radius: 4px;
+  overflow: hidden;
   padding: 0 0.45rem;
   background: #fff;
 }
@@ -711,10 +864,11 @@ select.hl-dropdown.gap-ok,
   justify-content: center;
   width: 2.1rem;
   min-width: 2.1rem;
-  height: 100%;
+  align-self: stretch;
+  margin-right: -0.45rem; /* ดึงปุ่มชิดขอบขวาของแถว (ส่วนที่หักด้วย padding) */
   padding: 0;
   border: none;
-  border-radius: 0 4px 4px 0;
+  border-radius: 0;
   background: #1a6fb9; /* blue behind icon */
   color: #fff; /* icon in white when revealed */
   cursor: pointer;
@@ -744,21 +898,7 @@ select.hl-dropdown.gap-ok,
   display: inline-flex !important;
 }
 
-.hl-answer-key-mode .hl-field-wrap[data-field-kind] .hl-key-facade-row {
-  border-right: 1px solid #1a6fb9;
-  border-radius: 4px;
-}
-
-/* Revealed: make icon background flush right */
-.hl-answer-key-mode .hl-field-wrap[data-field-kind]:not(.hl-key-item-hidden) .hl-key-facade-row {
-  border-radius: 4px 0 0 4px;
-  padding-right: 0;
-  gap: 0.45rem;
-}
-
-.hl-answer-key-mode .hl-field-wrap[data-field-kind]:not(.hl-key-item-hidden) .hl-key-icon {
-  border-radius: 0 4px 4px 0;
-}
+/* กรอบเดียว มน 4px ทุกมุม — โหมดซ่อน/โชว์เฉลยใช้ชุดเดียวกัน (ไม่แยกมุมซ้าย–ขวา) */
 
 /* Hidden (masked) state: solid blue overlay, centered eye (not slashed), no answer text visible */
 .hl-answer-key-mode .hl-field-wrap[data-field-kind].hl-key-item-hidden .hl-key-facade-row {
@@ -766,19 +906,19 @@ select.hl-dropdown.gap-ok,
   border-color: #1a6fb9;
   justify-content: center;
   min-width: 7rem;
+  /* ข้อความซ่อนแล้วไม่กินที่ (display:none) — ความสูงมาจาก padding/ขอบเดียวกับ .hl-key-facade-row */
 }
 
 .hl-answer-key-mode .hl-field-wrap[data-field-kind].hl-key-item-hidden .hl-key-answer-text,
 .hl-answer-key-mode .hl-field-wrap[data-field-kind].hl-key-item-hidden .hl-key-chev {
-  visibility: hidden;
-  width: 0;
-  margin: 0;
-  padding: 0;
+  /* ไม่ใช้ visibility:hidden — ยังคงกินพื้นที่ ทำให้บรรทัดหลายบรรทัดเวลามี space/wrap */
+  display: none;
 }
 
 .hl-answer-key-mode .hl-field-wrap[data-field-kind].hl-key-item-hidden .hl-key-icon {
   background: transparent; /* full row is blue already */
   color: #fff;
+  margin-right: 0; /* ซ่อนเฉลย: ไม่ดันปุ่มชิดขอบ ให้ตากลางแถว */
 }
 
 .hl-answer-key-mode .hl-field-wrap[data-field-kind].hl-key-item-hidden .hl-key-icon svg {
@@ -786,14 +926,12 @@ select.hl-dropdown.gap-ok,
   height: 22px;
 }
 
-/* Revealed state: answer stays black on white; icon has blue bg (eye-off) */
+/* Revealed state: answer stays black on white; icon strip has blue bg (eye-off) */
 .hl-answer-key-mode .hl-field-wrap[data-field-kind]:not(.hl-key-item-hidden) .hl-key-facade-row {
   background: #fff;
+  gap: 0.45rem;
 }
 
-.hl-answer-key-mode .hl-field-wrap[data-field-kind]:not(.hl-key-item-hidden) .hl-key-chev {
-  color: #222;
-}
 
 .status-icon {
   display: inline-block;

@@ -54,7 +54,7 @@
         }
       ],
       "parts": [
-        "<p><audio-player id=\"audio-player_0\"></audio-player></p><p><u>1</u> <gap id=\"gap_0\"></gap></p><p><b>2</b> <gap id=\"gap_1\"></gap></p><p><b>3</b> <gap id=\"gap_2\"></gap></p>"
+        "<p><audio-player id=\"audio-player_0\"></audio-player></p><p><b>1</b> <gap id=\"gap_0\"></gap></p><p><b>2</b> <gap id=\"gap_1\"></gap></p><p><b>3</b> <gap id=\"gap_2\"></gap></p>"
       ],
       "globalTypesConfigs": [
         {

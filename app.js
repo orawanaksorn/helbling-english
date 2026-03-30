@@ -305,7 +305,6 @@ function renderDropdown(cfg, shuffle) {
     <span class="hl-key-facade" hidden>
       <span class="hl-key-facade-row">
         <span class="hl-key-answer-text">${escapeHtml(expected)}</span>
-        <span class="hl-key-chev">▾</span>
         <button type="button" class="hl-key-icon" data-key-toggle="${id}" aria-label="Hide answer"></button>
       </span>
     </span>
@@ -383,21 +382,35 @@ function renderAudioSpeedPresets() {
   }).join("");
 }
 
+/** Inline SVG for play/pause (syncPlayIcon swaps HTML) */
+const HL_AP_ICON_PLAY =
+  '<svg class="hl-ap-play-svg" viewBox="0 0 24 24" width="38" height="38" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>';
+const HL_AP_ICON_PAUSE =
+  '<svg class="hl-ap-play-svg" viewBox="0 0 24 24" width="38" height="38" aria-hidden="true"><path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+
+/** Clock / playback speed */
+const HL_AP_ICON_SPEED =
+  '<svg class="hl-ap-speed-icon" viewBox="0 0 24 24" width="38" height="38" aria-hidden="true"><path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm.5-13H11v6l5.2 3.1.8-1.3-4.5-2.7V7z"/></svg>';
+
 function renderAudio(cfg, exerciseDir) {
   const src = cfg.url && cfg.url.trim() ? cfg.url : assetUrl(exerciseDir, cfg.name);
   const pres = renderAudioSpeedPresets();
   return `<div class="hl-audio-player" data-hl-audio>
   <audio class="hl-audio-el" preload="metadata" src="${escapeAttr(src)}"></audio>
   <div class="hl-audio-main-bar">
-    <button type="button" class="hl-ap-btn hl-ap-play" aria-label="Play"><span class="hl-ap-play-icon">▶</span></button>
-    <button type="button" class="hl-ap-btn hl-ap-speed-btn" aria-label="Playback speed" title="Speed">
-      <svg class="hl-ap-speed-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm.5-13H11v6l5.2 3.1.8-1.3-4.5-2.7V7z"/></svg>
-    </button>
-    <button type="button" class="hl-ap-btn hl-ap-skip hl-ap-skip-back" data-skip="-5" aria-label="Rewind 5 seconds"><span class="hl-ap-skip-num">5</span></button>
-    <span class="hl-ap-time hl-ap-cur">00:00</span>
-    <input type="range" class="hl-ap-seek" min="0" max="1000" value="0" step="1" aria-label="Seek" />
-    <span class="hl-ap-time hl-ap-dur">00:00</span>
-    <button type="button" class="hl-ap-btn hl-ap-skip hl-ap-skip-fwd" data-skip="5" aria-label="Forward 5 seconds"><span class="hl-ap-skip-num">5</span></button>
+    <div class="hl-ap-cluster hl-ap-cluster-left">
+      <button type="button" class="hl-ap-btn hl-ap-play" aria-label="Play"><span class="hl-ap-play-icon">${HL_AP_ICON_PLAY}</span></button>
+      <button type="button" class="hl-ap-btn hl-ap-speed-btn" aria-label="Playback speed" title="Speed">${HL_AP_ICON_SPEED}</button>
+      <button type="button" class="hl-ap-btn hl-ap-skip hl-ap-skip-back" data-skip="-5" aria-label="Rewind 5 seconds"><span class="hl-ap-skip-num">5</span></button>
+    </div>
+    <div class="hl-ap-cluster hl-ap-cluster-center">
+      <span class="hl-ap-time hl-ap-cur">00:00</span>
+      <input type="range" class="hl-ap-seek" min="0" max="1000" value="0" step="1" aria-label="Seek" />
+      <span class="hl-ap-time hl-ap-dur">00:00</span>
+    </div>
+    <div class="hl-ap-cluster hl-ap-cluster-right">
+      <button type="button" class="hl-ap-btn hl-ap-skip hl-ap-skip-fwd" data-skip="5" aria-label="Forward 5 seconds"><span class="hl-ap-skip-num">5</span></button>
+    </div>
   </div>
   <div class="hl-audio-speed-panel" hidden>
     <button type="button" class="hl-ap-speed-step" data-delta="-1" aria-label="Slower">−</button>
@@ -440,7 +453,7 @@ function initCustomAudioPlayers(container) {
 
     function syncPlayIcon() {
       if (!playIcon) return;
-      playIcon.textContent = audio.paused ? "▶" : "⏸";
+      playIcon.innerHTML = audio.paused ? HL_AP_ICON_PLAY : HL_AP_ICON_PAUSE;
       playBtn?.setAttribute("aria-label", audio.paused ? "Play" : "Pause");
     }
 
