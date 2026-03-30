@@ -20,11 +20,25 @@ function getCandidateContentXmlPaths() {
 const mainEl = document.getElementById("main");
 const headerTitleEl = document.getElementById("header-title");
 const footerEl = document.getElementById("app-footer");
-const footerScoreEl = document.getElementById("footer-score");
-const btnAnswer = document.getElementById("btn-answer");
-const btnShowAll = document.getElementById("btn-show-all");
-const btnReset = document.getElementById("btn-reset");
+const appRootEl = document.getElementById("app");
+const toggleAnswersEl = /** @type {HTMLInputElement} */ (document.getElementById("toggle-answers"));
+const btnActionEl = document.getElementById("btn-action");
 const btnClose = document.getElementById("btn-close");
+
+/** Practice vs answer-key; Correct vs Check; share one action button */
+let exerciseUi = {
+  /** Answer-key toggle (green = on) */
+  answersMode: false,
+  lockedAfterCheck: false,
+  /** practice: 'check' | 'correct' — only when !answersMode */
+  practiceAction: "check",
+  /** answer-key: global reveal */
+  revealAll: false,
+  /** show Check after user edits */
+  practiceDirty: false,
+  /** per-field reveal when !revealAll in answer-key mode */
+  keyRevealedItemIds: /** @type {Set<string>} */ (new Set()),
+};
 
 /** @type {{ courseBase: string, fetchPrefix?: string, units: { id: string, exercises: { id: string, maxPoints: string }[] }[] } | null} */
 let courseIndex = null;
@@ -240,10 +254,31 @@ function gapWidthPx(cfg, globalWidthMode, allGapCfgs) {
   return "8rem";
 }
 
+function hlSvgEye() {
+  return `<svg class="hl-svg-eye" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>`;
+}
+
+function hlSvgEyeOff() {
+  return `<svg class="hl-svg-eye-off" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"/></svg>`;
+}
+
 function renderGapInput(cfg, globalGap, allGapsInScope) {
   const w = gapWidthPx(cfg, globalGap.widthMode, allGapsInScope);
   const size = stripHtml(String(cfg.correctAnswer || "")).length || 4;
-  return `<input type="text" class="gap-input" data-kind="gap" data-id="${cfg.id}" style="width:${w};max-width:100%" size="${Math.min(size + 2, 40)}" autocomplete="off" spellcheck="false" />`;
+  const expected = stripHtml(String(cfg.correctAnswer ?? ""));
+  const id = escapeAttr(cfg.id);
+  return `<span class="hl-field-wrap hl-field-inline" data-field-kind="gap" data-id="${id}" data-expected="${escapeAttr(expected)}">
+  <span class="hl-field-badge" aria-hidden="true"></span>
+  <span class="hl-key-shell">
+    <span class="hl-real-control"><input type="text" class="gap-input" data-kind="gap" data-id="${id}" style="width:${w};max-width:100%" size="${Math.min(size + 2, 40)}" autocomplete="off" spellcheck="false" /></span>
+    <span class="hl-key-facade" hidden>
+      <span class="hl-key-facade-row">
+        <span class="hl-key-answer-text">${escapeHtml(expected)}</span>
+        <button type="button" class="hl-key-icon" data-key-toggle="${id}" aria-label="Hide answer"></button>
+      </span>
+    </span>
+  </span>
+</span>`;
 }
 
 function renderDropdown(cfg, shuffle) {
@@ -261,12 +296,39 @@ function renderDropdown(cfg, shuffle) {
       `<option value="${escapeAttr(o.value)}" data-correct="${o.correct ? "1" : "0"}">${escapeHtml(o.label)}</option>`
     );
   }
-  return `<select class="hl-dropdown" data-kind="dropdown" data-id="${cfg.id}" autocomplete="off">${opts.join("")}</select>`;
+  const id = escapeAttr(cfg.id);
+  const expected = correct ? stripHtml(String(correct.answer)) : "";
+  return `<span class="hl-field-wrap hl-field-inline hl-dropdown-field" data-field-kind="dropdown" data-id="${id}" data-expected="${escapeAttr(expected)}">
+  <span class="hl-field-badge" aria-hidden="true"></span>
+  <span class="hl-key-shell hl-key-shell-dropdown">
+    <span class="hl-real-control"><select class="hl-dropdown" data-kind="dropdown" data-id="${id}" autocomplete="off">${opts.join("")}</select></span>
+    <span class="hl-key-facade" hidden>
+      <span class="hl-key-facade-row">
+        <span class="hl-key-answer-text">${escapeHtml(expected)}</span>
+        <span class="hl-key-chev">▾</span>
+        <button type="button" class="hl-key-icon" data-key-toggle="${id}" aria-label="Hide answer"></button>
+      </span>
+    </span>
+  </span>
+</span>`;
 }
 
 function renderSingleLetter(cfg) {
   const len = Math.max(String(cfg.correctAnswer || "").length, 1);
-  return `<input type="text" class="single-letter-input" data-kind="single-letter" data-id="${cfg.id}" maxlength="${len}" size="${len + 1}" autocomplete="off" spellcheck="false" />`;
+  const id = escapeAttr(cfg.id);
+  const expected = stripHtml(String(cfg.correctAnswer ?? ""));
+  return `<span class="hl-field-wrap hl-field-inline" data-field-kind="single-letter" data-id="${id}" data-expected="${escapeAttr(expected)}">
+  <span class="hl-field-badge" aria-hidden="true"></span>
+  <span class="hl-key-shell">
+    <span class="hl-real-control"><input type="text" class="single-letter-input" data-kind="single-letter" data-id="${id}" maxlength="${len}" size="${len + 1}" autocomplete="off" spellcheck="false" /></span>
+    <span class="hl-key-facade" hidden>
+      <span class="hl-key-facade-row">
+        <span class="hl-key-answer-text">${escapeHtml(expected)}</span>
+        <button type="button" class="hl-key-icon" data-key-toggle="${id}" aria-label="Hide answer"></button>
+      </span>
+    </span>
+  </span>
+</span>`;
 }
 
 function renderQuizOrChoice(cfg, kind) {
@@ -283,7 +345,11 @@ function renderQuizOrChoice(cfg, kind) {
       `<label class="radio-opt"><input type="radio" name="${escapeAttr(qid)}" data-kind="${kind}" data-id="${escapeAttr(qid)}" data-idx="${i}" value="${escapeAttr(display)}" /> <span class="radio-label">${escapeHtml(display)}</span></label>`
     );
   }
-  return `<div class="${kind === "quiz" ? "quiz-row" : "sc-row"}" data-question-id="${escapeAttr(qid)}"><span class="status-icon row-status" aria-hidden="true"></span><div class="${kind === "quiz" ? "quiz-q" : "sc-q"}">${cfg.question || ""}</div><div class="${kind === "quiz" ? "quiz-options" : "sc-options"}" data-orient="${effectiveOrientation}" style="display:flex;flex-direction:${effectiveOrientation};flex-wrap:wrap;gap:0.35rem 1rem">${opts.join("")}</div></div>`;
+  return `<div class="hl-field-wrap ${kind === "quiz" ? "quiz-row" : "sc-row"}" data-field-kind="${kind}" data-id="${escapeAttr(qid)}" data-question-id="${escapeAttr(qid)}">
+  <span class="hl-field-badge row-badge" aria-hidden="true"></span>
+  <div class="${kind === "quiz" ? "quiz-q" : "sc-q"}">${cfg.question || ""}</div>
+  <div class="${kind === "quiz" ? "quiz-options" : "sc-options"}" data-orient="${effectiveOrientation}" style="display:flex;flex-direction:${effectiveOrientation};flex-wrap:wrap;gap:0.35rem 1rem">${opts.join("")}</div>
+</div>`;
 }
 
 function renderFreewrite(cfg) {
@@ -627,72 +693,32 @@ function renderExercise(data, exerciseDir, title) {
     ${seqBlocks.join("")}
   `;
   initCustomAudioPlayers(mainEl);
-  setScoreText(0, countScorableItems());
-}
-
-function clearMarks() {
-  mainEl.querySelectorAll(".gap-wrong, .gap-ok").forEach((el) => {
-    el.classList.remove("gap-wrong", "gap-ok");
-  });
-  mainEl.querySelectorAll(".status-icon").forEach((el) => {
-    el.textContent = "";
-    el.classList.remove("is-ok", "is-wrong");
-  });
-}
-
-function setScoreText(correct, total) {
-  if (!footerScoreEl) return;
-  if (!total) {
-    footerScoreEl.textContent = "Score: -/-";
-    return;
-  }
-  footerScoreEl.textContent = `Score: ${correct}/${total}`;
-}
-
-function countScorableItems() {
-  const gaps = mainEl.querySelectorAll('input[data-kind="gap"], input[data-kind="single-letter"]').length;
-  const drops = mainEl.querySelectorAll("select.hl-dropdown").length;
-  const choices = mainEl.querySelectorAll(".quiz-row, .sc-row").length;
-  return gaps + drops + choices;
-}
-
-function setControlState(controlEl, ok) {
-  if (!controlEl) return;
-  controlEl.classList.add(ok ? "gap-ok" : "gap-wrong");
-  let icon = controlEl.nextElementSibling;
-  if (!icon || !icon.classList.contains("status-icon")) {
-    icon = document.createElement("span");
-    icon.className = "status-icon";
-    icon.setAttribute("aria-hidden", "true");
-    controlEl.insertAdjacentElement("afterend", icon);
-  }
-  icon.textContent = ok ? "✓" : "✕";
-  icon.classList.remove("is-ok", "is-wrong");
-  icon.classList.add(ok ? "is-ok" : "is-wrong");
-}
-
-function setRowState(rowEl, ok) {
-  if (!rowEl) return;
-  rowEl.classList.add(ok ? "gap-ok" : "gap-wrong");
-  const icon = rowEl.querySelector(".row-status");
-  if (!icon) return;
-  icon.textContent = ok ? "✓" : "✕";
-  icon.classList.remove("is-ok", "is-wrong");
-  icon.classList.add(ok ? "is-ok" : "is-wrong");
-}
-
-function evaluateExercise(data) {
+  resetExerciseUiForSession();
+  if (toggleAnswersEl) toggleAnswersEl.checked = false;
+  syncAnswerKeyModeClass();
+  resetExerciseForm();
   clearMarks();
-  mainEl.querySelectorAll(".quiz-row, .sc-row").forEach((row) => row.classList.remove("gap-ok", "gap-wrong"));
-  let total = 0;
-  let correct = 0;
+  syncKeyItemVisibility();
+  applyPracticeLock(false);
+  ensureExerciseDelegation();
+  syncFooterActionButton();
+}
 
+function resetExerciseUiForSession() {
+  exerciseUi.answersMode = false;
+  exerciseUi.lockedAfterCheck = false;
+  exerciseUi.practiceAction = "check";
+  exerciseUi.revealAll = false;
+  exerciseUi.practiceDirty = false;
+  exerciseUi.keyRevealedItemIds = new Set();
+}
+
+function buildIdToCfg(data) {
   const idToCfg = new Map();
   const register = (arr) => {
     if (!Array.isArray(arr)) return;
     for (const c of arr) if (c && c.id) idToCfg.set(c.id, c);
   };
-
   register(data.readingText?.configs);
   for (const seq of data.sequences || []) {
     register(seq.configs);
@@ -704,75 +730,49 @@ function evaluateExercise(data) {
       }
     }
   }
-
-  for (const inp of mainEl.querySelectorAll('input[data-kind="gap"], input[data-kind="single-letter"]')) {
-    const seqEl = inp.closest(".sequence-block");
-    const ignoreCase = seqEl?.getAttribute("data-ignore-case") === "1";
-    const id = inp.getAttribute("data-id");
-    const cfg = idToCfg.get(id);
-    if (!cfg) continue;
-    const ok = gapMatches(inp.value, cfg, ignoreCase);
-    setControlState(inp, ok);
-    total++;
-    if (ok) correct++;
-  }
-
-  for (const sel of mainEl.querySelectorAll("select.hl-dropdown")) {
-    const id = sel.getAttribute("data-id");
-    const cfg = idToCfg.get(id);
-    if (!cfg) continue;
-    const opt = sel.selectedOptions[0];
-    const ok = opt && opt.value && opt.getAttribute("data-correct") === "1";
-    setControlState(sel, ok);
-    total++;
-    if (ok) correct++;
-  }
-
-  for (const row of mainEl.querySelectorAll(".quiz-row, .sc-row")) {
-    const seqEl = row.closest(".sequence-block");
-    const ignoreCase = seqEl?.getAttribute("data-ignore-case") === "1";
-    const qid = row.getAttribute("data-question-id");
-    const cfg = qid ? idToCfg.get(qid) : null;
-    if (!cfg) continue;
-    const checked = row.querySelector('input[type="radio"]:checked');
-    const correctText = normGap(stripHtml(cfg.correctAnswer), ignoreCase);
-    const picked = checked ? normGap(checked.value, ignoreCase) : "";
-    const ok = picked && picked === correctText;
-    setRowState(row, ok);
-    total++;
-    if (ok) correct++;
-  }
-
-  setScoreText(correct, total);
+  return idToCfg;
 }
 
-function showAllAnswers(data) {
-  clearMarks();
-  mainEl.querySelectorAll(".quiz-row, .sc-row").forEach((row) => row.classList.remove("gap-ok", "gap-wrong"));
-  const idToCfg = new Map();
-  const register = (arr) => {
-    if (!Array.isArray(arr)) return;
-    for (const c of arr) if (c && c.id) idToCfg.set(c.id, c);
-  };
+function itemKeyRevealed(id) {
+  if (exerciseUi.revealAll) return true;
+  return exerciseUi.keyRevealedItemIds.has(id);
+}
 
-  register(data.readingText?.configs);
-  for (const seq of data.sequences || []) {
-    register(seq.configs);
-    register(seq.staticConfigs);
-    for (const c of seq.configs || []) {
-      if (c && c.type === "custom-group-item") {
-        register(c.gaps);
-        register(c.dropdowns);
-      }
+function syncKeyItemVisibility() {
+  if (!mainEl) return;
+  mainEl.querySelectorAll(".hl-key-facade").forEach((facade) => {
+    const wrap = facade.closest(".hl-field-wrap");
+    if (!wrap) return;
+    if (!exerciseUi.answersMode) {
+      facade.hidden = true;
+      wrap.classList.remove("hl-key-item-hidden");
+      return;
     }
-  }
+    // In answer-key mode we always show the facade and visually hide controls.
+    facade.hidden = false;
+    const id = wrap.getAttribute("data-id") || "";
+    const revealed = itemKeyRevealed(id);
+    const concealed = !revealed;
+    wrap.classList.toggle("hl-key-item-hidden", concealed);
 
+    const iconBtn = wrap.querySelector(".hl-key-icon");
+    if (iconBtn) {
+      // Concealed: open-eye icon centered on blue block (disabled)
+      // Revealed: slashed-eye icon (clickable to conceal one item)
+      iconBtn.innerHTML = concealed ? hlSvgEye() : hlSvgEyeOff();
+      iconBtn.disabled = false;
+      iconBtn.setAttribute("aria-label", concealed ? "Show answer" : "Hide answer");
+    }
+  });
+}
+
+/** In answer-key mode, fill inputs/selects with correct values (shown when revealed). */
+function applyAnswersFromKey(data) {
+  const idToCfg = buildIdToCfg(data);
   for (const inp of mainEl.querySelectorAll('input[data-kind="gap"], input[data-kind="single-letter"]')) {
     const cfg = idToCfg.get(inp.getAttribute("data-id"));
     if (cfg) inp.value = stripHtml(String(cfg.correctAnswer ?? ""));
-    setControlState(inp, true);
   }
-
   for (const sel of mainEl.querySelectorAll("select.hl-dropdown")) {
     const cfg = idToCfg.get(sel.getAttribute("data-id"));
     if (!cfg) continue;
@@ -786,10 +786,8 @@ function showAllAnswers(data) {
         }
       }
     }
-    setControlState(sel, true);
   }
-
-  for (const row of mainEl.querySelectorAll(".quiz-row, .sc-row")) {
+  for (const row of mainEl.querySelectorAll('.hl-field-wrap[data-field-kind="quiz"], .hl-field-wrap[data-field-kind="single-choice"]')) {
     const qid = row.getAttribute("data-question-id");
     const cfg = qid ? idToCfg.get(qid) : null;
     if (!cfg) continue;
@@ -800,29 +798,318 @@ function showAllAnswers(data) {
         break;
       }
     }
-    setRowState(row, true);
   }
-
-  const total = countScorableItems();
-  setScoreText(total, total);
 }
 
-function resetExercise() {
+function clearMarks() {
+  mainEl.querySelectorAll(".hl-field-wrap").forEach((w) => {
+    w.classList.remove("hl-mark-ok", "hl-mark-wrong");
+    const b = w.querySelector(".hl-field-badge");
+    if (b) b.textContent = "";
+  });
+  mainEl.querySelectorAll(".gap-input, .single-letter-input, select.hl-dropdown").forEach((el) => {
+    el.classList.remove("gap-wrong", "gap-ok");
+  });
+}
+
+function countScorableItems() {
+  const gaps = mainEl.querySelectorAll('input[data-kind="gap"], input[data-kind="single-letter"]').length;
+  const drops = mainEl.querySelectorAll("select.hl-dropdown").length;
+  const choices = mainEl.querySelectorAll('.hl-field-wrap[data-field-kind="quiz"], .hl-field-wrap[data-field-kind="single-choice"]').length;
+  return gaps + drops + choices;
+}
+
+function userHasStartedExercise() {
+  if (!mainEl) return false;
+  for (const inp of mainEl.querySelectorAll('input[data-kind="gap"], input[data-kind="single-letter"]')) {
+    if (inp.value.trim()) return true;
+  }
+  for (const sel of mainEl.querySelectorAll("select.hl-dropdown")) {
+    if (sel.value) return true;
+  }
+  for (const r of mainEl.querySelectorAll('input[type="radio"][data-kind="quiz"], input[type="radio"][data-kind="single-choice"]')) {
+    if (r.checked) return true;
+  }
+  return false;
+}
+
+function setWrapMark(wrap, ok) {
+  if (!wrap) return;
+  wrap.classList.remove("hl-mark-ok", "hl-mark-wrong");
+  wrap.classList.add(ok ? "hl-mark-ok" : "hl-mark-wrong");
+  const badge = wrap.querySelector(".hl-field-badge");
+  if (badge) badge.textContent = ok ? "✓" : "✕";
+  const ctl = wrap.querySelector(".gap-input, .single-letter-input, select.hl-dropdown");
+  if (ctl) {
+    ctl.classList.remove("gap-wrong", "gap-ok");
+    ctl.classList.add(ok ? "gap-ok" : "gap-wrong");
+  }
+}
+
+function clearWrapMark(wrap) {
+  if (!wrap) return;
+  wrap.classList.remove("hl-mark-ok", "hl-mark-wrong");
+  const badge = wrap.querySelector(".hl-field-badge");
+  if (badge) badge.textContent = "";
+  const ctl = wrap.querySelector(".gap-input, .single-letter-input, select.hl-dropdown");
+  if (ctl) ctl.classList.remove("gap-wrong", "gap-ok");
+}
+
+function setControlState(controlEl, ok) {
+  const wrap = controlEl?.closest(".hl-field-wrap");
+  if (wrap) setWrapMark(wrap, ok);
+}
+
+function setRowState(rowEl, ok) {
+  if (!rowEl) return;
+  setWrapMark(rowEl, ok);
+}
+
+function allScorableAnswered() {
+  for (const inp of mainEl.querySelectorAll('input[data-kind="gap"], input[data-kind="single-letter"]')) {
+    if (!inp.value.trim()) return false;
+  }
+  for (const sel of mainEl.querySelectorAll("select.hl-dropdown")) {
+    if (!sel.value) return false;
+  }
+  for (const row of mainEl.querySelectorAll('.hl-field-wrap[data-field-kind="quiz"], .hl-field-wrap[data-field-kind="single-choice"]')) {
+    if (!row.querySelector('input[type="radio"]:checked')) return false;
+  }
+  return countScorableItems() > 0;
+}
+
+function evaluateExercise(data) {
+  if (exerciseUi.answersMode) return;
+  clearMarks();
+  const idToCfg = buildIdToCfg(data);
+
+  for (const inp of mainEl.querySelectorAll('input[data-kind="gap"], input[data-kind="single-letter"]')) {
+    const wrap = inp.closest(".hl-field-wrap");
+    if (!inp.value.trim()) {
+      clearWrapMark(wrap);
+      continue;
+    }
+    const seqEl = inp.closest(".sequence-block");
+    const ignoreCase = seqEl?.getAttribute("data-ignore-case") === "1";
+    const cfg = idToCfg.get(inp.getAttribute("data-id"));
+    if (!cfg) continue;
+    const ok = gapMatches(inp.value, cfg, ignoreCase);
+    setControlState(inp, ok);
+  }
+
+  for (const sel of mainEl.querySelectorAll("select.hl-dropdown")) {
+    const wrap = sel.closest(".hl-field-wrap");
+    if (!sel.value) {
+      clearWrapMark(wrap);
+      continue;
+    }
+    const cfg = idToCfg.get(sel.getAttribute("data-id"));
+    if (!cfg) continue;
+    const opt = sel.selectedOptions[0];
+    const ok = !!(opt && opt.value && opt.getAttribute("data-correct") === "1");
+    setControlState(sel, ok);
+  }
+
+  for (const row of mainEl.querySelectorAll(
+    '.hl-field-wrap[data-field-kind="quiz"], .hl-field-wrap[data-field-kind="single-choice"]'
+  )) {
+    const checked = row.querySelector('input[type="radio"]:checked');
+    if (!checked) {
+      clearWrapMark(row);
+      continue;
+    }
+    const seqEl = row.closest(".sequence-block");
+    const ignoreCase = seqEl?.getAttribute("data-ignore-case") === "1";
+    const qid = row.getAttribute("data-question-id");
+    const cfg = qid ? idToCfg.get(qid) : null;
+    if (!cfg) continue;
+    const correctText = normGap(stripHtml(cfg.correctAnswer), ignoreCase);
+    const picked = normGap(checked.value, ignoreCase);
+    const ok = !!(picked && picked === correctText);
+    setRowState(row, ok);
+  }
+
+  // Spec: after pressing Check, lock exercise until user presses Correct.
+  exerciseUi.lockedAfterCheck = true;
+  exerciseUi.practiceAction = "correct";
+  applyPracticeLock(true);
+  syncFooterActionButton();
+}
+
+function unlockAfterCorrect() {
+  exerciseUi.lockedAfterCheck = false;
+  exerciseUi.practiceAction = "check";
+  // Remove right/wrong marks but keep user's answers.
+  clearMarks();
+  applyPracticeLock(false);
+  syncFooterActionButton();
+}
+
+function resetExerciseForm() {
   for (const inp of mainEl.querySelectorAll('input[data-kind="gap"], input[data-kind="single-letter"]')) {
     inp.value = "";
   }
-  for (const sel of mainEl.querySelectorAll("select.hl-dropdown")) {
-    sel.value = "";
-  }
-  for (const radio of mainEl.querySelectorAll('input[type="radio"][data-kind="quiz"], input[type="radio"][data-kind="single-choice"]')) {
+  for (const sel of mainEl.querySelectorAll("select.hl-dropdown")) sel.value = "";
+  for (const radio of mainEl.querySelectorAll(
+    'input[type="radio"][data-kind="quiz"], input[type="radio"][data-kind="single-choice"]'
+  )) {
     radio.checked = false;
   }
-  for (const area of mainEl.querySelectorAll("textarea.freewrite-area")) {
-    area.value = "";
+  for (const area of mainEl.querySelectorAll("textarea.freewrite-area")) area.value = "";
+}
+
+function applyPracticeLock(lockedAfterCorrect) {
+  const lock = exerciseUi.answersMode || !!lockedAfterCorrect;
+  for (const inp of mainEl.querySelectorAll('input[data-kind="gap"], input[data-kind="single-letter"]')) {
+    inp.readOnly = lock;
+    inp.disabled = false;
   }
-  clearMarks();
-  mainEl.querySelectorAll(".quiz-row, .sc-row").forEach((row) => row.classList.remove("gap-ok", "gap-wrong"));
-  setScoreText(0, countScorableItems());
+  for (const sel of mainEl.querySelectorAll("select.hl-dropdown")) sel.disabled = lock;
+  for (const r of mainEl.querySelectorAll(
+    'input[type="radio"][data-kind="quiz"], input[type="radio"][data-kind="single-choice"]'
+  )) {
+    r.disabled = lock;
+  }
+  for (const area of mainEl.querySelectorAll("textarea.freewrite-area")) area.readOnly = lock;
+}
+
+function syncAnswerKeyModeClass() {
+  appRootEl?.classList.toggle("hl-answer-key-mode", exerciseUi.answersMode);
+}
+
+const ICON_CHECK =
+  '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M3.6 12.2l1.3-1.3 2 2 4-4 1.3 1.3-5.3 5.3-3.3-3.3zM12 7h9v2h-9V7zm0 5h9v2h-9v-2zm0 5h9v2h-9v-2z"/></svg>';
+
+const ICON_PENCIL = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>';
+
+function syncFooterActionButton() {
+  if (!btnActionEl) return;
+  const iconEl = btnActionEl.querySelector(".btn-action-icon");
+  const labelEl = btnActionEl.querySelector(".btn-action-label");
+  const show =
+    !!currentSession && (exerciseUi.answersMode || exerciseUi.lockedAfterCheck || userHasStartedExercise());
+  btnActionEl.hidden = !show;
+  if (!show) return;
+
+  btnActionEl.classList.remove("btn-footer-outline");
+  btnActionEl.classList.toggle("is-hide-all", false);
+  if (exerciseUi.answersMode) {
+    if (exerciseUi.revealAll) {
+      btnActionEl.classList.add("btn-footer-outline");
+      btnActionEl.classList.toggle("is-hide-all", true);
+      if (iconEl) iconEl.innerHTML = hlSvgEyeOff();
+      if (labelEl) labelEl.textContent = "Hide all";
+    } else {
+      if (iconEl) iconEl.innerHTML = hlSvgEye();
+      if (labelEl) labelEl.textContent = "Show all";
+    }
+    return;
+  }
+
+  if (exerciseUi.lockedAfterCheck && exerciseUi.practiceAction === "correct") {
+    if (iconEl) iconEl.innerHTML = ICON_PENCIL;
+    if (labelEl) labelEl.textContent = "Correct";
+    return;
+  }
+
+  if (iconEl) iconEl.innerHTML = ICON_CHECK;
+  if (labelEl) labelEl.textContent = "Check";
+}
+
+let exerciseDelegationBound = false;
+
+function getAllKeyFieldIds() {
+  const ids = [];
+  mainEl.querySelectorAll(".hl-field-wrap[data-id]").forEach((w) => {
+    const id = w.getAttribute("data-id");
+    if (id) ids.push(id);
+  });
+  return ids;
+}
+
+function ensureExerciseDelegation() {
+  if (exerciseDelegationBound) return;
+  exerciseDelegationBound = true;
+  mainEl.addEventListener("click", (e) => {
+    const btn = e.target && e.target.closest && e.target.closest(".hl-key-icon");
+    if (!btn || !currentSession || !exerciseUi.answersMode) return;
+    e.preventDefault();
+    const id = btn.getAttribute("data-key-toggle");
+    if (!id) return;
+
+    const isHiddenNow = !itemKeyRevealed(id);
+    if (exerciseUi.revealAll) {
+      // Global-show -> switch to per-item mode immediately when user hides one.
+      exerciseUi.revealAll = false;
+      const all = getAllKeyFieldIds();
+      exerciseUi.keyRevealedItemIds = new Set(all);
+      exerciseUi.keyRevealedItemIds.delete(id);
+    } else {
+      // Per-item toggle: hidden -> reveal, revealed -> hide.
+      if (isHiddenNow) exerciseUi.keyRevealedItemIds.add(id);
+      else exerciseUi.keyRevealedItemIds.delete(id);
+    }
+
+    syncKeyItemVisibility();
+    syncFooterActionButton();
+  });
+  const bump = () => {
+    if (!currentSession || exerciseUi.answersMode || exerciseUi.lockedAfterCheck) return;
+    syncFooterActionButton();
+  };
+  mainEl.addEventListener("input", bump);
+  mainEl.addEventListener("change", bump);
+}
+
+function wireFooter() {
+  if (toggleAnswersEl) {
+    toggleAnswersEl.addEventListener("change", () => {
+      if (!currentSession) return;
+      const on = toggleAnswersEl.checked;
+      exerciseUi.answersMode = on;
+      exerciseUi.revealAll = false;
+      exerciseUi.keyRevealedItemIds = new Set();
+      exerciseUi.lockedAfterCheck = false;
+      exerciseUi.practiceAction = "check";
+      clearMarks();
+      resetExerciseForm();
+      if (on) applyAnswersFromKey(currentSession.data);
+      syncAnswerKeyModeClass();
+      syncKeyItemVisibility();
+      applyPracticeLock(false);
+      syncFooterActionButton();
+    });
+  }
+
+  if (btnActionEl) {
+    btnActionEl.addEventListener("click", () => {
+      if (!currentSession) return;
+      if (exerciseUi.answersMode) {
+        exerciseUi.revealAll = !exerciseUi.revealAll;
+        if (exerciseUi.revealAll) {
+          // Global show: ignore per-item set.
+          exerciseUi.keyRevealedItemIds = new Set();
+        } else {
+          // Global hide: nothing individually revealed.
+          exerciseUi.keyRevealedItemIds = new Set();
+        }
+        syncKeyItemVisibility();
+        syncFooterActionButton();
+        return;
+      }
+      if (exerciseUi.lockedAfterCheck && exerciseUi.practiceAction === "correct") {
+        unlockAfterCorrect();
+        return;
+      }
+      evaluateExercise(currentSession.data);
+    });
+  }
+
+  if (btnClose) {
+    btnClose.onclick = () => {
+      location.hash = "#/";
+    };
+  }
 }
 
 async function openExercise(unitId, exerciseId) {
@@ -837,15 +1124,6 @@ async function openExercise(unitId, exerciseId) {
   const dir = exerciseAssetDir(unitId, exerciseId);
   currentSession = { exerciseDir: dir, data, unitId, exerciseId };
   renderExercise(data, dir, formatExerciseTitle(exerciseId));
-}
-
-function wireFooter() {
-  btnAnswer.onclick = () => currentSession && evaluateExercise(currentSession.data);
-  btnShowAll.onclick = () => currentSession && showAllAnswers(currentSession.data);
-  btnReset.onclick = () => currentSession && resetExercise();
-  btnClose.onclick = () => {
-    location.hash = "#/";
-  };
 }
 
 async function route() {

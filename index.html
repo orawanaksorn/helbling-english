@@ -13,14 +13,29 @@
       </header>
       <main class="app-main" id="main"></main>
       <footer class="app-footer" id="app-footer" hidden>
-        <span class="footer-score" id="footer-score">Score: -/-</span>
-        <button type="button" class="btn btn-primary" id="btn-answer">Answer</button>
-        <button type="button" class="btn btn-primary" id="btn-show-all">Show all</button>
-        <button type="button" class="btn btn-primary" id="btn-reset">Reset</button>
-        <button type="button" class="btn btn-secondary" id="btn-close">Close</button>
+        <div class="footer-exercise-bar">
+          <div class="footer-exercise-center">
+            <label class="hl-answers-toggle" title="Answer key mode">
+              <input type="checkbox" id="toggle-answers" class="hl-answers-checkbox" />
+              <span class="hl-answers-btn" aria-hidden="true">
+                <span class="hl-answers-switch" aria-hidden="true">
+                  <span class="hl-answers-knob" aria-hidden="true"></span>
+                </span>
+                <span class="hl-answers-btn-text">Answers</span>
+              </span>
+            </label>
+            <button type="button" class="btn-footer-primary" id="btn-action" hidden>
+              <span class="btn-action-icon" aria-hidden="true"></span>
+              <span class="btn-action-label"></span>
+            </button>
+          </div>
+          <button type="button" class="btn-footer-close" id="btn-close">
+            <span class="btn-close-x" aria-hidden="true">✕</span>
+            Close
+          </button>
+        </div>
       </footer>
     </div>
     <script type="module" src="app.js"></script>
   </body>
 </html>
-
