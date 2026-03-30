@@ -361,6 +361,17 @@
             <exercise content="unit_08_CH_26.unit_08_writing_02_ch_26.unit_08_writing_02_ch_26" id="unit_08_CH_26.unit_08_writing_02_ch_26" title="Activity 2: Writing" maxPoints="1" category="Writing" bookpage="" mode="test"/>
           </choice>
         </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_test_CH_00</id>
+              <title>Unit test — Cyber Homework 0</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_test_CH_00.unit_test_listening_01_ch_00.unit_test_listening_01_ch_00" id="unit_test_CH_00.unit_test_listening_01_ch_00" title="Activity 1: Listening (test)" maxPoints="3" category="Listening" bookpage="" mode="test"/>
+          </choice>
+        </unit>
       </choice>
     </course>
   </sequence>

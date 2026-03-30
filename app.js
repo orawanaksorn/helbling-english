@@ -299,9 +299,162 @@ function renderCustomImage(cfg, exerciseDir) {
   return `<img class="hl-custom-image" src="${escapeAttr(src)}" alt=""${w} loading="lazy" />`;
 }
 
+/** @type {readonly number[]} */
+const HL_AUDIO_RATES = Object.freeze([0.7, 0.8, 0.9, 1.0]);
+
+function formatAudioTime(sec) {
+  if (sec == null || !Number.isFinite(sec) || sec < 0) return "00:00";
+  const s = Math.floor(sec);
+  const m = Math.floor(s / 60);
+  const r = s % 60;
+  return `${String(m).padStart(2, "0")}:${String(r).padStart(2, "0")}`;
+}
+
+function renderAudioSpeedPresets() {
+  return HL_AUDIO_RATES.map((r, idx) => {
+    const label = `${String(r).replace(".", ",")}x`;
+    return `<button type="button" class="hl-ap-preset" data-rate-index="${idx}" aria-label="Speed ${label}"><span class="hl-ap-dot" aria-hidden="true"></span><span class="hl-ap-rate-label">${escapeHtml(label)}</span></button>`;
+  }).join("");
+}
+
 function renderAudio(cfg, exerciseDir) {
   const src = cfg.url && cfg.url.trim() ? cfg.url : assetUrl(exerciseDir, cfg.name);
-  return `<audio controls src="${escapeAttr(src)}" preload="metadata"></audio>`;
+  const pres = renderAudioSpeedPresets();
+  return `<div class="hl-audio-player" data-hl-audio>
+  <audio class="hl-audio-el" preload="metadata" src="${escapeAttr(src)}"></audio>
+  <div class="hl-audio-main-bar">
+    <button type="button" class="hl-ap-btn hl-ap-play" aria-label="Play"><span class="hl-ap-play-icon">▶</span></button>
+    <button type="button" class="hl-ap-btn hl-ap-speed-btn" aria-label="Playback speed" title="Speed">
+      <svg class="hl-ap-speed-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm.5-13H11v6l5.2 3.1.8-1.3-4.5-2.7V7z"/></svg>
+    </button>
+    <button type="button" class="hl-ap-btn hl-ap-skip hl-ap-skip-back" data-skip="-5" aria-label="Rewind 5 seconds"><span class="hl-ap-skip-num">5</span></button>
+    <span class="hl-ap-time hl-ap-cur">00:00</span>
+    <input type="range" class="hl-ap-seek" min="0" max="1000" value="0" step="1" aria-label="Seek" />
+    <span class="hl-ap-time hl-ap-dur">00:00</span>
+    <button type="button" class="hl-ap-btn hl-ap-skip hl-ap-skip-fwd" data-skip="5" aria-label="Forward 5 seconds"><span class="hl-ap-skip-num">5</span></button>
+  </div>
+  <div class="hl-audio-speed-panel" hidden>
+    <button type="button" class="hl-ap-speed-step" data-delta="-1" aria-label="Slower">−</button>
+    <div class="hl-ap-speed-presets">${pres}</div>
+    <button type="button" class="hl-ap-speed-step" data-delta="1" aria-label="Faster">+</button>
+  </div>
+</div>`;
+}
+
+let hlAudioOutsideClickBound = false;
+
+function bindHlAudioOutsideClickOnce() {
+  if (hlAudioOutsideClickBound) return;
+  hlAudioOutsideClickBound = true;
+  document.addEventListener("click", (e) => {
+    const t = /** @type {HTMLElement} */ (e.target);
+    if (t.closest(".hl-ap-speed-btn") || t.closest(".hl-audio-speed-panel")) return;
+    document.querySelectorAll(".hl-audio-speed-panel").forEach((p) => {
+      p.hidden = true;
+    });
+  });
+}
+
+function initCustomAudioPlayers(container) {
+  bindHlAudioOutsideClickOnce();
+  container.querySelectorAll("[data-hl-audio]").forEach((wrap) => {
+    const audio = wrap.querySelector(".hl-audio-el");
+    if (!audio || wrap.dataset.hlInited === "1") return;
+    wrap.dataset.hlInited = "1";
+
+    const playBtn = wrap.querySelector(".hl-ap-play");
+    const playIcon = wrap.querySelector(".hl-ap-play-icon");
+    const speedBtn = wrap.querySelector(".hl-ap-speed-btn");
+    const panel = wrap.querySelector(".hl-audio-speed-panel");
+    const curEl = wrap.querySelector(".hl-ap-cur");
+    const durEl = wrap.querySelector(".hl-ap-dur");
+    const seek = wrap.querySelector(".hl-ap-seek");
+    let rateIndex = HL_AUDIO_RATES.length - 1;
+    let seekDragging = false;
+
+    function syncPlayIcon() {
+      if (!playIcon) return;
+      playIcon.textContent = audio.paused ? "▶" : "⏸";
+      playBtn?.setAttribute("aria-label", audio.paused ? "Play" : "Pause");
+    }
+
+    function setRateIndex(i) {
+      rateIndex = Math.max(0, Math.min(HL_AUDIO_RATES.length - 1, i));
+      audio.playbackRate = HL_AUDIO_RATES[rateIndex];
+      wrap.querySelectorAll(".hl-ap-preset").forEach((b, idx) => {
+        b.classList.toggle("is-active", idx === rateIndex);
+      });
+    }
+
+    playBtn?.addEventListener("click", () => {
+      if (audio.paused) void audio.play();
+      else audio.pause();
+    });
+
+    audio.addEventListener("play", syncPlayIcon);
+    audio.addEventListener("pause", syncPlayIcon);
+    audio.addEventListener("ended", syncPlayIcon);
+
+    audio.addEventListener("loadedmetadata", () => {
+      durEl.textContent = formatAudioTime(audio.duration);
+    });
+
+    audio.addEventListener("timeupdate", () => {
+      curEl.textContent = formatAudioTime(audio.currentTime);
+      if (!seekDragging && audio.duration && Number.isFinite(audio.duration)) {
+        seek.value = String(Math.round((audio.currentTime / audio.duration) * 1000));
+      }
+    });
+
+    seek?.addEventListener("pointerdown", () => {
+      seekDragging = true;
+    });
+    seek?.addEventListener("pointerup", () => {
+      seekDragging = false;
+    });
+    seek?.addEventListener("pointercancel", () => {
+      seekDragging = false;
+    });
+    seek?.addEventListener("change", () => {
+      if (audio.duration && Number.isFinite(audio.duration)) {
+        audio.currentTime = (Number(seek.value) / 1000) * audio.duration;
+      }
+    });
+    seek?.addEventListener("input", () => {
+      if (audio.duration && Number.isFinite(audio.duration)) {
+        audio.currentTime = (Number(seek.value) / 1000) * audio.duration;
+      }
+    });
+
+    wrap.querySelectorAll("[data-skip]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const delta = Number(btn.dataset.skip);
+        const d = audio.duration;
+        const t = audio.currentTime + delta;
+        if (Number.isFinite(d)) audio.currentTime = Math.max(0, Math.min(d, t));
+        else audio.currentTime = Math.max(0, t);
+      });
+    });
+
+    speedBtn?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const willOpen = panel.hidden;
+      document.querySelectorAll(".hl-audio-speed-panel").forEach((p) => {
+        if (p !== panel) p.hidden = true;
+      });
+      panel.hidden = !willOpen;
+    });
+
+    wrap.querySelectorAll(".hl-ap-preset").forEach((b) => {
+      b.addEventListener("click", () => setRateIndex(Number(b.dataset.rateIndex)));
+    });
+    wrap.querySelectorAll("[data-delta]").forEach((b) => {
+      b.addEventListener("click", () => setRateIndex(rateIndex + Number(b.dataset.delta)));
+    });
+
+    syncPlayIcon();
+    setRateIndex(rateIndex);
+  });
 }
 
 function escapeHtml(s) {
@@ -473,6 +626,7 @@ function renderExercise(data, exerciseDir, title) {
     ${showTopInstr && reading ? `<div class="exercise-instruction">${topInstr}</div>` : ""}
     ${seqBlocks.join("")}
   `;
+  initCustomAudioPlayers(mainEl);
   setScoreText(0, countScorableItems());
 }
 

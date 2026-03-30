@@ -332,4 +332,9 @@
 			<exercise name="unit_08_writing_02_ch_26" config="exercise.json" maxPoints="1"/>
 		</collection>
   </collection>
+	<collection name="unit_test_CH_00">
+		<collection name="unit_test_listening_01_ch_00">
+			<exercise name="unit_test_listening_01_ch_00" config="exercise.json" maxPoints="3"/>
+		</collection>
+  </collection>
 </CourseContent>
