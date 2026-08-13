@@ -43,8 +43,14 @@ let exerciseUi = {
 /** @type {{ courseBase: string, fetchPrefix?: string, units: { id: string, exercises: { id: string, maxPoints: string }[] }[] } | null} */
 let courseIndex = null;
 
-/** @type {{ exerciseDir: string, data: object, unitId: string, exerciseId: string } | null} */
+/** @type {{ exerciseDir: string, data: object, unitId: string, exerciseId: string, courseId?: string } | null} */
 let currentSession = null;
+
+/** @type {{ courses: { id: string, name: string, description?: string }[] } | null} */
+let dataCatalog = null;
+
+/** @type {{ [courseId: string]: { courseBase: string, fetchPrefix: string, units: { id: string, exercises: { id: string, maxPoints: string }[] }[] } }} */
+const dataCourseIndexCache = {};
 
 function courseBaseFromContentPath() {
   const i = CONTENT_XML_RELATIVE_PATH.lastIndexOf("/");
@@ -111,7 +117,7 @@ function shuffleInPlace(arr) {
   return arr;
 }
 
-function parseContentXml(xmlText) {
+function parseContentXml(xmlText, overrideCourseBase) {
   const parser = new DOMParser();
   const doc = parser.parseFromString(xmlText, "text/xml");
   const err = doc.querySelector("parsererror");
@@ -131,7 +137,7 @@ function parseContentXml(xmlText) {
     }
     units.push({ id: unitId, exercises });
   }
-  return { courseBase: courseBaseFromContentPath(), units };
+  return { courseBase: overrideCourseBase || courseBaseFromContentPath(), units };
 }
 
 function computeFetchPrefix(loadedContentPath) {
@@ -168,9 +174,20 @@ function exerciseDirHref(unitId, exerciseId) {
 
 function parseHashRoute() {
   const h = (location.hash || "").replace(/^#/, "");
-  const m = /^\/ex\/([^/]+)\/([^/]+)\/?$/.exec(h);
-  if (!m) return null;
-  return { unitId: decodeURIComponent(m[1]), exerciseId: decodeURIComponent(m[2]) };
+  const mDataEx = /^\/course\/([^/]+)\/ex\/([^/]+)\/([^/]+)\/?$/.exec(h);
+  if (mDataEx)
+    return {
+      type: "data-exercise",
+      courseId: decodeURIComponent(mDataEx[1]),
+      unitId: decodeURIComponent(mDataEx[2]),
+      exerciseId: decodeURIComponent(mDataEx[3]),
+    };
+  const mDataToc = /^\/course\/([^/]+)\/?$/.exec(h);
+  if (mDataToc) return { type: "data-toc", courseId: decodeURIComponent(mDataToc[1]) };
+  const mLegacy = /^\/ex\/([^/]+)\/([^/]+)\/?$/.exec(h);
+  if (mLegacy)
+    return { type: "legacy-exercise", unitId: decodeURIComponent(mLegacy[1]), exerciseId: decodeURIComponent(mLegacy[2]) };
+  return { type: "home" };
 }
 
 function exerciseJsonPath(unitId, exerciseId) {
@@ -183,6 +200,110 @@ function exerciseAssetDir(unitId, exerciseId) {
   const base = courseIndex?.courseBase || courseBaseFromContentPath();
   const prefix = courseIndex?.fetchPrefix || "";
   return `${prefix}${base}/${unitId}/${exerciseId}`;
+}
+
+async function loadDataCatalog() {
+  if (dataCatalog) return;
+  const res = await fetch("data/index.json");
+  if (!res.ok) throw new Error("Cannot load data/index.json");
+  dataCatalog = await res.json();
+}
+
+async function ensureDataCourseIndex(courseId) {
+  if (dataCourseIndexCache[courseId]) return dataCourseIndexCache[courseId];
+  const path = `data/${courseId}/content.xml`;
+  const res = await fetch(path);
+  if (!res.ok) throw new Error(`Cannot load ${path} (${res.status})`);
+  const text = await res.text();
+  const idx = parseContentXml(text, `data/${courseId}`);
+  idx.fetchPrefix = "";
+  dataCourseIndexCache[courseId] = idx;
+  return idx;
+}
+
+function dataExerciseHref(courseId, unitId, exerciseId) {
+  return `#/course/${encodeURIComponent(courseId)}/ex/${encodeURIComponent(unitId)}/${encodeURIComponent(exerciseId)}`;
+}
+
+async function renderCoursePicker() {
+  headerTitleEl.textContent = "Helbling — Select a course";
+  footerEl.hidden = true;
+  currentSession = null;
+  try {
+    await loadDataCatalog();
+  } catch (e) {
+    mainEl.innerHTML = `<p class="empty-toc">Cannot load course list: ${escapeHtml(e.message)}</p>`;
+    return;
+  }
+  const courses = dataCatalog?.courses || [];
+  if (!courses.length) {
+    mainEl.innerHTML = `<p class="empty-toc">No courses found.</p>`;
+    return;
+  }
+  const cards = courses
+    .map(
+      (c) => `<a class="course-card" href="#/course/${encodeURIComponent(c.id)}">
+        <span class="course-card-name">${escapeHtml(c.name || c.id)}</span>
+        ${c.description ? `<span class="course-card-meta">${escapeHtml(c.description)}</span>` : ""}
+      </a>`
+    )
+    .join("");
+  mainEl.innerHTML = `<div class="course-picker"><h2 class="toc-title">Select a course</h2><div class="course-grid">${cards}</div></div>`;
+}
+
+async function renderDataCourseToc(courseId) {
+  footerEl.hidden = true;
+  currentSession = null;
+  let idx;
+  try {
+    await loadDataCatalog().catch(() => {});
+    idx = await ensureDataCourseIndex(courseId);
+  } catch (e) {
+    headerTitleEl.textContent = "Error";
+    mainEl.innerHTML = `<p class="empty-toc">${escapeHtml(e.message)}</p>`;
+    return;
+  }
+  const catalogEntry = dataCatalog?.courses?.find((c) => c.id === courseId);
+  const displayName = catalogEntry?.name || formatExerciseTitle(courseId);
+  headerTitleEl.textContent = displayName;
+  const parts = [
+    `<a class="toc-back-link" href="#/">&#8592; All courses</a>`,
+    `<h2 class="toc-title">${escapeHtml(displayName)}</h2>`,
+  ];
+  for (const u of idx.units) {
+    const lis = u.exercises
+      .map(
+        (e) =>
+          `<li><a href="${dataExerciseHref(courseId, u.id, e.id)}">${formatExerciseTitle(e.id)} <span class="toc-points">(${e.maxPoints} pts)</span></a></li>`
+      )
+      .join("");
+    parts.push(
+      `<details class="toc-unit" open><summary>${formatExerciseTitle(u.id)}</summary><ul class="toc-ex-list">${lis}</ul></details>`
+    );
+  }
+  mainEl.innerHTML = parts.join("");
+}
+
+async function openDataExercise(courseId, unitId, exerciseId) {
+  let idx;
+  try {
+    idx = await ensureDataCourseIndex(courseId);
+  } catch (e) {
+    mainEl.innerHTML = `<p class="empty-toc">${escapeHtml(e.message)}</p>`;
+    footerEl.hidden = true;
+    return;
+  }
+  const path = `${idx.courseBase}/${unitId}/${exerciseId}/exercise.json`;
+  const res = await fetch(path);
+  if (!res.ok) {
+    mainEl.innerHTML = `<p>Cannot load exercise: <code>${escapeHtml(path)}</code> (${res.status})</p>`;
+    footerEl.hidden = true;
+    return;
+  }
+  const data = await res.json();
+  const dir = `${idx.courseBase}/${unitId}/${exerciseId}`;
+  currentSession = { exerciseDir: dir, data, unitId, exerciseId, courseId };
+  renderExercise(data, dir, formatExerciseTitle(exerciseId));
 }
 
 function renderToc() {
@@ -231,6 +352,11 @@ function gapGlobalOpts(sequence) {
 
 function dropdownGlobalOpts(sequence) {
   const g = (sequence.globalTypesConfigs || []).find((x) => x && x.type === "dropdown");
+  return { shuffle: !!(g && g.shuffle) };
+}
+
+function multipleChoiceGlobalOpts(sequence) {
+  const g = (sequence.globalTypesConfigs || []).find((x) => x && x.type === "multiple-choice");
   return { shuffle: !!(g && g.shuffle) };
 }
 
@@ -348,6 +474,251 @@ function renderQuizOrChoice(cfg, kind) {
   <span class="hl-field-badge row-badge" aria-hidden="true"></span>
   <div class="${kind === "quiz" ? "quiz-q" : "sc-q"}">${cfg.question || ""}</div>
   <div class="${kind === "quiz" ? "quiz-options" : "sc-options"}" data-orient="${effectiveOrientation}" style="display:flex;flex-direction:${effectiveOrientation};flex-wrap:wrap;gap:0.35rem 1rem">${opts.join("")}</div>
+</div>`;
+}
+
+function renderMultipleChoice(cfg, shuffle) {
+  const qid = cfg.id;
+  const correctSet = new Set(
+    (cfg.correctAnswers || []).map((a) =>
+      stripHtml(String(typeof a === "string" ? a : a.answer || "")).trim().toLowerCase()
+    )
+  );
+  let opts = (cfg.additionalAnswers || []).map((a) => {
+    const label = typeof a === "string" ? a : a.answer;
+    const display = stripHtml(String(label || ""));
+    return { label: display, correct: correctSet.has(display.trim().toLowerCase()) };
+  });
+  if (shuffle) opts = shuffleInPlace(opts.slice());
+  const optsHtml = opts
+    .map(
+      (o, i) =>
+        `<label class="checkbox-opt"><input type="checkbox" name="${escapeAttr(qid)}" data-kind="multiple-choice" data-id="${escapeAttr(qid)}" data-idx="${i}" value="${escapeAttr(o.label)}" data-correct="${o.correct ? "1" : "0"}" /> <span class="checkbox-label">${escapeHtml(o.label)}</span></label>`
+    )
+    .join("");
+  return `<div class="hl-field-wrap mc-row" data-field-kind="multiple-choice" data-id="${escapeAttr(qid)}" data-question-id="${escapeAttr(qid)}">
+  <span class="hl-field-badge row-badge" aria-hidden="true"></span>
+  <div class="mc-q">${cfg.question || ""}</div>
+  <div class="mc-options" style="display:flex;flex-direction:column;gap:0.35rem 1rem">${optsHtml}</div>
+</div>`;
+}
+
+function renderCustomTable(cfg, exerciseDir, seq, readingCfgMap) {
+  const rows = cfg.table || [];
+  const widths = cfg.cellWidths || [];
+  const border = cfg.border || "";
+  const cellStyle = border ? ` style="border:${escapeAttr(border)}"` : "";
+  const trs = rows
+    .map((row) => {
+      const tds = (row || [])
+        .map((cellHtml, i) => {
+          const w = widths[i] ? `width:${widths[i]}px;` : "";
+          const inner = expandPartsHtml(String(cellHtml || ""), exerciseDir, seq, readingCfgMap);
+          return `<td class="hl-custom-table-cell" style="${w}${border ? `border:${escapeAttr(border)};` : ""}">${inner}</td>`;
+        })
+        .join("");
+      return `<tr>${tds}</tr>`;
+    })
+    .join("");
+  return `<table class="hl-custom-table"${cellStyle}><tbody>${trs}</tbody></table>`;
+}
+
+function renderVideoPlayer(cfg) {
+  const wistiaId = cfg.wistiaId;
+  if (!wistiaId) return "";
+  const w = cfg.width && cfg.width > 0 ? cfg.width : 640;
+  return `<div class="hl-video-player" style="max-width:${w}px;width:100%">
+  <div class="hl-video-aspect">
+    <iframe src="https://fast.wistia.net/embed/iframe/${escapeAttr(wistiaId)}" title="video" allow="autoplay; fullscreen" allowfullscreen frameborder="0"></iframe>
+  </div>
+</div>`;
+}
+
+function parseSentenceOrderTokens(raw) {
+  const str = String(raw || "");
+  const idx = str.indexOf("{s}");
+  const prefix = idx >= 0 ? str.slice(0, idx) : "";
+  const rest = idx >= 0 ? str.slice(idx + 3) : str;
+  const tokens = rest
+    .split("|")
+    .map((t) => stripHtml(t).trim())
+    .filter((t) => t.length > 0);
+  return { prefix, tokens };
+}
+
+function renderSentenceOrder(cfg) {
+  const { prefix, tokens } = parseSentenceOrderTokens(cfg.sentence);
+  const id = escapeAttr(cfg.id);
+  const shuffled = shuffleInPlace(tokens.map((_, i) => i));
+  const bankItems = shuffled
+    .map(
+      (origIdx) =>
+        `<button type="button" class="so-token" data-orig-idx="${origIdx}">${escapeHtml(tokens[origIdx])}</button>`
+    )
+    .join("");
+  const expected = tokens.join(" ");
+  return `<div class="hl-field-wrap so-row" data-field-kind="sentence-order" data-id="${id}" data-expected="${escapeAttr(expected)}" data-token-count="${tokens.length}">
+  <span class="hl-field-badge row-badge" aria-hidden="true"></span>
+  ${prefix ? `<div class="so-prefix">${prefix}</div>` : ""}
+  <div class="so-answer" data-so-answer></div>
+  <div class="so-bank" data-so-bank>${bankItems}</div>
+</div>`;
+}
+
+function renderPictureClick(cfg, exerciseDir) {
+  const qid = cfg.id;
+  const multi = !!cfg.multipleAnswers;
+  const w = cfg.imageWidth && cfg.imageWidth > 0 ? cfg.imageWidth : 200;
+  const pics = cfg.pictureList || [];
+  const inputType = multi ? "checkbox" : "radio";
+  const tiles = pics
+    .map((p, i) => {
+      const src = p.url && p.url.trim() ? p.url : assetUrl(exerciseDir, p.name);
+      return `<label class="pic-click-opt" style="width:${w}px">
+  <img src="${escapeAttr(src)}" alt="" loading="lazy" style="width:100%;height:auto" />
+  <input type="${inputType}" name="${escapeAttr(qid)}" data-kind="picture-click" data-id="${escapeAttr(qid)}" data-idx="${i}" data-correct="${p.correct ? "1" : "0"}" />
+</label>`;
+    })
+    .join("");
+  return `<div class="hl-field-wrap pc-row" data-field-kind="picture-click" data-id="${escapeAttr(qid)}" data-question-id="${escapeAttr(qid)}">
+  <span class="hl-field-badge row-badge" aria-hidden="true"></span>
+  <div class="pc-options">${tiles}</div>
+</div>`;
+}
+
+function renderPictureGap(cfg, seq, exerciseDir) {
+  const src = cfg.url && cfg.url.trim() ? cfg.url : assetUrl(exerciseDir, cfg.name);
+  const w = cfg.width && cfg.width > 0 ? cfg.width : 600;
+  const byId = new Map();
+  for (const c of seq.configs || []) if (c && c.id) byId.set(c.id, c);
+  const gGap = gapGlobalOpts(seq);
+  const allGaps = (seq.configs || []).filter((c) => c && c.type === "gap");
+  const overlays = (cfg.items || [])
+    .map((it) => {
+      const gcfg = byId.get(it.gapId);
+      if (!gcfg || gcfg.type !== "gap") return "";
+      const inner = renderGapInput(gcfg, gGap, allGaps);
+      return `<span class="hl-pic-overlay" style="left:${it.x}px;top:${it.y}px">${inner}</span>`;
+    })
+    .join("");
+  return `<div class="hl-picture-gap" style="width:${w}px">
+  <img class="hl-picture-gap-img" src="${escapeAttr(src)}" alt="" loading="lazy" />
+  ${overlays}
+</div>`;
+}
+
+function renderPictureDrag(cfg, exerciseDir) {
+  const src = cfg.url && cfg.url.trim() ? cfg.url : assetUrl(exerciseDir, cfg.name);
+  const w = cfg.width && cfg.width > 0 ? cfg.width : 600;
+  const labels = (cfg.items || [])
+    .map((it) => `<span class="hl-pic-label" style="left:${it.x}px;top:${it.y}px">${it.text || ""}</span>`)
+    .join("");
+  return `<div class="hl-picture-gap" style="width:${w}px">
+  <img class="hl-picture-gap-img" src="${escapeAttr(src)}" alt="" loading="lazy" />
+  ${labels}
+</div>`;
+}
+
+function renderGridItem(cfg, exerciseDir, seq, readingCfgMap) {
+  const cells = cfg.grid || [];
+  const w = cfg.cellWidth && cfg.cellWidth > 0 ? cfg.cellWidth : 0;
+  const align = cfg.verticalAlign === "center" || cfg.verticalAlign === "end" ? cfg.verticalAlign : "flex-start";
+  const cellsHtml = cells
+    .map((cellHtml) => {
+      const inner = expandPartsHtml(String(cellHtml || ""), exerciseDir, seq, readingCfgMap);
+      const style = w ? ` style="flex:0 0 ${w}px;width:${w}px"` : ` style="flex:1 1 0"`;
+      return `<div class="hl-grid-item-cell"${style}>${inner}</div>`;
+    })
+    .join("");
+  return `<div class="hl-grid-item" style="align-items:${align}">${cellsHtml}</div>`;
+}
+
+function unwrapOuterP(html) {
+  const s = String(html || "").trim();
+  const m = /^<p[^>]*>([\s\S]*)<\/p>$/i.exec(s);
+  return m ? m[1] : s;
+}
+
+function renderJumbledDialogue(cfg) {
+  const items = cfg.sentences || [];
+  const id = escapeAttr(cfg.id);
+  const fixedHtml = items
+    .filter((it) => it && it.fixed)
+    .map((it) => `<div class="so-prefix-line">${it.text || ""}</div>`)
+    .join("");
+  const movable = items
+    .map((it, i) => ({ html: unwrapOuterP(it && it.text), origIdx: i }))
+    .filter((_, i) => !(items[i] && items[i].fixed));
+  const expected = movable.map((m) => stripHtml(m.html)).join(" ");
+  const byIdx = new Map(movable.map((m) => [m.origIdx, m.html]));
+  const shuffled = shuffleInPlace(movable.map((m) => m.origIdx));
+  const bankItems = shuffled
+    .map((origIdx) => `<button type="button" class="so-token" data-orig-idx="${origIdx}">${byIdx.get(origIdx)}</button>`)
+    .join("");
+  return `<div class="hl-field-wrap so-row" data-field-kind="sentence-order" data-id="${id}" data-expected="${escapeAttr(expected)}" data-token-count="${movable.length}">
+  <span class="hl-field-badge row-badge" aria-hidden="true"></span>
+  ${fixedHtml ? `<div class="so-prefix">${fixedHtml}</div>` : ""}
+  <div class="so-answer" data-so-answer></div>
+  <div class="so-bank" data-so-bank>${bankItems}</div>
+</div>`;
+}
+
+function renderListAssign(cfg) {
+  const lists = cfg.lists || [];
+  const id = escapeAttr(cfg.id);
+  const allWords = [];
+  lists.forEach((l, li) => {
+    String((l && l.words) || "")
+      .split("|")
+      .map((w) => w.trim())
+      .filter(Boolean)
+      .forEach((w) => allWords.push({ word: w, listIdx: li }));
+  });
+  const optionsHtml = lists
+    .map((l, li) => `<option value="${li}">${escapeHtml(stripHtml((l && l.name) || ""))}</option>`)
+    .join("");
+  const order = shuffleInPlace(allWords.map((_, i) => i));
+  const rows = order
+    .map((i) => {
+      const w = allWords[i];
+      return `<div class="la-row">
+  <span class="la-word">${escapeHtml(w.word)}</span>
+  <select class="la-select" data-kind="list-assign" data-id="${id}" data-idx="${i}" data-correct-list="${w.listIdx}">
+    <option value="">—</option>
+    ${optionsHtml}
+  </select>
+</div>`;
+    })
+    .join("");
+  return `<div class="hl-field-wrap la-block" data-field-kind="list-assign" data-id="${id}" data-question-id="${id}">
+  <span class="hl-field-badge row-badge" aria-hidden="true"></span>
+  <div class="la-rows">${rows}</div>
+</div>`;
+}
+
+function parseSelectTextSegments(raw) {
+  const parts = String(raw || "").split("|");
+  return parts.map((seg, i) => ({ text: seg, correct: i % 2 === 1 }));
+}
+
+function renderSelectText(cfg) {
+  const id = escapeAttr(cfg.id);
+  const segments = parseSelectTextSegments(cfg.text);
+  let html = "";
+  for (const seg of segments) {
+    const pieces = seg.text.split(/(\s+)/);
+    for (const piece of pieces) {
+      if (!piece) continue;
+      if (/^\s+$/.test(piece)) {
+        html += piece;
+        continue;
+      }
+      html += `<span class="st-word" data-kind="select-text" data-id="${id}" data-correct="${seg.correct ? "1" : "0"}" tabindex="0" role="button">${escapeHtml(piece)}</span>`;
+    }
+  }
+  return `<div class="hl-field-wrap st-row" data-field-kind="select-text" data-id="${id}" data-question-id="${id}">
+  <span class="hl-field-badge row-badge" aria-hidden="true"></span>
+  <p class="st-text">${html}</p>
 </div>`;
 }
 
@@ -639,6 +1010,28 @@ function expandPartsHtml(partsHtml, exerciseDir, seq, readingCfgMap) {
         return renderAudio(c, exerciseDir);
       case "custom-group-item":
         return renderCustomGroupItem(c, exerciseDir, seq);
+      case "multiple-choice":
+        return renderMultipleChoice(c, multipleChoiceGlobalOpts(seq).shuffle);
+      case "custom-table":
+        return renderCustomTable(c, exerciseDir, seq, readingMap);
+      case "video-player":
+        return renderVideoPlayer(c);
+      case "sentence-order":
+        return renderSentenceOrder(c);
+      case "picture-click":
+        return renderPictureClick(c, exerciseDir);
+      case "picture-gap":
+        return renderPictureGap(c, seq, exerciseDir);
+      case "picture-drag":
+        return renderPictureDrag(c, exerciseDir);
+      case "grid-item":
+        return renderGridItem(c, exerciseDir, seq, readingCfgMap);
+      case "jumbled-dialogue":
+        return renderJumbledDialogue(c);
+      case "list-assign":
+        return renderListAssign(c);
+      case "select-text":
+        return renderSelectText(c);
       default:
         return "";
     }
@@ -650,9 +1043,19 @@ function expandPartsHtml(partsHtml, exerciseDir, seq, readingCfgMap) {
   html = replaceStandaloneTags(html, "dropdown", (id) => renderById(id));
   html = replaceStandaloneTags(html, "gap", (id) => renderById(id));
   html = replaceStandaloneTags(html, "audio-player", (id) => renderById(id));
+  html = replaceStandaloneTags(html, "video-player", (id) => renderById(id));
   html = replaceStandaloneTags(html, "single-letter", (id) => renderById(id));
   html = replaceStandaloneTags(html, "freewrite", (id) => renderById(id));
   html = replaceStandaloneTags(html, "quiz", (id) => renderById(id));
+  html = replaceStandaloneTags(html, "custom-table", (id) => renderById(id));
+  html = replaceStandaloneTags(html, "sentence-order", (id) => renderById(id));
+  html = replaceStandaloneTags(html, "picture-click", (id) => renderById(id));
+  html = replaceStandaloneTags(html, "picture-gap", (id) => renderById(id));
+  html = replaceStandaloneTags(html, "picture-drag", (id) => renderById(id));
+  html = replaceStandaloneTags(html, "grid-item", (id) => renderById(id));
+  html = replaceStandaloneTags(html, "jumbled-dialogue", (id) => renderById(id));
+  html = replaceStandaloneTags(html, "list-assign", (id) => renderById(id));
+  html = replaceStandaloneTags(html, "select-text", (id) => renderById(id));
   // Helbling sometimes uses <multiple-choice> tag for single-choice items.
   html = replaceStandaloneTags(html, "multiple-choice", (id) => renderById(id));
   html = replaceStandaloneTags(html, "single-choice", (id) => renderById(id));
@@ -812,6 +1215,30 @@ function applyAnswersFromKey(data) {
       }
     }
   }
+  for (const row of mainEl.querySelectorAll('.hl-field-wrap[data-field-kind="multiple-choice"]')) {
+    for (const box of row.querySelectorAll('input[type="checkbox"]')) {
+      box.checked = box.getAttribute("data-correct") === "1";
+    }
+  }
+  for (const row of mainEl.querySelectorAll('.hl-field-wrap[data-field-kind="sentence-order"]')) {
+    const answerEl = row.querySelector("[data-so-answer]");
+    if (!answerEl) continue;
+    const tokens = [...row.querySelectorAll(".so-token")].sort(
+      (a, b) => Number(a.dataset.origIdx) - Number(b.dataset.origIdx)
+    );
+    for (const t of tokens) answerEl.appendChild(t);
+  }
+  for (const row of mainEl.querySelectorAll('.hl-field-wrap[data-field-kind="picture-click"]')) {
+    for (const inp of row.querySelectorAll('input[data-kind="picture-click"]')) {
+      inp.checked = inp.getAttribute("data-correct") === "1";
+    }
+  }
+  for (const sel of mainEl.querySelectorAll(".la-select")) {
+    sel.value = sel.getAttribute("data-correct-list") || "";
+  }
+  for (const w of mainEl.querySelectorAll(".st-word")) {
+    w.classList.toggle("is-selected", w.getAttribute("data-correct") === "1");
+  }
 }
 
 function clearMarks() {
@@ -829,7 +1256,12 @@ function countScorableItems() {
   const gaps = mainEl.querySelectorAll('input[data-kind="gap"], input[data-kind="single-letter"]').length;
   const drops = mainEl.querySelectorAll("select.hl-dropdown").length;
   const choices = mainEl.querySelectorAll('.hl-field-wrap[data-field-kind="quiz"], .hl-field-wrap[data-field-kind="single-choice"]').length;
-  return gaps + drops + choices;
+  const multi = mainEl.querySelectorAll('.hl-field-wrap[data-field-kind="multiple-choice"]').length;
+  const order = mainEl.querySelectorAll('.hl-field-wrap[data-field-kind="sentence-order"]').length;
+  const picClick = mainEl.querySelectorAll('.hl-field-wrap[data-field-kind="picture-click"]').length;
+  const listAssign = mainEl.querySelectorAll(".la-select").length;
+  const selectText = mainEl.querySelectorAll('.hl-field-wrap[data-field-kind="select-text"]').length;
+  return gaps + drops + choices + multi + order + picClick + listAssign + selectText;
 }
 
 function userHasStartedExercise() {
@@ -843,6 +1275,19 @@ function userHasStartedExercise() {
   for (const r of mainEl.querySelectorAll('input[type="radio"][data-kind="quiz"], input[type="radio"][data-kind="single-choice"]')) {
     if (r.checked) return true;
   }
+  for (const c of mainEl.querySelectorAll('input[type="checkbox"][data-kind="multiple-choice"]')) {
+    if (c.checked) return true;
+  }
+  for (const row of mainEl.querySelectorAll('.hl-field-wrap[data-field-kind="sentence-order"]')) {
+    if (row.querySelector("[data-so-answer]")?.children.length) return true;
+  }
+  for (const i of mainEl.querySelectorAll('input[data-kind="picture-click"]')) {
+    if (i.checked) return true;
+  }
+  for (const sel of mainEl.querySelectorAll(".la-select")) {
+    if (sel.value) return true;
+  }
+  if (mainEl.querySelector(".st-word.is-selected")) return true;
   return false;
 }
 
@@ -887,6 +1332,23 @@ function allScorableAnswered() {
   }
   for (const row of mainEl.querySelectorAll('.hl-field-wrap[data-field-kind="quiz"], .hl-field-wrap[data-field-kind="single-choice"]')) {
     if (!row.querySelector('input[type="radio"]:checked')) return false;
+  }
+  for (const row of mainEl.querySelectorAll('.hl-field-wrap[data-field-kind="multiple-choice"]')) {
+    if (!row.querySelector('input[type="checkbox"]:checked')) return false;
+  }
+  for (const row of mainEl.querySelectorAll('.hl-field-wrap[data-field-kind="sentence-order"]')) {
+    const answerEl = row.querySelector("[data-so-answer]");
+    const need = Number(row.getAttribute("data-token-count") || 0);
+    if (!answerEl || answerEl.children.length < need) return false;
+  }
+  for (const row of mainEl.querySelectorAll('.hl-field-wrap[data-field-kind="picture-click"]')) {
+    if (!row.querySelector('input[data-kind="picture-click"]:checked')) return false;
+  }
+  for (const sel of mainEl.querySelectorAll(".la-select")) {
+    if (!sel.value) return false;
+  }
+  for (const row of mainEl.querySelectorAll('.hl-field-wrap[data-field-kind="select-text"]')) {
+    if (!row.querySelector(".st-word.is-selected")) return false;
   }
   return countScorableItems() > 0;
 }
@@ -942,6 +1404,62 @@ function evaluateExercise(data) {
     setRowState(row, ok);
   }
 
+  for (const row of mainEl.querySelectorAll('.hl-field-wrap[data-field-kind="multiple-choice"]')) {
+    const boxes = [...row.querySelectorAll('input[type="checkbox"]')];
+    if (!boxes.some((b) => b.checked)) {
+      clearWrapMark(row);
+      continue;
+    }
+    const ok = boxes.every((b) => b.checked === (b.getAttribute("data-correct") === "1"));
+    setRowState(row, ok);
+  }
+
+  for (const row of mainEl.querySelectorAll('.hl-field-wrap[data-field-kind="sentence-order"]')) {
+    const answerEl = row.querySelector("[data-so-answer]");
+    if (!answerEl || !answerEl.children.length) {
+      clearWrapMark(row);
+      continue;
+    }
+    const seqEl = row.closest(".sequence-block");
+    const ignoreCase = seqEl?.getAttribute("data-ignore-case") === "1";
+    const picked = [...answerEl.children].map((el) => el.textContent).join(" ");
+    const ok = normGap(picked, ignoreCase) === normGap(row.getAttribute("data-expected"), ignoreCase);
+    setRowState(row, ok);
+  }
+
+  for (const row of mainEl.querySelectorAll('.hl-field-wrap[data-field-kind="picture-click"]')) {
+    const inputs = [...row.querySelectorAll('input[data-kind="picture-click"]')];
+    if (!inputs.some((i) => i.checked)) {
+      clearWrapMark(row);
+      continue;
+    }
+    const ok = inputs.every((i) => i.checked === (i.getAttribute("data-correct") === "1"));
+    setRowState(row, ok);
+  }
+
+  for (const sel of mainEl.querySelectorAll(".la-select")) {
+    const wrap = sel.closest(".la-row");
+    if (!sel.value) {
+      wrap?.classList.remove("la-ok", "la-wrong");
+      continue;
+    }
+    const ok = sel.value === sel.getAttribute("data-correct-list");
+    wrap?.classList.toggle("la-ok", ok);
+    wrap?.classList.toggle("la-wrong", !ok);
+  }
+
+  for (const row of mainEl.querySelectorAll('.hl-field-wrap[data-field-kind="select-text"]')) {
+    const words = [...row.querySelectorAll(".st-word")];
+    if (!words.some((w) => w.classList.contains("is-selected"))) {
+      clearWrapMark(row);
+      continue;
+    }
+    const ok = words.every(
+      (w) => w.classList.contains("is-selected") === (w.getAttribute("data-correct") === "1")
+    );
+    setRowState(row, ok);
+  }
+
   // Spec: after pressing Check, lock exercise until user presses Correct.
   exerciseUi.lockedAfterCheck = true;
   exerciseUi.practiceAction = "correct";
@@ -968,6 +1486,22 @@ function resetExerciseForm() {
   )) {
     radio.checked = false;
   }
+  for (const box of mainEl.querySelectorAll('input[type="checkbox"][data-kind="multiple-choice"]')) {
+    box.checked = false;
+  }
+  for (const inp of mainEl.querySelectorAll('input[data-kind="picture-click"]')) inp.checked = false;
+  for (const sel of mainEl.querySelectorAll(".la-select")) {
+    sel.value = "";
+    sel.closest(".la-row")?.classList.remove("la-ok", "la-wrong");
+  }
+  for (const w of mainEl.querySelectorAll(".st-word")) w.classList.remove("is-selected");
+  for (const row of mainEl.querySelectorAll('.hl-field-wrap[data-field-kind="sentence-order"]')) {
+    const answerEl = row.querySelector("[data-so-answer]");
+    const bankEl = row.querySelector("[data-so-bank]");
+    if (answerEl && bankEl) {
+      while (answerEl.firstChild) bankEl.appendChild(answerEl.firstChild);
+    }
+  }
   for (const area of mainEl.querySelectorAll("textarea.freewrite-area")) area.value = "";
 }
 
@@ -983,6 +1517,13 @@ function applyPracticeLock(lockedAfterCorrect) {
   )) {
     r.disabled = lock;
   }
+  for (const c of mainEl.querySelectorAll('input[type="checkbox"][data-kind="multiple-choice"]')) {
+    c.disabled = lock;
+  }
+  for (const tok of mainEl.querySelectorAll(".so-token")) tok.disabled = lock;
+  for (const inp of mainEl.querySelectorAll('input[data-kind="picture-click"]')) inp.disabled = lock;
+  for (const sel of mainEl.querySelectorAll(".la-select")) sel.disabled = lock;
+  mainEl.classList.toggle("hl-st-locked", lock);
   for (const area of mainEl.querySelectorAll("textarea.freewrite-area")) area.readOnly = lock;
 }
 
@@ -1066,6 +1607,26 @@ function ensureExerciseDelegation() {
     syncKeyItemVisibility();
     syncFooterActionButton();
   });
+  mainEl.addEventListener("click", (e) => {
+    const tok = e.target && e.target.closest && e.target.closest(".so-token");
+    if (!tok || tok.disabled || !currentSession || exerciseUi.answersMode) return;
+    const row = tok.closest('.hl-field-wrap[data-field-kind="sentence-order"]');
+    if (!row) return;
+    const inAnswer = !!tok.closest("[data-so-answer]");
+    const target = row.querySelector(inAnswer ? "[data-so-bank]" : "[data-so-answer]");
+    if (!target) return;
+    target.appendChild(tok);
+    clearWrapMark(row);
+    if (!exerciseUi.lockedAfterCheck) syncFooterActionButton();
+  });
+  mainEl.addEventListener("click", (e) => {
+    const word = e.target && e.target.closest && e.target.closest(".st-word");
+    if (!word || !currentSession || exerciseUi.answersMode || exerciseUi.lockedAfterCheck) return;
+    word.classList.toggle("is-selected");
+    const row = word.closest('.hl-field-wrap[data-field-kind="select-text"]');
+    if (row) clearWrapMark(row);
+    syncFooterActionButton();
+  });
   const bump = () => {
     if (!currentSession || exerciseUi.answersMode || exerciseUi.lockedAfterCheck) return;
     syncFooterActionButton();
@@ -1119,9 +1680,13 @@ function wireFooter() {
   }
 
   if (btnClose) {
-    btnClose.onclick = () => {
-      location.hash = "#/";
-    };
+    btnClose.addEventListener("click", () => {
+      if (currentSession?.courseId) {
+        location.hash = `#/course/${encodeURIComponent(currentSession.courseId)}`;
+      } else {
+        location.hash = "#/";
+      }
+    });
   }
 }
 
@@ -1140,14 +1705,17 @@ async function openExercise(unitId, exerciseId) {
 }
 
 async function route() {
-  if (!courseIndex) await loadCourseIndex();
   const r = parseHashRoute();
-  if (!r) {
-    currentSession = null;
-    renderToc();
-    return;
+  if (r.type === "home") {
+    await renderCoursePicker();
+  } else if (r.type === "data-toc") {
+    await renderDataCourseToc(r.courseId);
+  } else if (r.type === "data-exercise") {
+    await openDataExercise(r.courseId, r.unitId, r.exerciseId);
+  } else if (r.type === "legacy-exercise") {
+    if (!courseIndex) await loadCourseIndex();
+    await openExercise(r.unitId, r.exerciseId);
   }
-  await openExercise(r.unitId, r.exerciseId);
 }
 
 function init() {

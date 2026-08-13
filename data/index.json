@@ -1,0 +1,14 @@
+{
+  "courses": [
+    {
+      "id": "potential_a2_level2-SB",
+      "name": "Potential A2 Level 2 — Student's Book",
+      "description": "Student's Book exercises for Potential A2, Level 2"
+    },
+    {
+      "id": "potential_a2_level2-WB",
+      "name": "Potential A2 Level 2 — Workbook",
+      "description": "Workbook exercises for Potential A2, Level 2"
+    }
+  ]
+}

@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+  <exercise_default>
+    <subject>English</subject>
+    <language>en</language>
+    <evaluation>client</evaluation>
+    <result>rslt</result>
+    <backPageTarget>_self</backPageTarget>
+  </exercise_default>
+
+  <sequence noContentXML="true" hasExerciseXML="false" titlesFromExerciseXMLs="true" contentSrc="content.xml">
+    <course>
+      <choice id="package" title="potential_a2-WB" viewer="responsive-v3">
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_1</id>
+              <title>Unit 1</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_1.p4_ex1.p4_ex1" id="unit_1.p4_ex1" title="Exercise 1" maxPoints="32" category="" bookpage="4" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_1.p4_ex2.p4_ex2" id="unit_1.p4_ex2" title="Exercise 2" maxPoints="10" category="" bookpage="2" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_1.p4_ex3.p4_ex3" id="unit_1.p4_ex3" title="Exercise 3" maxPoints="6" category="" bookpage="4" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_1.p4_ex4.p4_ex4" id="unit_1.p4_ex4" title="Exercise 4" maxPoints="6" category="" bookpage="4" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_1.p4_ex5.p4_ex5" id="unit_1.p4_ex5" title="Exercise 5" maxPoints="6" category="" bookpage="4" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_1.p4_ex6.p4_ex6" id="unit_1.p4_ex6" title="Exercise 6" maxPoints="5" category="" bookpage="4" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_1.p5_ex1.p5_ex1" id="unit_1.p5_ex1" title="Exercise 1" maxPoints="8" category="" bookpage="5" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_1.p5_ex2.p5_ex2" id="unit_1.p5_ex2" title="Exercise 2" maxPoints="12" category="" bookpage="6" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_1.p5_ex3.p5_ex3" id="unit_1.p5_ex3" title="Exercise 3" maxPoints="5" category="" bookpage="5" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_1.p5_ex4.p5_ex4" id="unit_1.p5_ex4" title="Exercise 4" maxPoints="6" category="" bookpage="5" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_1.p5_ex5.p5_ex5" id="unit_1.p5_ex5" title="Exercise 5" maxPoints="6" category="" bookpage="5" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_1.p6_ex1.p6_ex1" id="unit_1.p6_ex1" title="Exercise 1" maxPoints="10" category="" bookpage="6" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_1.p6_ex3.p6_ex3" id="unit_1.p6_ex3" title="Exercise 3" maxPoints="1" category="" bookpage="6" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_1.p7_ex4a.p7_ex4a" id="unit_1.p7_ex4a" title="Exercise 4a" maxPoints="5" category="" bookpage="7" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_1.p7_ex5.p7_ex5" id="unit_1.p7_ex5" title="Exercise 5" maxPoints="1" category="" bookpage="7" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_1.p7_ex1.p7_ex1" id="unit_1.p7_ex1" title="Exercise 1" maxPoints="6" category="" bookpage="7" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_1.p7_ex2.p7_ex2" id="unit_1.p7_ex2" title="Exercise 2" maxPoints="5" category="" bookpage="7" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_1.p7_ex3.p7_ex3" id="unit_1.p7_ex3" title="Exercise 3" maxPoints="5" category="" bookpage="7" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_1.p8_ex1.p8_ex1" id="unit_1.p8_ex1" title="Exercise 1" maxPoints="6" category="" bookpage="8" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_1.p8_ex2.p8_ex2" id="unit_1.p8_ex2" title="Exercise 2" maxPoints="3" category="" bookpage="8" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_1.p8_ex3.p8_ex3" id="unit_1.p8_ex3" title="Exercise 3" maxPoints="1" category="" bookpage="8" mode="training" icon="" manuallySetPoints="0" />
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_2</id>
+              <title>Unit 2</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_2.p9_ex1.p9_ex1" id="unit_2.p9_ex1" title="Exercise 1" maxPoints="10" category="" bookpage="9" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_2.p10_ex2ab.p10_ex2ab" id="unit_2.p10_ex2ab" title="Exercise 2ab" maxPoints="6" category="" bookpage="10" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_2.p10_ex3.p10_ex3" id="unit_2.p10_ex3" title="Exercise 3" maxPoints="9" category="" bookpage="10" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_2.p10_ex4_5ab.p10_ex4_5ab" id="unit_2.p10_ex4_5ab" title="Exercise 4 5ab" maxPoints="12" category="" bookpage="10" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_2.p10_ex6.p10_ex6" id="unit_2.p10_ex6" title="Exercise 6" maxPoints="9" category="" bookpage="10" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_2.p11_ex1ab.p11_ex1ab" id="unit_2.p11_ex1ab" title="Exercise 1ab" maxPoints="6" category="" bookpage="11" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_2.p11_ex2.p11_ex2" id="unit_2.p11_ex2" title="Exercise 2" maxPoints="6" category="" bookpage="11" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_2.p11_ex3.p11_ex3" id="unit_2.p11_ex3" title="Exercise 3" maxPoints="5" category="" bookpage="11" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_2.p11_ex4.p11_ex4" id="unit_2.p11_ex4" title="Exercise 4" maxPoints="6" category="" bookpage="11" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_2.p11_ex5.p11_ex5" id="unit_2.p11_ex5" title="Exercise 5" maxPoints="9" category="" bookpage="11" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_2.p12_ex1.p12_ex1" id="unit_2.p12_ex1" title="Exercise 1" maxPoints="1" category="" bookpage="12" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_2.p12_ex2.p12_ex2" id="unit_2.p12_ex2" title="Exercise 2" maxPoints="5" category="" bookpage="12" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_2.p12_ex3ab.p12_ex3ab" id="unit_2.p12_ex3ab" title="Exercise 3ab" maxPoints="6" category="" bookpage="12" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_2.p12_ex1ab.p12_ex1ab" id="unit_2.p12_ex1ab" title="Exercise 1ab" maxPoints="5" category="" bookpage="12" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_2.p13_ex2_speaking.p13_ex2_speaking" id="unit_2.p13_ex2_speaking" title="Exercise 2 Speaking" maxPoints="5" category="" bookpage="13" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_2.p13_ex1.p13_ex1" id="unit_2.p13_ex1" title="Exercise 1" maxPoints="8" category="" bookpage="13" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_2.p13_ex2_writing.p13_ex2_writing" id="unit_2.p13_ex2_writing" title="Exercise 2 Writing" maxPoints="5" category="" bookpage="13" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_2.p13_ex3.p13_ex3" id="unit_2.p13_ex3" title="Exercise 3" maxPoints="6" category="" bookpage="13" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_2.p13_ex4.p13_ex4" id="unit_2.p13_ex4" title="Exercise 4" maxPoints="1" category="" bookpage="13" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_2.p14_ex1.p14_ex1" id="unit_2.p14_ex1" title="Exercise 1" maxPoints="8" category="" bookpage="14" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_2.p14_ex2.p14_ex2" id="unit_2.p14_ex2" title="Exercise 2" maxPoints="8" category="" bookpage="14" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_2.p15_ex3.p15_ex3" id="unit_2.p15_ex3" title="Exercise 3" maxPoints="6" category="" bookpage="15" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_2.p15_ex4.p15_ex4" id="unit_2.p15_ex4" title="Exercise 4" maxPoints="8" category="" bookpage="15" mode="training" icon="" manuallySetPoints="0" />
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_3</id>
+              <title>Unit 3</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_3.p16_ex1.p16_ex1" id="unit_3.p16_ex1" title="Exercise 1" maxPoints="12" category="" bookpage="16" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_3.p16_ex2.p16_ex2" id="unit_3.p16_ex2" title="Exercise 2" maxPoints="6" category="" bookpage="16" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_3.p16_ex3.p16_ex3" id="unit_3.p16_ex3" title="Exercise 3" maxPoints="5" category="" bookpage="16" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_3.p16_ex4.p16_ex4" id="unit_3.p16_ex4" title="Exercise 4" maxPoints="5" category="" bookpage="16" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_3.p17_ex1.p17_ex1" id="unit_3.p17_ex1" title="Exercise 1" maxPoints="6" category="" bookpage="17" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_3.p17_ex2ab.p17_ex2ab" id="unit_3.p17_ex2ab" title="Exercise 2ab" maxPoints="9" category="" bookpage="17" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_3.p17_ex3_4.p17_ex3_4" id="unit_3.p17_ex3_4" title="Exercise 3 4" maxPoints="12" category="" bookpage="17" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_3.p17_ex5.p17_ex5" id="unit_3.p17_ex5" title="Exercise 5" maxPoints="6" category="" bookpage="17" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_3.p18_ex1.p18_ex1" id="unit_3.p18_ex1" title="Exercise 1" maxPoints="10" category="" bookpage="18" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_3.p18_ex2.p18_ex2" id="unit_3.p18_ex2" title="Exercise 2" maxPoints="1" category="" bookpage="18" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_3.p18_ex3.p18_ex3" id="unit_3.p18_ex3" title="Exercise 3" maxPoints="5" category="" bookpage="18" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_3.p18_ex4.p18_ex4" id="unit_3.p18_ex4" title="Exercise 4" maxPoints="4" category="" bookpage="18" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_3.p19_ex1ab.p19_ex1ab" id="unit_3.p19_ex1ab" title="Exercise 1ab" maxPoints="6" category="" bookpage="19" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_3.p19_ex2.p19_ex2" id="unit_3.p19_ex2" title="Exercise 2" maxPoints="6" category="" bookpage="19" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_3.p19_ex3.p19_ex3" id="unit_3.p19_ex3" title="Exercise 3" maxPoints="6" category="" bookpage="19" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_3.p20_ex1.p20_ex1" id="unit_3.p20_ex1" title="Exercise 1" maxPoints="5" category="" bookpage="20" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_3.p20_ex2_3.p20_ex2_3" id="unit_3.p20_ex2_3" title="Exercise 2 3" maxPoints="11" category="" bookpage="20" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_3.p20_ex4.p20_ex4" id="unit_3.p20_ex4" title="Exercise 4" maxPoints="1" category="" bookpage="20" mode="training" icon="" manuallySetPoints="0" />
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_4</id>
+              <title>Unit 4</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_4.p21_ex2.p21_ex2" id="unit_4.p21_ex2" title="Exercise 2" maxPoints="6" category="" bookpage="21" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_4.p21_ex3.p21_ex3" id="unit_4.p21_ex3" title="Exercise 3" maxPoints="6" category="" bookpage="21" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_4.p21_ex4.p21_ex4" id="unit_4.p21_ex4" title="Exercise 4" maxPoints="6" category="" bookpage="21" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_4.p21_ex5.p21_ex5" id="unit_4.p21_ex5" title="Exercise 5" maxPoints="7" category="" bookpage="21" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_4.p21_ex6ab.p21_ex6ab" id="unit_4.p21_ex6ab" title="Exercise 6ab" maxPoints="6" category="" bookpage="21" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_4.p22_ex1.p22_ex1" id="unit_4.p22_ex1" title="Exercise 1" maxPoints="6" category="" bookpage="22" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_4.p22_ex2ab.p22_ex2ab" id="unit_4.p22_ex2ab" title="Exercise 2ab" maxPoints="6" category="" bookpage="22" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_4.p22_ex3ab_4_5.p22_ex3ab_4_5" id="unit_4.p22_ex3ab_4_5" title="Exercise 3ab 4 5" maxPoints="22" category="" bookpage="22" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_4.p23_ex1.p23_ex1" id="unit_4.p23_ex1" title="Exercise 1" maxPoints="6" category="" bookpage="23" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_4.p23_ex2.p23_ex2" id="unit_4.p23_ex2" title="Exercise 2" maxPoints="8" category="" bookpage="23" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_4.p23_ex3.p23_ex3" id="unit_4.p23_ex3" title="Exercise 3" maxPoints="5" category="" bookpage="23" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_4.p24_ex1ab.p24_ex1ab" id="unit_4.p24_ex1ab" title="Exercise 1ab" maxPoints="10" category="" bookpage="24" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_4.p24_ex2.p24_ex2" id="unit_4.p24_ex2" title="Exercise 2" maxPoints="10" category="" bookpage="24" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_4.p24_ex1.p24_ex1" id="unit_4.p24_ex1" title="Exercise 1" maxPoints="6" category="" bookpage="24" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_4.p25_ex2.p25_ex2" id="unit_4.p25_ex2" title="Exercise 2" maxPoints="14" category="" bookpage="25" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_4.p25_ex3.p25_ex3" id="unit_4.p25_ex3" title="Exercise 3" maxPoints="6" category="" bookpage="25" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_4.p25_ex4.p25_ex4" id="unit_4.p25_ex4" title="Exercise 4" maxPoints="1" category="" bookpage="25" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_4.p26_ex1.p26_ex1" id="unit_4.p26_ex1" title="Exercise 1" maxPoints="8" category="" bookpage="26" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_4.p26_ex2.p26_ex2" id="unit_4.p26_ex2" title="Exercise 2" maxPoints="10" category="" bookpage="26" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_4.p26_ex3.p26_ex3" id="unit_4.p26_ex3" title="Exercise 3" maxPoints="6" category="" bookpage="26" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_4.p27_ex4.p27_ex4" id="unit_4.p27_ex4" title="Exercise 4" maxPoints="6" category="" bookpage="27" mode="training" icon="" manuallySetPoints="0" />
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_5</id>
+              <title>Unit 5</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_5.p28_ex1.p28_ex1" id="unit_5.p28_ex1" title="Exercise 1" maxPoints="6" category="" bookpage="28" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_5.p28_ex2.p28_ex2" id="unit_5.p28_ex2" title="Exercise 2" maxPoints="7" category="" bookpage="28" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_5.p28_ex3.p28_ex3" id="unit_5.p28_ex3" title="Exercise 3" maxPoints="9" category="" bookpage="28" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_5.p29_ex1.p29_ex1" id="unit_5.p29_ex1" title="Exercise 1" maxPoints="6" category="" bookpage="29" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_5.p29_ex2_3.p29_ex2_3" id="unit_5.p29_ex2_3" title="Exercise 2 3" maxPoints="13" category="" bookpage="29" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_5.29_ex4.29_ex4" id="unit_5.29_ex4" title="Exercise 4" maxPoints="5" category="" bookpage="29" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_5.p29_ex5ab.p29_ex5ab" id="unit_5.p29_ex5ab" title="Exercise 5ab" maxPoints="6" category="" bookpage="29" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_5.p30_ex6ab.p30_ex6ab" id="unit_5.p30_ex6ab" title="Exercise 6ab" maxPoints="8" category="" bookpage="30" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_5.p30_ex1.p30_ex1" id="unit_5.p30_ex1" title="Exercise 1" maxPoints="3" category="" bookpage="30" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_5.p30_ex2.p30_ex2" id="unit_5.p30_ex2" title="Exercise 2" maxPoints="8" category="" bookpage="30" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_5.p31_ex3.p31_ex3" id="unit_5.p31_ex3" title="Exercise 3" maxPoints="1" category="" bookpage="31" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_5.p31_ex1ab.p31_ex1ab" id="unit_5.p31_ex1ab" title="Exercise 1ab" maxPoints="10" category="" bookpage="31" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_5.p31_ex2ab.p31_ex2ab" id="unit_5.p31_ex2ab" title="Exercise 2ab" maxPoints="5" category="" bookpage="31" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_5.p32_ex1.p32_ex1" id="unit_5.p32_ex1" title="Exercise 1" maxPoints="8" category="" bookpage="32" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_5.p32_ex2.p32_ex2" id="unit_5.p32_ex2" title="Exercise 2" maxPoints="3" category="" bookpage="32" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_5.p32_ex3.p32_ex3" id="unit_5.p32_ex3" title="Exercise 3" maxPoints="3" category="" bookpage="32" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_5.p32_ex4.p32_ex4" id="unit_5.p32_ex4" title="Exercise 4" maxPoints="20" category="" bookpage="32" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_5.p32_ex5.p32_ex5" id="unit_5.p32_ex5" title="Exercise 5" maxPoints="1" category="" bookpage="32" mode="training" icon="" manuallySetPoints="0" />
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_6</id>
+              <title>Unit 6</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_6.p33_ex1.p33_ex1" id="unit_6.p33_ex1" title="Exercise 1" maxPoints="12" category="" bookpage="33" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_6.p33_ex2.p33_ex2" id="unit_6.p33_ex2" title="Exercise 2" maxPoints="6" category="" bookpage="33" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_6.p33_ex3.p33_ex3" id="unit_6.p33_ex3" title="Exercise 3" maxPoints="6" category="" bookpage="33" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_6.p33_ex4.p33_ex4" id="unit_6.p33_ex4" title="Exercise 4" maxPoints="6" category="" bookpage="33" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_6.p33_ex5ab.p33_ex5ab" id="unit_6.p33_ex5ab" title="Exercise 5ab" maxPoints="3" category="" bookpage="33" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_6.p34_ex1.p34_ex1" id="unit_6.p34_ex1" title="Exercise 1" maxPoints="8" category="" bookpage="34" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_6.p34_ex2.p34_ex2" id="unit_6.p34_ex2" title="Exercise 2" maxPoints="15" category="" bookpage="34" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_6.p34_ex3.p34_ex3" id="unit_6.p34_ex3" title="Exercise 3" maxPoints="8" category="" bookpage="34" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_6.p34_ex4.p34_ex4" id="unit_6.p34_ex4" title="Exercise 4" maxPoints="6" category="" bookpage="34" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_6.p35_ex1.p35_ex1" id="unit_6.p35_ex1" title="Exercise 1" maxPoints="5" category="" bookpage="35" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_6.p35_ex2.p35_ex2" id="unit_6.p35_ex2" title="Exercise 2" maxPoints="9" category="" bookpage="35" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_6.p35_ex3.p35_ex3" id="unit_6.p35_ex3" title="Exercise 3" maxPoints="7" category="" bookpage="35" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_6.p36_ex1_speaking.p36_ex1_speaking" id="unit_6.p36_ex1_speaking" title="Exercise 1 Speaking" maxPoints="5" category="" bookpage="36" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_6.p36_ex2.p36_ex2" id="unit_6.p36_ex2" title="Exercise 2" maxPoints="7" category="" bookpage="36" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_6.p36_ex1_writing.p36_ex1_writing" id="unit_6.p36_ex1_writing" title="Exercise 1 Writing" maxPoints="8" category="" bookpage="36" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_6.p37_ex2.p37_ex2" id="unit_6.p37_ex2" title="Exercise 2" maxPoints="5" category="" bookpage="37" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_6.p37_ex3.p37_ex3" id="unit_6.p37_ex3" title="Exercise 3" maxPoints="4" category="" bookpage="37" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_6.p37_ex4.p37_ex4" id="unit_6.p37_ex4" title="Exercise 4" maxPoints="3" category="" bookpage="37" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_6.p37_ex5.p37_ex5" id="unit_6.p37_ex5" title="Exercise 5" maxPoints="1" category="" bookpage="37" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_6.p38_ex1.p38_ex1" id="unit_6.p38_ex1" title="Exercise 1" maxPoints="8" category="" bookpage="38" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_6.p38_ex2.p38_ex2" id="unit_6.p38_ex2" title="Exercise 2" maxPoints="6" category="" bookpage="38" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_6.p39_ex3.p39_ex3" id="unit_6.p39_ex3" title="Exercise 3" maxPoints="6" category="" bookpage="39" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_6.p39_ex4.p39_ex4" id="unit_6.p39_ex4" title="Exercise 4" maxPoints="10" category="" bookpage="39" mode="training" icon="" manuallySetPoints="0" />
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_7</id>
+              <title>Unit 7</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_7.p40_ex1.p40_ex1" id="unit_7.p40_ex1" title="Exercise 1" maxPoints="11" category="" bookpage="40" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_7.p40_ex2ab.p40_ex2ab" id="unit_7.p40_ex2ab" title="Exercise 2ab" maxPoints="6" category="" bookpage="40" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_7.p40_ex3.p40_ex3" id="unit_7.p40_ex3" title="Exercise 3" maxPoints="6" category="" bookpage="40" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_7.p40_ex4.p40_ex4" id="unit_7.p40_ex4" title="Exercise 4" maxPoints="6" category="" bookpage="40" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_7.p41_ex5.p41_ex5" id="unit_7.p41_ex5" title="Exercise 5" maxPoints="5" category="" bookpage="41" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_7.p41_ex6.p41_ex6" id="unit_7.p41_ex6" title="Exercise 6" maxPoints="4" category="" bookpage="41" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_7.p41_ex7.p41_ex7" id="unit_7.p41_ex7" title="Exercise 7" maxPoints="6" category="" bookpage="41" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_7.p41_ex1_2.p41_ex1_2" id="unit_7.p41_ex1_2" title="Exercise 1 2" maxPoints="10" category="" bookpage="41" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_7.p41_ex3.p41_ex3" id="unit_7.p41_ex3" title="Exercise 3" maxPoints="6" category="" bookpage="41" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_7.p41_ex4.p41_ex4" id="unit_7.p41_ex4" title="Exercise 4" maxPoints="6" category="" bookpage="41" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_7.p42_ex5.p42_ex5" id="unit_7.p42_ex5" title="Exercise 5" maxPoints="12" category="" bookpage="42" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_7.p42_ex1.p42_ex1" id="unit_7.p42_ex1" title="Exercise 1" maxPoints="4" category="" bookpage="42" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_7.p42_ex2.p42_ex2" id="unit_7.p42_ex2" title="Exercise 2" maxPoints="8" category="" bookpage="42" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_7.p42_ex3.p42_ex3" id="unit_7.p42_ex3" title="Exercise 3" maxPoints="8" category="" bookpage="42" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_7.p43_ex1ab.p43_ex1ab" id="unit_7.p43_ex1ab" title="Exercise 1ab" maxPoints="5" category="" bookpage="43" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_7.p43_ex2.p43_ex2" id="unit_7.p43_ex2" title="Exercise 2" maxPoints="6" category="" bookpage="43" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_7.p43_ex3.p43_ex3" id="unit_7.p43_ex3" title="Exercise 3" maxPoints="5" category="" bookpage="43" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_7.p44_ex1.p44_ex1" id="unit_7.p44_ex1" title="Exercise 1" maxPoints="5" category="" bookpage="44" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_7.p44_ex2.p44_ex2" id="unit_7.p44_ex2" title="Exercise 2" maxPoints="5" category="" bookpage="44" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_7.p44_ex3.p44_ex3" id="unit_7.p44_ex3" title="Exercise 3" maxPoints="9" category="" bookpage="44" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_7.p44_ex4.p44_ex4" id="unit_7.p44_ex4" title="Exercise 4" maxPoints="1" category="" bookpage="44" mode="training" icon="" manuallySetPoints="0" />
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_8</id>
+              <title>Unit 8</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_8.p45_ex1.p45_ex1" id="unit_8.p45_ex1" title="Exercise 1" maxPoints="7" category="" bookpage="45" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_8.p45_ex2.p45_ex2" id="unit_8.p45_ex2" title="Exercise 2" maxPoints="7" category="" bookpage="45" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_8.p45_ex3.p45_ex3" id="unit_8.p45_ex3" title="Exercise 3" maxPoints="6" category="" bookpage="45" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_8.p45_ex4.p45_ex4" id="unit_8.p45_ex4" title="Exercise 4" maxPoints="28" category="" bookpage="45" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_8.p45_ex5.p45_ex5" id="unit_8.p45_ex5" title="Exercise 5" maxPoints="6" category="" bookpage="45" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_8.p46_ex6.p46_ex6" id="unit_8.p46_ex6" title="Exercise 6" maxPoints="6" category="" bookpage="46" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_8.p46_ex1.p46_ex1" id="unit_8.p46_ex1" title="Exercise 1" maxPoints="6" category="" bookpage="46" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_8.p46_ex2.p46_ex2" id="unit_8.p46_ex2" title="Exercise 2" maxPoints="6" category="" bookpage="46" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_8.p46_ex3.p46_ex3" id="unit_8.p46_ex3" title="Exercise 3" maxPoints="12" category="" bookpage="46" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_8.p46_ex4_5.p46_ex4_5" id="unit_8.p46_ex4_5" title="Exercise 4 5" maxPoints="12" category="" bookpage="46" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_8.p47_ex1.p47_ex1" id="unit_8.p47_ex1" title="Exercise 1" maxPoints="3" category="" bookpage="47" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_8.p48_ex2_reading.p48_ex2_reading" id="unit_8.p48_ex2_reading" title="Exercise 2 Reading" maxPoints="6" category="" bookpage="48" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_8.p48_ex3.p48_ex3" id="unit_8.p48_ex3" title="Exercise 3" maxPoints="1" category="" bookpage="48" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_8.p48_ex1ab.p48_ex1ab" id="unit_8.p48_ex1ab" title="Exercise 1ab" maxPoints="8" category="" bookpage="48" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_8.p48_ex2_speaking.p48_ex2_speaking" id="unit_8.p48_ex2_speaking" title="Exercise 2 Speaking" maxPoints="8" category="" bookpage="48" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_8.p49_ex1.p49_ex1" id="unit_8.p49_ex1" title="Exercise 1" maxPoints="5" category="" bookpage="49" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_8.p49_ex2.p49_ex2" id="unit_8.p49_ex2" title="Exercise 2" maxPoints="6" category="" bookpage="49" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_8.p49_ex3.p49_ex3" id="unit_8.p49_ex3" title="Exercise 3" maxPoints="3" category="" bookpage="49" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_8.p49_ex4.p49_ex4" id="unit_8.p49_ex4" title="Exercise 4" maxPoints="1" category="" bookpage="49" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_8.p50_ex1.p50_ex1" id="unit_8.p50_ex1" title="Exercise 1" maxPoints="8" category="" bookpage="50" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_8.p50_ex2.p50_ex2" id="unit_8.p50_ex2" title="Exercise 2" maxPoints="8" category="" bookpage="50" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_8.p50_ex3.p50_ex3" id="unit_8.p50_ex3" title="Exercise 3" maxPoints="6" category="" bookpage="50" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_8.p51_ex4.p51_ex4" id="unit_8.p51_ex4" title="Exercise 4" maxPoints="8" category="" bookpage="51" mode="training" icon="" manuallySetPoints="0" />
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_9</id>
+              <title>Unit 9</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_9.p52_ex1.p52_ex1" id="unit_9.p52_ex1" title="Exercise 1" maxPoints="11" category="" bookpage="52" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_9.p53_ex2_vocabulary.p53_ex2_vocabulary" id="unit_9.p53_ex2_vocabulary" title="Exercise 2 Vocabulary" maxPoints="6" category="" bookpage="53" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_9.p53_ex3.p53_ex3" id="unit_9.p53_ex3" title="Exercise 3" maxPoints="5" category="" bookpage="53" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_9.p53_ex4.p53_ex4" id="unit_9.p53_ex4" title="Exercise 4" maxPoints="5" category="" bookpage="53" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_9.p53_ex5.p53_ex5" id="unit_9.p53_ex5" title="Exercise 5" maxPoints="7" category="" bookpage="53" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_9.p53_ex1.p53_ex1" id="unit_9.p53_ex1" title="Exercise 1" maxPoints="6" category="" bookpage="53" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_9.p53_ex2_grammar.p53_ex2_grammar" id="unit_9.p53_ex2_grammar" title="Exercise 2 Grammar" maxPoints="6" category="" bookpage="53" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_9.p54_ex3.p54_ex3" id="unit_9.p54_ex3" title="Exercise 3" maxPoints="39" category="" bookpage="54" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_9.p54_ex4.p54_ex4" id="unit_9.p54_ex4" title="Exercise 4" maxPoints="6" category="" bookpage="54" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_9.p54_ex5ab.p54_ex5ab" id="unit_9.p54_ex5ab" title="Exercise 5ab" maxPoints="8" category="" bookpage="54" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_9.p54_ex6ab.p54_ex6ab" id="unit_9.p54_ex6ab" title="Exercise 6ab" maxPoints="13" category="" bookpage="54" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_9.p54_ex1_2.p54_ex1_2" id="unit_9.p54_ex1_2" title="Exercise 1 2" maxPoints="4" category="" bookpage="54" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_9.p55_ex3.p55_ex3" id="unit_9.p55_ex3" title="Exercise 3" maxPoints="1" category="" bookpage="55" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_9.p55_ex4.p55_ex4" id="unit_9.p55_ex4" title="Exercise 4" maxPoints="6" category="" bookpage="55" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_9.p55_ex5.p55_ex5" id="unit_9.p55_ex5" title="Exercise 5" maxPoints="4" category="" bookpage="55" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_9.p56_ex1ab.p56_ex1ab" id="unit_9.p56_ex1ab" title="Exercise 1ab" maxPoints="6" category="" bookpage="56" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_9.p56_ex2.p56_ex2" id="unit_9.p56_ex2" title="Exercise 2" maxPoints="6" category="" bookpage="56" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_9.p56_ex1.p56_ex1" id="unit_9.p56_ex1" title="Exercise 1" maxPoints="3" category="" bookpage="56" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_9.p56_ex2_writing.p56_ex2_writing" id="unit_9.p56_ex2_writing" title="Exercise 2 Writing" maxPoints="5" category="" bookpage="56" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_9.p56_ex3.p56_ex3" id="unit_9.p56_ex3" title="Exercise 3" maxPoints="1" category="" bookpage="56" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_9.p56_ex4.p56_ex4" id="unit_9.p56_ex4" title="Exercise 4" maxPoints="1" category="" bookpage="56" mode="training" icon="" manuallySetPoints="0" />
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>unit_10</id>
+              <title>Unit 10</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="unit_10.p57_ex2.p57_ex2" id="unit_10.p57_ex2" title="Exercise 2" maxPoints="6" category="" bookpage="57" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_10.p57_ex3.p57_ex3" id="unit_10.p57_ex3" title="Exercise 3" maxPoints="6" category="" bookpage="57" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_10.p57_ex4ab.p57_ex4ab" id="unit_10.p57_ex4ab" title="Exercise 4ab" maxPoints="12" category="" bookpage="57" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_10.p58_ex5.p58_ex5" id="unit_10.p58_ex5" title="Exercise 5" maxPoints="7" category="" bookpage="58" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_10.p58_ex6abc.p58_ex6abc" id="unit_10.p58_ex6abc" title="Exercise 6abc" maxPoints="6" category="" bookpage="58" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_10.p58_ex2.p58_ex2" id="unit_10.p58_ex2" title="Exercise 2" maxPoints="7" category="" bookpage="58" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_10.p58_ex3.p58_ex3" id="unit_10.p58_ex3" title="Exercise 3" maxPoints="6" category="" bookpage="58" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_10.p59_ex4.p59_ex4" id="unit_10.p59_ex4" title="Exercise 4" maxPoints="6" category="" bookpage="59" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_10.p59_ex5.p59_ex5" id="unit_10.p59_ex5" title="Exercise 5" maxPoints="10" category="" bookpage="59" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_10.p59_ex1.p59_ex1" id="unit_10.p59_ex1" title="Exercise 1" maxPoints="3" category="" bookpage="59" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_10.p60_ex2_reading.p60_ex2_reading" id="unit_10.p60_ex2_reading" title="Exercise 2 Reading" maxPoints="9" category="" bookpage="60" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_10.p60_ex3.p60_ex3" id="unit_10.p60_ex3" title="Exercise 3" maxPoints="6" category="" bookpage="60" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_10.p60_ex1.p60_ex1" id="unit_10.p60_ex1" title="Exercise 1" maxPoints="6" category="" bookpage="60" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_10.p60_ex2_speaking.p60_ex2_speaking" id="unit_10.p60_ex2_speaking" title="Exercise 2 Speaking" maxPoints="6" category="" bookpage="60" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_10.p61_ex1.p61_ex1" id="unit_10.p61_ex1" title="Exercise 1" maxPoints="6" category="" bookpage="61" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_10.p61_ex2.p61_ex2" id="unit_10.p61_ex2" title="Exercise 2" maxPoints="40" category="" bookpage="61" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_10.p61_ex3.p61_ex3" id="unit_10.p61_ex3" title="Exercise 3" maxPoints="1" category="" bookpage="61" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_10.p61_ex4.p61_ex4" id="unit_10.p61_ex4" title="Exercise 4" maxPoints="1" category="" bookpage="61" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_10.p62_ex1.p62_ex1" id="unit_10.p62_ex1" title="Exercise 1" maxPoints="8" category="" bookpage="62" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_10.p62_ex2.p62_ex2" id="unit_10.p62_ex2" title="Exercise 2" maxPoints="8" category="" bookpage="62" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_10.p63_ex3.p63_ex3" id="unit_10.p63_ex3" title="Exercise 3" maxPoints="6" category="" bookpage="63" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="unit_10.p63_ex4.p63_ex4" id="unit_10.p63_ex4" title="Exercise 4" maxPoints="6" category="" bookpage="63" mode="training" icon="" manuallySetPoints="0" />
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>Vocabulary</id>
+              <title>How to build your vocabulary</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="Vocabulary.p64_ex1ab.p64_ex1ab" id="Vocabulary.p64_ex1ab" title="Exercise 1ab" maxPoints="6" category="" bookpage="64" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="Vocabulary.p64_ex2.p64_ex2" id="Vocabulary.p64_ex2" title="Exercise 2" maxPoints="1" category="" bookpage="64" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="Vocabulary.p65_ex3ab.p65_ex3ab" id="Vocabulary.p65_ex3ab" title="Exercise 3ab" maxPoints="3" category="" bookpage="65" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="Vocabulary.p66_ex5ab.p66_ex5ab" id="Vocabulary.p66_ex5ab" title="Exercise 5ab" maxPoints="3" category="" bookpage="66" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="Vocabulary.p66_ex7ab.p66_ex7ab" id="Vocabulary.p66_ex7ab" title="Exercise 7ab" maxPoints="1" category="" bookpage="66" mode="training" icon="" manuallySetPoints="0" />
+          </choice>
+        </unit>
+        <unit>
+          <state>
+            <selectedUnit>
+              <id>story</id>
+              <title>Story</title>
+            </selectedUnit>
+          </state>
+          <choice>
+            <exercise content="story.p69_ex2.p69_ex2" id="story.p69_ex2" title="Exercise 2" maxPoints="1" category="" bookpage="69" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="story.p69_ex3.p69_ex3" id="story.p69_ex3" title="Exercise 3" maxPoints="6" category="" bookpage="69" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="story.p69_ex4.p69_ex4" id="story.p69_ex4" title="Exercise 4" maxPoints="8" category="" bookpage="69" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="story.p69_ex5.p69_ex5" id="story.p69_ex5" title="Exercise 5" maxPoints="14" category="" bookpage="69" mode="training" icon="" manuallySetPoints="0" />
+            <exercise content="story.p69_ex6.p69_ex6" id="story.p69_ex6" title="Exercise 6" maxPoints="1" category="" bookpage="69" mode="training" icon="" manuallySetPoints="0" />
+          </choice>
+        </unit>
+      </choice>
+    </course>
+  </sequence>
+</application>

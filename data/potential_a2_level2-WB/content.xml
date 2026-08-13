@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CourseContent>
+	<exercise_default>
+		<subject>English</subject>
+		<language>en</language>
+		<evaluation>client</evaluation>
+		<result>rslt</result>
+		<backPageTarget>_self</backPageTarget>
+	</exercise_default>
+	
+	<exerciseBasePath>/inetpub/ezone/platform/exercises/potential/A2/potential_a2-WB</exerciseBasePath> 
+	
+	<collection name="unit_1">
+		<collection name="p4_ex1">
+			<exercise name="p4_ex1" config="exercise.json" maxPoints="32"/>
+		</collection>
+		<collection name="p4_ex2">
+			<exercise name="p4_ex2" config="exercise.json" maxPoints="10"/>
+		</collection>
+		<collection name="p4_ex3">
+			<exercise name="p4_ex3" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p4_ex4">
+			<exercise name="p4_ex4" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p4_ex5">
+			<exercise name="p4_ex5" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p4_ex6">
+			<exercise name="p4_ex6" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p5_ex1">
+			<exercise name="p5_ex1" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="p5_ex2">
+			<exercise name="p5_ex2" config="exercise.json" maxPoints="12"/>
+		</collection>
+		<collection name="p5_ex3">
+			<exercise name="p5_ex3" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p5_ex4">
+			<exercise name="p5_ex4" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p5_ex5">
+			<exercise name="p5_ex5" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p6_ex1">
+			<exercise name="p6_ex1" config="exercise.json" maxPoints="10"/>
+		</collection>
+		<collection name="p6_ex3">
+			<exercise name="p6_ex3" config="exercise.json" maxPoints="1"/>
+		</collection>
+		<collection name="p7_ex4a">
+			<exercise name="p7_ex4a" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p7_ex5">
+			<exercise name="p7_ex5" config="exercise.json" maxPoints="1"/>
+		</collection>
+		<collection name="p7_ex1">
+			<exercise name="p7_ex1" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p7_ex2">
+			<exercise name="p7_ex2" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p7_ex3">
+			<exercise name="p7_ex3" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p8_ex1">
+			<exercise name="p8_ex1" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p8_ex2">
+			<exercise name="p8_ex2" config="exercise.json" maxPoints="3"/>
+		</collection>
+		<collection name="p8_ex3">
+			<exercise name="p8_ex3" config="exercise.json" maxPoints="1"/>
+		</collection>
+  </collection>
+	<collection name="unit_2">
+		<collection name="p9_ex1">
+			<exercise name="p9_ex1" config="exercise.json" maxPoints="10"/>
+		</collection>
+		<collection name="p10_ex2ab">
+			<exercise name="p10_ex2ab" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p10_ex3">
+			<exercise name="p10_ex3" config="exercise.json" maxPoints="9"/>
+		</collection>
+		<collection name="p10_ex4_5ab">
+			<exercise name="p10_ex4_5ab" config="exercise.json" maxPoints="12"/>
+		</collection>
+		<collection name="p10_ex6">
+			<exercise name="p10_ex6" config="exercise.json" maxPoints="9"/>
+		</collection>
+		<collection name="p11_ex1ab">
+			<exercise name="p11_ex1ab" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p11_ex2">
+			<exercise name="p11_ex2" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p11_ex3">
+			<exercise name="p11_ex3" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p11_ex4">
+			<exercise name="p11_ex4" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p11_ex5">
+			<exercise name="p11_ex5" config="exercise.json" maxPoints="9"/>
+		</collection>
+		<collection name="p12_ex1">
+			<exercise name="p12_ex1" config="exercise.json" maxPoints="1"/>
+		</collection>
+		<collection name="p12_ex2">
+			<exercise name="p12_ex2" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p12_ex3ab">
+			<exercise name="p12_ex3ab" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p12_ex1ab">
+			<exercise name="p12_ex1ab" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p13_ex2_speaking">
+			<exercise name="p13_ex2_speaking" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p13_ex1">
+			<exercise name="p13_ex1" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="p13_ex2_writing">
+			<exercise name="p13_ex2_writing" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p13_ex3">
+			<exercise name="p13_ex3" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p13_ex4">
+			<exercise name="p13_ex4" config="exercise.json" maxPoints="1"/>
+		</collection>
+		<collection name="p14_ex1">
+			<exercise name="p14_ex1" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="p14_ex2">
+			<exercise name="p14_ex2" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="p15_ex3">
+			<exercise name="p15_ex3" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p15_ex4">
+			<exercise name="p15_ex4" config="exercise.json" maxPoints="8"/>
+		</collection>
+  </collection>
+	<collection name="unit_3">
+		<collection name="p16_ex1">
+			<exercise name="p16_ex1" config="exercise.json" maxPoints="12"/>
+		</collection>
+		<collection name="p16_ex2">
+			<exercise name="p16_ex2" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p16_ex3">
+			<exercise name="p16_ex3" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p16_ex4">
+			<exercise name="p16_ex4" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p17_ex1">
+			<exercise name="p17_ex1" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p17_ex2ab">
+			<exercise name="p17_ex2ab" config="exercise.json" maxPoints="9"/>
+		</collection>
+		<collection name="p17_ex3_4">
+			<exercise name="p17_ex3_4" config="exercise.json" maxPoints="12"/>
+		</collection>
+		<collection name="p17_ex5">
+			<exercise name="p17_ex5" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p18_ex1">
+			<exercise name="p18_ex1" config="exercise.json" maxPoints="10"/>
+		</collection>
+		<collection name="p18_ex2">
+			<exercise name="p18_ex2" config="exercise.json" maxPoints="1"/>
+		</collection>
+		<collection name="p18_ex3">
+			<exercise name="p18_ex3" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p18_ex4">
+			<exercise name="p18_ex4" config="exercise.json" maxPoints="4"/>
+		</collection>
+		<collection name="p19_ex1ab">
+			<exercise name="p19_ex1ab" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p19_ex2">
+			<exercise name="p19_ex2" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p19_ex3">
+			<exercise name="p19_ex3" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p20_ex1">
+			<exercise name="p20_ex1" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p20_ex2_3">
+			<exercise name="p20_ex2_3" config="exercise.json" maxPoints="11"/>
+		</collection>
+		<collection name="p20_ex4">
+			<exercise name="p20_ex4" config="exercise.json" maxPoints="1"/>
+		</collection>
+  </collection>
+	<collection name="unit_4">
+		<collection name="p21_ex2">
+			<exercise name="p21_ex2" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p21_ex3">
+			<exercise name="p21_ex3" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p21_ex4">
+			<exercise name="p21_ex4" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p21_ex5">
+			<exercise name="p21_ex5" config="exercise.json" maxPoints="7"/>
+		</collection>
+		<collection name="p21_ex6ab">
+			<exercise name="p21_ex6ab" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p22_ex1">
+			<exercise name="p22_ex1" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p22_ex2ab">
+			<exercise name="p22_ex2ab" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p22_ex3ab_4_5">
+			<exercise name="p22_ex3ab_4_5" config="exercise.json" maxPoints="22"/>
+		</collection>
+		<collection name="p23_ex1">
+			<exercise name="p23_ex1" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p23_ex2">
+			<exercise name="p23_ex2" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="p23_ex3">
+			<exercise name="p23_ex3" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p24_ex1ab">
+			<exercise name="p24_ex1ab" config="exercise.json" maxPoints="10"/>
+		</collection>
+		<collection name="p24_ex2">
+			<exercise name="p24_ex2" config="exercise.json" maxPoints="10"/>
+		</collection>
+		<collection name="p24_ex1">
+			<exercise name="p24_ex1" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p25_ex2">
+			<exercise name="p25_ex2" config="exercise.json" maxPoints="14"/>
+		</collection>
+		<collection name="p25_ex3">
+			<exercise name="p25_ex3" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p25_ex4">
+			<exercise name="p25_ex4" config="exercise.json" maxPoints="1"/>
+		</collection>
+		<collection name="p26_ex1">
+			<exercise name="p26_ex1" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="p26_ex2">
+			<exercise name="p26_ex2" config="exercise.json" maxPoints="10"/>
+		</collection>
+		<collection name="p26_ex3">
+			<exercise name="p26_ex3" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p27_ex4">
+			<exercise name="p27_ex4" config="exercise.json" maxPoints="6"/>
+		</collection>
+  </collection>
+	<collection name="unit_5">
+		<collection name="p28_ex1">
+			<exercise name="p28_ex1" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p28_ex2">
+			<exercise name="p28_ex2" config="exercise.json" maxPoints="7"/>
+		</collection>
+		<collection name="p28_ex3">
+			<exercise name="p28_ex3" config="exercise.json" maxPoints="9"/>
+		</collection>
+		<collection name="p29_ex1">
+			<exercise name="p29_ex1" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p29_ex2_3">
+			<exercise name="p29_ex2_3" config="exercise.json" maxPoints="13"/>
+		</collection>
+		<collection name="29_ex4">
+			<exercise name="29_ex4" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p29_ex5ab">
+			<exercise name="p29_ex5ab" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p30_ex6ab">
+			<exercise name="p30_ex6ab" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="p30_ex1">
+			<exercise name="p30_ex1" config="exercise.json" maxPoints="3"/>
+		</collection>
+		<collection name="p30_ex2">
+			<exercise name="p30_ex2" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="p31_ex3">
+			<exercise name="p31_ex3" config="exercise.json" maxPoints="1"/>
+		</collection>
+		<collection name="p31_ex1ab">
+			<exercise name="p31_ex1ab" config="exercise.json" maxPoints="10"/>
+		</collection>
+		<collection name="p31_ex2ab">
+			<exercise name="p31_ex2ab" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p32_ex1">
+			<exercise name="p32_ex1" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="p32_ex2">
+			<exercise name="p32_ex2" config="exercise.json" maxPoints="3"/>
+		</collection>
+		<collection name="p32_ex3">
+			<exercise name="p32_ex3" config="exercise.json" maxPoints="3"/>
+		</collection>
+		<collection name="p32_ex4">
+			<exercise name="p32_ex4" config="exercise.json" maxPoints="20"/>
+		</collection>
+		<collection name="p32_ex5">
+			<exercise name="p32_ex5" config="exercise.json" maxPoints="1"/>
+		</collection>
+  </collection>
+	<collection name="unit_6">
+		<collection name="p33_ex1">
+			<exercise name="p33_ex1" config="exercise.json" maxPoints="12"/>
+		</collection>
+		<collection name="p33_ex2">
+			<exercise name="p33_ex2" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p33_ex3">
+			<exercise name="p33_ex3" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p33_ex4">
+			<exercise name="p33_ex4" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p33_ex5ab">
+			<exercise name="p33_ex5ab" config="exercise.json" maxPoints="3"/>
+		</collection>
+		<collection name="p34_ex1">
+			<exercise name="p34_ex1" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="p34_ex2">
+			<exercise name="p34_ex2" config="exercise.json" maxPoints="15"/>
+		</collection>
+		<collection name="p34_ex3">
+			<exercise name="p34_ex3" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="p34_ex4">
+			<exercise name="p34_ex4" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p35_ex1">
+			<exercise name="p35_ex1" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p35_ex2">
+			<exercise name="p35_ex2" config="exercise.json" maxPoints="9"/>
+		</collection>
+		<collection name="p35_ex3">
+			<exercise name="p35_ex3" config="exercise.json" maxPoints="7"/>
+		</collection>
+		<collection name="p36_ex1_speaking">
+			<exercise name="p36_ex1_speaking" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p36_ex2">
+			<exercise name="p36_ex2" config="exercise.json" maxPoints="7"/>
+		</collection>
+		<collection name="p36_ex1_writing">
+			<exercise name="p36_ex1_writing" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="p37_ex2">
+			<exercise name="p37_ex2" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p37_ex3">
+			<exercise name="p37_ex3" config="exercise.json" maxPoints="4"/>
+		</collection>
+		<collection name="p37_ex4">
+			<exercise name="p37_ex4" config="exercise.json" maxPoints="3"/>
+		</collection>
+		<collection name="p37_ex5">
+			<exercise name="p37_ex5" config="exercise.json" maxPoints="1"/>
+		</collection>
+		<collection name="p38_ex1">
+			<exercise name="p38_ex1" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="p38_ex2">
+			<exercise name="p38_ex2" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p39_ex3">
+			<exercise name="p39_ex3" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p39_ex4">
+			<exercise name="p39_ex4" config="exercise.json" maxPoints="10"/>
+		</collection>
+  </collection>
+	<collection name="unit_7">
+		<collection name="p40_ex1">
+			<exercise name="p40_ex1" config="exercise.json" maxPoints="11"/>
+		</collection>
+		<collection name="p40_ex2ab">
+			<exercise name="p40_ex2ab" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p40_ex3">
+			<exercise name="p40_ex3" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p40_ex4">
+			<exercise name="p40_ex4" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p41_ex5">
+			<exercise name="p41_ex5" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p41_ex6">
+			<exercise name="p41_ex6" config="exercise.json" maxPoints="4"/>
+		</collection>
+		<collection name="p41_ex7">
+			<exercise name="p41_ex7" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p41_ex1_2">
+			<exercise name="p41_ex1_2" config="exercise.json" maxPoints="10"/>
+		</collection>
+		<collection name="p41_ex3">
+			<exercise name="p41_ex3" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p41_ex4">
+			<exercise name="p41_ex4" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p42_ex5">
+			<exercise name="p42_ex5" config="exercise.json" maxPoints="12"/>
+		</collection>
+		<collection name="p42_ex1">
+			<exercise name="p42_ex1" config="exercise.json" maxPoints="4"/>
+		</collection>
+		<collection name="p42_ex2">
+			<exercise name="p42_ex2" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="p42_ex3">
+			<exercise name="p42_ex3" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="p43_ex1ab">
+			<exercise name="p43_ex1ab" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p43_ex2">
+			<exercise name="p43_ex2" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p43_ex3">
+			<exercise name="p43_ex3" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p44_ex1">
+			<exercise name="p44_ex1" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p44_ex2">
+			<exercise name="p44_ex2" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p44_ex3">
+			<exercise name="p44_ex3" config="exercise.json" maxPoints="9"/>
+		</collection>
+		<collection name="p44_ex4">
+			<exercise name="p44_ex4" config="exercise.json" maxPoints="1"/>
+		</collection>
+  </collection>
+	<collection name="unit_8">
+		<collection name="p45_ex1">
+			<exercise name="p45_ex1" config="exercise.json" maxPoints="7"/>
+		</collection>
+		<collection name="p45_ex2">
+			<exercise name="p45_ex2" config="exercise.json" maxPoints="7"/>
+		</collection>
+		<collection name="p45_ex3">
+			<exercise name="p45_ex3" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p45_ex4">
+			<exercise name="p45_ex4" config="exercise.json" maxPoints="28"/>
+		</collection>
+		<collection name="p45_ex5">
+			<exercise name="p45_ex5" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p46_ex6">
+			<exercise name="p46_ex6" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p46_ex1">
+			<exercise name="p46_ex1" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p46_ex2">
+			<exercise name="p46_ex2" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p46_ex3">
+			<exercise name="p46_ex3" config="exercise.json" maxPoints="12"/>
+		</collection>
+		<collection name="p46_ex4_5">
+			<exercise name="p46_ex4_5" config="exercise.json" maxPoints="12"/>
+		</collection>
+		<collection name="p47_ex1">
+			<exercise name="p47_ex1" config="exercise.json" maxPoints="3"/>
+		</collection>
+		<collection name="p48_ex2_reading">
+			<exercise name="p48_ex2_reading" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p48_ex3">
+			<exercise name="p48_ex3" config="exercise.json" maxPoints="1"/>
+		</collection>
+		<collection name="p48_ex1ab">
+			<exercise name="p48_ex1ab" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="p48_ex2_speaking">
+			<exercise name="p48_ex2_speaking" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="p49_ex1">
+			<exercise name="p49_ex1" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p49_ex2">
+			<exercise name="p49_ex2" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p49_ex3">
+			<exercise name="p49_ex3" config="exercise.json" maxPoints="3"/>
+		</collection>
+		<collection name="p49_ex4">
+			<exercise name="p49_ex4" config="exercise.json" maxPoints="1"/>
+		</collection>
+		<collection name="p50_ex1">
+			<exercise name="p50_ex1" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="p50_ex2">
+			<exercise name="p50_ex2" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="p50_ex3">
+			<exercise name="p50_ex3" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p51_ex4">
+			<exercise name="p51_ex4" config="exercise.json" maxPoints="8"/>
+		</collection>
+  </collection>
+	<collection name="unit_9">
+		<collection name="p52_ex1">
+			<exercise name="p52_ex1" config="exercise.json" maxPoints="11"/>
+		</collection>
+		<collection name="p53_ex2_vocabulary">
+			<exercise name="p53_ex2_vocabulary" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p53_ex3">
+			<exercise name="p53_ex3" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p53_ex4">
+			<exercise name="p53_ex4" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p53_ex5">
+			<exercise name="p53_ex5" config="exercise.json" maxPoints="7"/>
+		</collection>
+		<collection name="p53_ex1">
+			<exercise name="p53_ex1" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p53_ex2_grammar">
+			<exercise name="p53_ex2_grammar" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p54_ex3">
+			<exercise name="p54_ex3" config="exercise.json" maxPoints="39"/>
+		</collection>
+		<collection name="p54_ex4">
+			<exercise name="p54_ex4" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p54_ex5ab">
+			<exercise name="p54_ex5ab" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="p54_ex6ab">
+			<exercise name="p54_ex6ab" config="exercise.json" maxPoints="13"/>
+		</collection>
+		<collection name="p54_ex1_2">
+			<exercise name="p54_ex1_2" config="exercise.json" maxPoints="4"/>
+		</collection>
+		<collection name="p55_ex3">
+			<exercise name="p55_ex3" config="exercise.json" maxPoints="1"/>
+		</collection>
+		<collection name="p55_ex4">
+			<exercise name="p55_ex4" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p55_ex5">
+			<exercise name="p55_ex5" config="exercise.json" maxPoints="4"/>
+		</collection>
+		<collection name="p56_ex1ab">
+			<exercise name="p56_ex1ab" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p56_ex2">
+			<exercise name="p56_ex2" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p56_ex1">
+			<exercise name="p56_ex1" config="exercise.json" maxPoints="3"/>
+		</collection>
+		<collection name="p56_ex2_writing">
+			<exercise name="p56_ex2_writing" config="exercise.json" maxPoints="5"/>
+		</collection>
+		<collection name="p56_ex3">
+			<exercise name="p56_ex3" config="exercise.json" maxPoints="1"/>
+		</collection>
+		<collection name="p56_ex4">
+			<exercise name="p56_ex4" config="exercise.json" maxPoints="1"/>
+		</collection>
+  </collection>
+	<collection name="unit_10">
+		<collection name="p57_ex2">
+			<exercise name="p57_ex2" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p57_ex3">
+			<exercise name="p57_ex3" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p57_ex4ab">
+			<exercise name="p57_ex4ab" config="exercise.json" maxPoints="12"/>
+		</collection>
+		<collection name="p58_ex5">
+			<exercise name="p58_ex5" config="exercise.json" maxPoints="7"/>
+		</collection>
+		<collection name="p58_ex6abc">
+			<exercise name="p58_ex6abc" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p58_ex2">
+			<exercise name="p58_ex2" config="exercise.json" maxPoints="7"/>
+		</collection>
+		<collection name="p58_ex3">
+			<exercise name="p58_ex3" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p59_ex4">
+			<exercise name="p59_ex4" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p59_ex5">
+			<exercise name="p59_ex5" config="exercise.json" maxPoints="10"/>
+		</collection>
+		<collection name="p59_ex1">
+			<exercise name="p59_ex1" config="exercise.json" maxPoints="3"/>
+		</collection>
+		<collection name="p60_ex2_reading">
+			<exercise name="p60_ex2_reading" config="exercise.json" maxPoints="9"/>
+		</collection>
+		<collection name="p60_ex3">
+			<exercise name="p60_ex3" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p60_ex1">
+			<exercise name="p60_ex1" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p60_ex2_speaking">
+			<exercise name="p60_ex2_speaking" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p61_ex1">
+			<exercise name="p61_ex1" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p61_ex2">
+			<exercise name="p61_ex2" config="exercise.json" maxPoints="40"/>
+		</collection>
+		<collection name="p61_ex3">
+			<exercise name="p61_ex3" config="exercise.json" maxPoints="1"/>
+		</collection>
+		<collection name="p61_ex4">
+			<exercise name="p61_ex4" config="exercise.json" maxPoints="1"/>
+		</collection>
+		<collection name="p62_ex1">
+			<exercise name="p62_ex1" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="p62_ex2">
+			<exercise name="p62_ex2" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="p63_ex3">
+			<exercise name="p63_ex3" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p63_ex4">
+			<exercise name="p63_ex4" config="exercise.json" maxPoints="6"/>
+		</collection>
+  </collection>
+	<collection name="Vocabulary">
+		<collection name="p64_ex1ab">
+			<exercise name="p64_ex1ab" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p64_ex2">
+			<exercise name="p64_ex2" config="exercise.json" maxPoints="1"/>
+		</collection>
+		<collection name="p65_ex3ab">
+			<exercise name="p65_ex3ab" config="exercise.json" maxPoints="3"/>
+		</collection>
+		<collection name="p66_ex5ab">
+			<exercise name="p66_ex5ab" config="exercise.json" maxPoints="3"/>
+		</collection>
+		<collection name="p66_ex7ab">
+			<exercise name="p66_ex7ab" config="exercise.json" maxPoints="1"/>
+		</collection>
+  </collection>
+	<collection name="story">
+		<collection name="p69_ex2">
+			<exercise name="p69_ex2" config="exercise.json" maxPoints="1"/>
+		</collection>
+		<collection name="p69_ex3">
+			<exercise name="p69_ex3" config="exercise.json" maxPoints="6"/>
+		</collection>
+		<collection name="p69_ex4">
+			<exercise name="p69_ex4" config="exercise.json" maxPoints="8"/>
+		</collection>
+		<collection name="p69_ex5">
+			<exercise name="p69_ex5" config="exercise.json" maxPoints="14"/>
+		</collection>
+		<collection name="p69_ex6">
+			<exercise name="p69_ex6" config="exercise.json" maxPoints="1"/>
+		</collection>
+  </collection>
+</CourseContent>
